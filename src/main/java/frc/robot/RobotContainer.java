@@ -30,7 +30,7 @@ public class RobotContainer {
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
-  // private final DriveTrainCommand drive_command = new DriveTrainCommand(drive_subsystem);
+  private final DriveTrainCommand drive_command = new DriveTrainCommand(drive_subsystem);
   private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
 
   // public final PWMTalonSRX frontRight = new PWMTalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 1
