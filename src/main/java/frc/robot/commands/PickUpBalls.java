@@ -4,25 +4,22 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.BallPickerUpper;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 /** An example command that uses an example subsystem. */
 public class PickUpBalls extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final BallPickerUpper ball_picker_upper_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public PickUpBalls(BallPickerUpper subsystem) {
-    ball_picker_upper_subsystem = subsystem;
+  public PickUpBalls() {
     // ball_picker_upper_subsystem.wait();
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(Robot.ballPickerUpper);
   }
 
   // Called when the command is initially scheduled.
