@@ -5,18 +5,31 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
+import frc.robot.Variables;
 
 public class Launchersubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public Launchersubsystem() {}
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  final PWMTalonSRX launcher;
+
+  public Launchersubsystem() {
+
+    // Launcher control motors
+    launcher = new PWMTalonSRX(Constants.LAUNCHER); // 2022 1
+    
   }
 
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
+  public void rev() {
+
+    launcher.set(Variables.launcherSpeed);
+
+  }
+
+  public void stop() {
+
+    launcher.set(0);
+
   }
 }

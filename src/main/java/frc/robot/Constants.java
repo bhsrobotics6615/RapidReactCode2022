@@ -18,6 +18,9 @@ public final class Constants {
     public static final int BACK_RIGHT_MOTOR = 2;
     public static final int BACK_LEFT_MOTOR = 3;
     public static final int FRONT_LEFT_MOTOR = 4;
+
+    //General Motors
+    public static final int LAUNCHER = 5;
     
     //Logitech Port
 	public static final int JOYSTICK = 0;
