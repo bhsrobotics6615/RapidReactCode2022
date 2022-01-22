@@ -11,7 +11,7 @@ import frc.robot.commands.AutoSpeenCommand;
 import frc.robot.commands.DriveTrainCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+// import edu.wpi.first.wpilibj2.command.RunCommand;
 // import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 
 /**
@@ -47,11 +47,13 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure default commands
 
-      drive_subsystem.setDefaultCommand(
-        new RunCommand(
-            () ->
-                drive_subsystem.Move(0, 0, 0),
-            drive_subsystem));
+      // drive_subsystem.setDefaultCommand(
+      //   new RunCommand(
+      //       () ->
+      //           drive_subsystem.Move(0, 0, 0),
+      //       drive_subsystem));
+
+      drive_subsystem.setDefaultCommand(drive_command);
 
     // Configure the button bindings
     configureButtonBindings();
