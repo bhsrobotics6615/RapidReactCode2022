@@ -7,13 +7,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LidarSubsystem;
+import frc.robot.Limelight;
 // import NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(0);
+import frc.robot.Variables;
 
 
 public class TargetAim extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final LidarSubsystem lidar_subsystem;
-  @SuppressWarnings("unused") 
   private final DriveTrainSubsystem drive_subsystem;
 
   /** Creates a new LidarCommand. */
@@ -34,13 +35,26 @@ public class TargetAim extends CommandBase {
   @Override
   public void execute() {
 
-    lidar_subsystem.findDistance(0);
+    while (Limelight.getArea() != 0 && Limelight.getX() != 0) {
+
+      if (-10 > Limelight.getX() || Limelight.getX() > 10) {
+
+        drive_subsystem.Move(0.0, 0.0, 0.25);
+
+      }
+
+    }
+
   }
 
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+
+    Variables.targetDistance = lidar_subsystem.findDistance(Limelight.getY());
+
+  }
 
   // Returns true when the command should end.
   @Override
