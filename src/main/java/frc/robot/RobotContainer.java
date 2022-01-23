@@ -8,11 +8,16 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoSpeenCommand;
-import frc.robot.commands.DriveTrainCommand;
+import frc.robot.commands.Drive;
+import frc.robot.commands.RunTheLauncher;
+import frc.robot.commands.TargetAim;
 import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
+import frc.robot.subsystems.LidarSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj2.command.RunCommand;
 // import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -25,35 +30,34 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
+  
+  //Subsystems
+  private final LauncherSubsystem launcher_subsystem = new LauncherSubsystem();
+  private final LidarSubsystem lidar_subsystem = new LidarSubsystem();
   private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
-  private final DriveTrainCommand drive_command = new DriveTrainCommand(drive_subsystem);
+
+  //Commands
+  private final Drive drive_command = new Drive(drive_subsystem);
   private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
+  private final TargetAim run_lidar = new TargetAim(lidar_subsystem, drive_subsystem);
+  private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
 
-  // public final PWMTalonSRX frontRight = new PWMTalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 1
-  // public final PWMTalonSRX backRight = new PWMTalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 2
-  // public final PWMTalonSRX backLeft = new PWMTalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 3
-  // public final PWMTalonSRX frontLeft = new PWMTalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 4
-
+  //Controllers
   public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
   public XboxController Xbox360 = new XboxController(Constants.XBOX); // Port is 1
 
+  //Buttons
+  public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
+  public JoystickButton Run_Lidar = new JoystickButton(Logitech, Constants.RUN_LIDAR);
+
+  // public 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure default commands
-
-      // drive_subsystem.setDefaultCommand(
-      //   new RunCommand(
-      //       () ->
-      //           drive_subsystem.Move(0, 0, 0),
-      //       drive_subsystem));
-
-      drive_subsystem.setDefaultCommand(drive_command);
+    drive_subsystem.setDefaultCommand(drive_command);
+    // launcher_subsystem.setDefaultCommand(run_launch);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -68,6 +72,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    
+    Run_Launcher.whileHeld(run_launch);
+    Run_Lidar.whenPressed(run_lidar);
+    
   }
 
   /**

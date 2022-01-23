@@ -15,16 +15,10 @@ public class DriveTrainSubsystem extends SubsystemBase{
     public DriveTrainSubsystem(){
 
         // Drive control motors
-
         final PWMTalonSRX frontRight = new PWMTalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 1
         final PWMTalonSRX backRight = new PWMTalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 2
         final PWMTalonSRX backLeft = new PWMTalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 3
         final PWMTalonSRX frontLeft = new PWMTalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 4
-
-        // frontLeft = Robot.m_robotContainer.frontLeft;
-        // backLeft = Robot.m_robotContainer.backLeft;
-        // frontRight = Robot.m_robotContainer.frontRight;
-        // backRight = Robot.m_robotContainer.backRight;
 
         drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
     }

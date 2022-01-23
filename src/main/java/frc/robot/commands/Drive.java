@@ -4,11 +4,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class DriveTrainCommand extends CommandBase {
+public class Drive extends CommandBase {
     private final DriveTrainSubsystem drive_subsystem;
     
-
-    public DriveTrainCommand(DriveTrainSubsystem subsystem) {
+    public Drive(DriveTrainSubsystem subsystem) {
         drive_subsystem = subsystem;
 
         addRequirements(subsystem);

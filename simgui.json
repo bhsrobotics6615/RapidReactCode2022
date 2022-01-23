@@ -10,6 +10,8 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/DriveTrainSubsystem": "Subsystem",
+      "/LiveWindow/LauncherSubsystem": "Subsystem",
+      "/LiveWindow/LidarSubsystem": "Subsystem",
       "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
     }
@@ -20,6 +22,9 @@
     },
     "LiveWindow": {
       "DriveTrainSubsystem": {
+        "open": true
+      },
+      "LauncherSubsystem": {
         "open": true
       },
       "open": true

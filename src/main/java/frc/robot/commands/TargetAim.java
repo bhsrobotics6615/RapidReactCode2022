@@ -3,27 +3,27 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-import  frc.robot.subsystems.BallPickerUpper;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-// import frc.robot.Constants;
-import frc.robot.Robot;
+import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.LidarSubsystem;
+// import NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(0);
 
-/** An example command that uses an example subsystem. */
-public class PickUpBalls extends CommandBase {
+
+public class TargetAim extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final LidarSubsystem lidar_subsystem;
+  @SuppressWarnings("unused") 
+  private final DriveTrainSubsystem drive_subsystem;
 
-  private final BallPickerUpper ball_picker_upper_subsystem;
+  /** Creates a new LidarCommand. */
+  public TargetAim(LidarSubsystem l_subsystem, DriveTrainSubsystem d_subsystem) {
+    lidar_subsystem = l_subsystem;
+    drive_subsystem = d_subsystem;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public PickUpBalls(BallPickerUpper subsystem) {
-    // ball_picker_upper_subsystem.wait();
-    ball_picker_upper_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.ballPickerUpper);
+    addRequirements(l_subsystem);
+    addRequirements(d_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -33,8 +33,10 @@ public class PickUpBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ball_picker_upper_subsystem.pickUpTheBall();
+
+    lidar_subsystem.findDistance(0);
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
