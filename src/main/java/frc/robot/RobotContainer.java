@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj2.command.RunCommand;
 // import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.TheFirst15;
+import frc.robot.commands.DriveAuto;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -38,6 +40,7 @@ public class RobotContainer {
 
   //Commands
   private final Drive drive_command = new Drive(drive_subsystem);
+  private final DriveAuto drive_auto_command = new DriveAuto(drive_subsystem);
   private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
   private final TargetAim run_lidar = new TargetAim(lidar_subsystem, drive_subsystem);
   private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
@@ -85,6 +88,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+    
     return m_autoCommand;
   }
 }

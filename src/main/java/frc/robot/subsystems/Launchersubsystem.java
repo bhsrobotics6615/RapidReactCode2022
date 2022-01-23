@@ -16,7 +16,8 @@ public class LauncherSubsystem extends SubsystemBase {
 
   public void rev() {
     
-    Variables.launcherSpeed = Constants.speedConvConst / Math.sin(Variables.thetaDegrees);
+    Variables.launcherSpeed = 1;
+    // Variables.launcherSpeed = Constants.speedConvConst / Math.sin(Variables.thetaDegrees);
     launcher.set(Variables.launcherSpeed);
     
   }
