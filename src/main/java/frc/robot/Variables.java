@@ -11,7 +11,7 @@ package frc.robot;
 
 public class Variables {
 
-    public static int targetDistance = 0;
+    public static double targetDistance = 0;
     public static double launcherSpeed = 1;
     public static double theta = 0;
     public static double thetaDegrees = 3.1415 * theta;
