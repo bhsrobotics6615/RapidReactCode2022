@@ -1,13 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class Drive extends CommandBase {
+public class DriveAuto extends CommandBase {
     private final DriveTrainSubsystem drive_subsystem;
     
-    public Drive(DriveTrainSubsystem subsystem) {
+    public DriveAuto(DriveTrainSubsystem subsystem) {
         drive_subsystem  = subsystem;
 
         addRequirements(subsystem);
@@ -22,10 +21,8 @@ public class Drive extends CommandBase {
     @Override
     public void execute() {
      
-        drive_subsystem.Move(
-        Robot.m_robotContainer.Logitech.getY(), 
-        Robot.m_robotContainer.Logitech.getX(),
-        Robot.m_robotContainer.Logitech.getZ());
+        drive_subsystem.Move(0.75,0.75,0);
+    
         // drive_subsystem.SmoothOutput();
 
     }
