@@ -9,27 +9,21 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import frc.robot.Variables;
 
-public class Launchersubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-
-  final PWMTalonSRX launcher;
-
-  public Launchersubsystem() {
-
-    // Launcher control motors
-    launcher = new PWMTalonSRX(Constants.LAUNCHER); // 2022 1
-    
-  }
+public class LauncherSubsystem extends SubsystemBase {
+  /** Creates a new LauncherSubsystem. */
+  
+  PWMTalonSRX launcher = new PWMTalonSRX(Constants.LAUNCHER);
 
   public void rev() {
-
+    
+    Variables.launcherSpeed = Constants.speedConvConst / Math.sin(Variables.thetaDegrees);
     launcher.set(Variables.launcherSpeed);
-
+    
   }
 
   public void stop() {
 
     launcher.set(0);
-
+    
   }
 }

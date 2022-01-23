@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.XboxController;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -13,16 +15,34 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    //Drive Train Talon SRX Ports
+    //Talon SRX Ports
 	public static final int FRONT_RIGHT_MOTOR = 1;
     public static final int BACK_RIGHT_MOTOR = 2;
     public static final int BACK_LEFT_MOTOR = 3;
     public static final int FRONT_LEFT_MOTOR = 4;
-
-    //General Motors
     public static final int LAUNCHER = 5;
+    public static final int LOADER = 6;
     
-    //Logitech Port
+    //Controller Ports
 	public static final int JOYSTICK = 0;
 	public static final int XBOX = 1;
+
+    //Heights
+    public static final int HEIGHT_OF_HUB = 0;
+    public static final int HEIGHT_OF_CAMERA = 0;
+
+    //Angles
+    public static final double LIMELIGHT_MOUNTING_ANGLE = 45;
+
+    //Xbox Controller Buttons
+    public static final int RUN_LAUNCHER = XboxController.Button.kA.value;
+
+    //Logitech Joystick Buttons
+    public static final int RUN_LIDAR = 2;
+    
+    //Random
+    public static final double PICK_UP_SPEED = 0;
+
+    // Speed Conversion Constant 
+    public static final double speedConvConst = 6.23;
     }
