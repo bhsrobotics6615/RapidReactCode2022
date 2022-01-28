@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.TheFirst15;
-import frc.robot.commands.DriveAuto;
+// import frc.robot.commands.DriveAuto;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
