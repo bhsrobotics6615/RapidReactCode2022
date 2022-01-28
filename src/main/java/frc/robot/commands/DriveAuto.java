@@ -1,10 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Limelight;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 
 public class DriveAuto extends CommandBase {
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final DriveTrainSubsystem drive_subsystem;
     private boolean driveAutoDone = false;
     private double startTime;
@@ -32,6 +34,7 @@ public class DriveAuto extends CommandBase {
     @Override
     public void execute() 
     {
+
         if(time < endTime)
         {
         drive_subsystem.Move(-0.3,0,0.0);
@@ -45,7 +48,9 @@ public class DriveAuto extends CommandBase {
 
     @Override
     public boolean isFinished(){
+
         return driveAutoDone;
+
     }
 
     // Called once the command ends or is interrupted.
@@ -53,5 +58,7 @@ public class DriveAuto extends CommandBase {
     public void end(boolean interrupted) {
         drive_subsystem.Stop();
     }
+
+   
 
 }
