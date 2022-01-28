@@ -7,10 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.AutoSpeenCommand;
+// import frc.robot.commands.AutoSpeenCommand;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunTheLauncher;
-import frc.robot.commands.TargetAim;
+import frc.robot.commands.PreLaunch;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.LidarSubsystem;
@@ -40,10 +40,11 @@ public class RobotContainer {
 
   //Commands
   private final Drive drive_command = new Drive(drive_subsystem);
-  private final DriveAuto drive_auto_command = new DriveAuto(drive_subsystem);
-  private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
-  private final TargetAim run_lidar = new TargetAim(lidar_subsystem, drive_subsystem);
+
+  // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
+  private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
   private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
+  private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
 
   //Controllers
   public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
@@ -51,7 +52,7 @@ public class RobotContainer {
 
   //Buttons
   public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
-  public JoystickButton Run_Lidar = new JoystickButton(Logitech, Constants.RUN_LIDAR);
+  public JoystickButton Run_Pre_Launch_Proceedures = new JoystickButton(Logitech, Constants.RUN_LIDAR);
 
   // public 
   /**
@@ -77,7 +78,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     
     Run_Launcher.whileHeld(run_launch);
-    Run_Lidar.whenPressed(run_lidar);
+    Run_Pre_Launch_Proceedures.whenPressed(pre_launch);
     
   }
 
@@ -89,6 +90,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return m_autoCommand;
+    return run_auto;
   }
 }
