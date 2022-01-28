@@ -12,13 +12,13 @@ import frc.robot.Limelight;
 import frc.robot.Variables;
 
 
-public class TargetAim extends CommandBase {
+public class PreLaunch extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final LidarSubsystem lidar_subsystem;
   private final DriveTrainSubsystem drive_subsystem;
 
   /** Creates a new LidarCommand. */
-  public TargetAim(LidarSubsystem l_subsystem, DriveTrainSubsystem d_subsystem) {
+  public PreLaunch(LidarSubsystem l_subsystem, DriveTrainSubsystem d_subsystem) {
     lidar_subsystem = l_subsystem;
     drive_subsystem = d_subsystem;
 

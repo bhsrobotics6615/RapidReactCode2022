@@ -12,12 +12,12 @@ import frc.robot.subsystems.LidarSubsystem;
 
 public class TheFirst15 extends SequentialCommandGroup {
   /** Creates a new TheFirst15. */
-  public TheFirst15(DriveTrainSubsystem driveTrain, LauncherSubsystem launcher, LidarSubsystem limelight) {
+  public TheFirst15(DriveTrainSubsystem driveTrain, LauncherSubsystem launcher/*, LidarSubsystem limelight*/) {
     // Use addRequirements() here to declare subsystem dependencies.
     addCommands(
-      new DriveAuto(driveTrain),
-      new RunTheLauncher(launcher),
-      new TargetAim(limelight, driveTrain)
+      new DriveAuto(driveTrain, 4),
+      new AutoRunTheLauncher(launcher, 6)
+     // new TargetAim(limelight, driveTrain)
     );
   }
 

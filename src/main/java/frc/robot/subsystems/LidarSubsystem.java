@@ -21,12 +21,20 @@ public class LidarSubsystem extends SubsystemBase {
     
   }
 
+  // Finds distance from limelight to retro-reflective tape
   public double findDistance(double angleOfError) {
 
     theta = Constants.LIMELIGHT_MOUNTING_ANGLE + angleOfError;
     distance = opposite / Math.sin(theta);
     return distance;
 
+  }
+
+  // Calculates power for distance
+  public double findPower(double distance) {
+    
+    return 0.0;
+    
   }
 
 }
