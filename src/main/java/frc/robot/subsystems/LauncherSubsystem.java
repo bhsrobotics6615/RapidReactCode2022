@@ -14,6 +14,7 @@ public class LauncherSubsystem extends SubsystemBase {
   /** Creates a new LauncherSubsystem. */
   public LauncherSubsystem() {}
 
+
   WPI_TalonSRX launcher = new WPI_TalonSRX(Constants.LAUNCHER);
 
   public void rev() {
@@ -29,6 +30,7 @@ public class LauncherSubsystem extends SubsystemBase {
     launcher.set(0);
     
   }
+
 
   @Override
   public void periodic() {
