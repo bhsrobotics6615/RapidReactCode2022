@@ -2,8 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import frc.robot.commands.DriveTrainCommand;
-import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
-// import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+// import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 // import frc.robot.Robot;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -16,10 +16,10 @@ public class DriveTrainSubsystem extends SubsystemBase{
     public DriveTrainSubsystem(){
 
         // Drive control motors
-        final PWMTalonSRX frontRight = new PWMTalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 1
-        final PWMTalonSRX backRight = new PWMTalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 2
-        final PWMTalonSRX backLeft = new PWMTalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 3
-        final PWMTalonSRX frontLeft = new PWMTalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 4
+        final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 1
+        final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 2
+        final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 3
+        final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 4
 
         drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
     }
@@ -38,7 +38,7 @@ public class DriveTrainSubsystem extends SubsystemBase{
           return output;
     }
 
-    public int CalculateRPM(String motorType, PWMTalonSRX motorController){ // Calculate the current motor's RPM given current cartesianDrive settings
+    public int CalculateRPM(String motorType, WPI_TalonSRX motorController){ // Calculate the current motor's RPM given current cartesianDrive settings
         double currentSpeedValue = motorController.get();
 
         //all motors are type CIM Motor 217-2000
