@@ -39,7 +39,7 @@ public class PreLaunch extends CommandBase {
 
       if (-10 > Limelight.getX() || Limelight.getX() > 10) {
 
-        drive_subsystem.Move(0.0, 0.0, 0.25);
+        drive_subsystem.move(0.0, 0.0, 0.25);
 
       }
 

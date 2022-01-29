@@ -1,0 +1,58 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "Talon SRX[1]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[2]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[3]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[4]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/DriveTrainSubsystem": "Subsystem",
+      "/LiveWindow/LauncherSubsystem": "Subsystem",
+      "/LiveWindow/LidarSubsystem": "Subsystem",
+      "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive"
+    }
+  },
+  "NetworkTables": {
+    "LiveWindow": {
+      "DriveTrainSubsystem": {
+        "open": true
+      },
+      "LauncherSubsystem": {
+        "open": true
+      },
+      "LidarSubsystem": {
+        "open": true
+      },
+      "Ungrouped": {
+        "MecanumDrive[1]": {
+          "open": true
+        },
+        "PWMTalonSRX[5]": {
+          "open": true
+        },
+        "open": true
+      },
+      "open": true
+    }
+  }
+}
