@@ -4,15 +4,17 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.motorcontrol.PWMTalonSRX;
 import frc.robot.Variables;
 
 public class LauncherSubsystem extends SubsystemBase {
   /** Creates a new LauncherSubsystem. */
-  
-  PWMTalonSRX launcher = new PWMTalonSRX(Constants.LAUNCHER);
+  public LauncherSubsystem() {}
+
+  WPI_TalonSRX launcher = new WPI_TalonSRX(Constants.LAUNCHER);
 
   public void rev() {
     
@@ -26,5 +28,10 @@ public class LauncherSubsystem extends SubsystemBase {
 
     launcher.set(0);
     
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
   }
 }

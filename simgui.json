@@ -1,0 +1,45 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "Talon SRX[1]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[1]/Analog In": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[1]/Fwd Limit": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[1]/Pulse Width Input": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[1]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[1]/Rev Limit": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/DriveTrainSubsystem": "Subsystem",
+      "/LiveWindow/LauncherSubsystem": "Subsystem",
+      "/LiveWindow/LidarSubsystem": "Subsystem",
+      "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive"
+    }
+  }
+}
