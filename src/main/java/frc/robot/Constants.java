@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public final class Constants {
     //Talon SRX Ports
-	public static final int FRONT_RIGHT_MOTOR = 1;
-    public static final int BACK_RIGHT_MOTOR = 2;
-    public static final int BACK_LEFT_MOTOR = 3;
+	public static final int FRONT_RIGHT_MOTOR = 3;
+    public static final int BACK_RIGHT_MOTOR = 1;
+    public static final int BACK_LEFT_MOTOR = 2;
     public static final int FRONT_LEFT_MOTOR = 4;
-    public static final int LAUNCHER = 5;
-    public static final int LOADER = 6;
+    public static final int LAUNCHER = 9;
+    public static final int LOADER = 10;
     
     //Controller Ports
 	public static final int JOYSTICK = 0;

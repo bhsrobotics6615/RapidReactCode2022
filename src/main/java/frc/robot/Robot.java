@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.BallPickerUpper;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,12 +19,13 @@ import frc.robot.subsystems.BallPickerUpper;
  */
 public class Robot extends TimedRobot {
   public Command m_autonomousCommand;
-  public static BallPickerUpper ballPickerUpper = new BallPickerUpper();
   public static RobotContainer m_robotContainer;
   public static Accelerometer accelerometer = new BuiltInAccelerometer();
   public static LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   double prevXAccel = 0;
   double prevYAccel = 0;
+  int run_counter = 1;
+  int run_clock = 0;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -64,8 +64,24 @@ public class Robot extends TimedRobot {
     
     double yJerk = (yAccel - prevYAccel) / .02;
 
-    System.out.println("xJerk: "+xJerk);
-    System.out.println("yJerk: "+yJerk);
+    if (run_counter == 50) {
+
+      System.out.println("xJerk: "+xJerk);
+      System.out.println("yJerk: "+yJerk);
+      System.out.println(run_counter);
+      System.out.println(run_clock);
+      System.out.println();
+      run_counter = 1;
+      run_clock ++;
+
+    } else {
+
+      run_counter ++;
+      run_clock ++;
+
+    }
+
+    
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;

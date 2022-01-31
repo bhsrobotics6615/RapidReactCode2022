@@ -21,7 +21,7 @@ public class AutoSpeenCommand extends CommandBase{
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        speen_drive.Move(0, 0, 0.5);
+        speen_drive.move(0, 0, 0.5);
         // drive_subsystem.SmoothOutput();
 
     }
@@ -29,7 +29,7 @@ public class AutoSpeenCommand extends CommandBase{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        speen_drive.Stop();
+        speen_drive.stop();
     }
 
 }

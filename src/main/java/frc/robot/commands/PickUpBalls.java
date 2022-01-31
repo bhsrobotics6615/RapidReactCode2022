@@ -3,27 +3,25 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-import  frc.robot.subsystems.BallPickerUpper;
+import  frc.robot.subsystems.LoaderSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-// import frc.robot.Constants;
-import frc.robot.Robot;
 
 /** An example command that uses an example subsystem. */
 public class PickUpBalls extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private final BallPickerUpper ball_picker_upper_subsystem;
+  private final LoaderSubsystem ball_picker_upper_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public PickUpBalls(BallPickerUpper subsystem) {
+  public PickUpBalls(LoaderSubsystem subsystem) {
     // ball_picker_upper_subsystem.wait();
     ball_picker_upper_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.ballPickerUpper);
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -38,7 +36,11 @@ public class PickUpBalls extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+
+    ball_picker_upper_subsystem.stop();
+
+  }
 
   // Returns true when the command should end.
   @Override
