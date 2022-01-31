@@ -15,6 +15,7 @@ public class Limelight {
     private static NetworkTableEntry tx = limelight_table.getEntry("tx");
     private static NetworkTableEntry ty = limelight_table.getEntry("ty");
     private static NetworkTableEntry ta = limelight_table.getEntry("ta");
+    private static NetworkTableEntry tv = limelight_table.getEntry("tv");
 
     public static double getX() {
 
@@ -31,6 +32,12 @@ public class Limelight {
     public static double getArea() {
 
         return ta.getDouble(0.0);
+
+    }
+
+    public static boolean hasTarget() {
+
+        return tv.getBoolean(false);
 
     }
 

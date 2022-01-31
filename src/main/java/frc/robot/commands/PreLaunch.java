@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LidarSubsystem;
 import frc.robot.Limelight;
-// import NetworkTableInstance.getDefault().getTable("limelight").getEntry("<variablename>").getDouble(0);
 import frc.robot.Variables;
 
 
@@ -16,6 +15,7 @@ public class PreLaunch extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final LidarSubsystem lidar_subsystem;
   private final DriveTrainSubsystem drive_subsystem;
+  private boolean finished = false;
 
   /** Creates a new LidarCommand. */
   public PreLaunch(LidarSubsystem l_subsystem, DriveTrainSubsystem d_subsystem) {
@@ -35,15 +35,31 @@ public class PreLaunch extends CommandBase {
   @Override
   public void execute() {
 
-    while (Limelight.getArea() != 0 && Limelight.getX() != 0) {
+    while (Limelight.hasTarget() || Limelight.getArea() < 9) {
+      
+      drive_subsystem.move(0.0, 0.0, 0.25);
 
-      if (-10 > Limelight.getX() || Limelight.getX() > 10) {
+    }
 
-        drive_subsystem.move(0.0, 0.0, 0.25);
+    while (true) {
+
+      if (Limelight.getX() < -10) {
+
+        drive_subsystem.move(0.0, 0.0, -0.15);
+
+      } else if (Limelight.getX() > 10) {
+
+        drive_subsystem.move(0.0, 0.0, 0.15);
+
+      } else {
+
+        break;
 
       }
 
     }
+
+    finished = true;
 
   }
 
@@ -53,6 +69,7 @@ public class PreLaunch extends CommandBase {
   public void end(boolean interrupted) {
 
     Variables.targetDistance = lidar_subsystem.findDistance(Limelight.getY());
+    Variables.launcherSpeed = lidar_subsystem.findPower(Variables.targetDistance);
 
   }
 
@@ -60,7 +77,7 @@ public class PreLaunch extends CommandBase {
   @Override
   public boolean isFinished() {
     
-    return false;
+    return finished;
   
   }
 }
