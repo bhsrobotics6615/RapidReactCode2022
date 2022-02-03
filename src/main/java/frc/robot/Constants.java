@@ -45,4 +45,6 @@ public final class Constants {
 
     // Speed Conversion Constant 
     public static final double speedConvConst = 6.23;
+    public static final int GRAV = 0;
+    public static final double HIGH_SCORE = 0;
     }

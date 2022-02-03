@@ -22,6 +22,13 @@ public class LauncherSubsystem extends SubsystemBase {
     
   }
 
+  public void setLaunchSpeedAuto() {
+
+    double autoLaunchSpeed = Math.sqrt(Constants.GRAV * Math.pow(Variables.scoreDistance, 2) / (2 * (Math.pow(Math.cos(Variables.thetaDegrees),2) * ((Variables.scoreDistance * Math.tan(Variables.thetaDegrees)) - Constants.HIGH_SCORE))));
+    launcher.set(autoLaunchSpeed);
+    
+  }
+
   public void stop() {
 
     launcher.set(0);
