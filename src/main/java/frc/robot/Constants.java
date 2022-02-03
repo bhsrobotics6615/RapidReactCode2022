@@ -45,6 +45,7 @@ public final class Constants {
 
     // Speed Conversion Constant 
     public static final double speedConvConst = 6.23;
-    public static final int GRAV = 0;
-    public static final double HIGH_SCORE = 0;
+    public static final double GRAV = 9.81; // m/s^2
+    public static final double HIGH_SCORE = 2.64; // Top Hoop Height in meters
+    public static double LAUNCH_ANGLE  = 45; // in Degrees 
     }
