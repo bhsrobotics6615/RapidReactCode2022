@@ -15,6 +15,7 @@ public class Variables {
     public static double launcherSpeed = 1;
     public static double theta = 0;
     public static double thetaDegrees = 3.1415 * theta;
+    public static double scoreDistance;
 
     // public static int loaderSpeed = 1;
 }

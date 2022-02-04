@@ -22,6 +22,7 @@ public class AutoRunTheLauncher extends CommandBase {
    private double time;
    private double endTime;
    private boolean hasLauncherEnded = false;
+
   public AutoRunTheLauncher(LauncherSubsystem subsystem, double seconds) {
     launch_subsystem = subsystem;
     startTime = Timer.getFPGATimestamp();
@@ -41,7 +42,7 @@ public class AutoRunTheLauncher extends CommandBase {
   {
     if(time < endTime)
     {
-      launch_subsystem.rev();
+      launch_subsystem.setLaunchSpeedAuto();
     }
     else
     {
