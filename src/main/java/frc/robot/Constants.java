@@ -48,5 +48,6 @@ public final class Constants {
     public static final double GRAV = 9.81; // m/s^2
     public static final double HIGH_SCORE = 2.64; // Top Hoop Height in meters
     public static final int LOADER_LIFTER = 0;
+    public static final int LIFTER = 0;
     public static double LAUNCH_ANGLE  = 45; // in Degrees 
     }

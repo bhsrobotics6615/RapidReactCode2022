@@ -7,14 +7,16 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import frc.robot.Variables;
+// import frc.robot.Variables;
 
 public class LifterSubsystem extends SubsystemBase {
   /** Creates a new LifterSubsystem. */
   
   WPI_TalonSRX lifter = new WPI_TalonSRX(Constants.LIFTER);
-
-
+  public void liftTheRobot() {
+    lifter.set(1);
+    
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
