@@ -20,12 +20,6 @@ public class LoaderSubsystem extends SubsystemBase {
     
   }
 
-  public void pickUpTheBall() {
-
-    loader.set(1);
-
-  }
-
   public void stop() {
 
     loader.set(0);
