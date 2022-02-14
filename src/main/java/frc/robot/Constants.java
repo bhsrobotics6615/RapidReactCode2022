@@ -16,11 +16,11 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public final class Constants {
     //Talon SRX Ports
-	public static final int FRONT_RIGHT_MOTOR = 3;
-    public static final int BACK_RIGHT_MOTOR = 1;
-    public static final int BACK_LEFT_MOTOR = 2;
-    public static final int FRONT_LEFT_MOTOR = 4;
-    public static final int LAUNCHER = 9;
+	public static final int FRONT_RIGHT_MOTOR = 2;
+    public static final int BACK_RIGHT_MOTOR = 5;
+    public static final int BACK_LEFT_MOTOR = 4;
+    public static final int FRONT_LEFT_MOTOR = 7; 
+    public static final int LAUNCHER = 6;
     public static final int LOADER = 10;
     
     //Controller Ports
@@ -47,6 +47,6 @@ public final class Constants {
     public static final double speedConvConst = 6.23;
     public static final double GRAV = 9.81; // m/s^2
     public static final double HIGH_SCORE = 2.64; // Top Hoop Height in meters
-    public static final int LOADER_LIFTER = 0;
+    public static final int LOADER_LIFTER = 11;
     public static double LAUNCH_ANGLE  = 45; // in Degrees 
     }
