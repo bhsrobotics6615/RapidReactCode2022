@@ -5,30 +5,39 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class LoaderSubsystem extends SubsystemBase {
+public class BallPickerUpperSubsystem extends SubsystemBase {
   /** Creates a new LoaderSubsystem. */
   
-  WPI_TalonSRX loader = new WPI_TalonSRX(Constants.LOADER);
+  WPI_TalonSRX loader = new WPI_TalonSRX(Constants.PICKER_UPPER);
+  WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
 
-  public void load() {
+  /*public void load() {
     
     loader.set(1);
     
-  }
+  }*/
 
   public void pickUpTheBall() {
 
-    loader.set(1);
+    loader.set(0.50);
 
   }
 
-  public void stop() {
+  public void stopBPU() {
 
     loader.set(0);
     
   }
+
+  public void liftDrawBridge() {
+    drawBridge.set(0.1);
+  }
+
+  public void lowerDrawBridge() {
+    drawBridge.set(-0.1);
+  }
+
 }
