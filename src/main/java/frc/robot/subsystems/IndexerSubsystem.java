@@ -20,6 +20,13 @@ public class IndexerSubsystem extends SubsystemBase {
 
   }
 
+  public void unload() {
+
+    indexer.set(-0.5);
+    System.out.println("INDEXER " + Constants.INDEXER);
+
+  }
+
   // Think about renaming this function
   public void stop() {
 

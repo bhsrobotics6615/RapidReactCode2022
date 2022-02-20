@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.Choking;
 import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
@@ -54,6 +55,7 @@ public class RobotContainer {
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
   private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
+  private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
 
   //Controllers
   public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
@@ -66,6 +68,7 @@ public class RobotContainer {
   public JoystickButton Run_BPU = new JoystickButton(Xbox360, Constants.PICKER_UPPER); //Ball Picker Upper
   public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
+  public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
 
   // public 
   /**
@@ -96,6 +99,7 @@ public class RobotContainer {
     Run_Indexer.whileHeld(index_ball);
     Lift_BPU.whileHeld(lift_bpu);
     Lower_BPU.whileHeld(lower_bpu);
+    Un_choke.whileHeld(ball_choking);
     
   }
 

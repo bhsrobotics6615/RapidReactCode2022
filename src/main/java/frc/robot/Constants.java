@@ -30,15 +30,18 @@ public final class Constants {
     public static final int XBOX = 1;
 
     // Heights
-    public static final int HEIGHT_OF_HUB = 0;
-    public static final int HEIGHT_OF_CAMERA = 0;
+    public static final double HEIGHT_OF_HUB = 2.6416;
+    public static final double HEIGHT_OF_CAMERA = 0.7747;
+    public static final double HEIGHT_OF_LAUNCHER = 0;
 
     // Angles
     public static final double LIMELIGHT_MOUNTING_ANGLE = 60;
+    public static final double LAUNCHER_ANGLE = 60;
 
     // Xbox Controller Buttons
     public static final int RUN_LAUNCHER = XboxController.Button.kA.value;
     public static final int RUN_INDEXER = XboxController.Button.kX.value;
+    public static final int CHOKING = XboxController.Button.kRightBumper.value;
     // Ball Picker Upper (BPU)
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
@@ -49,7 +52,4 @@ public final class Constants {
 
     // Other (other constants with no category)
     public static final double PICK_UP_SPEED = 0;
-
-    // Speed Conversion
-    public static final double SPEED_CONVERT = 6.23;
 }
