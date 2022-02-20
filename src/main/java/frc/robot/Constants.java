@@ -34,18 +34,18 @@ public final class Constants {
     public static final int HEIGHT_OF_CAMERA = 0;
 
     // Angles
-    public static final double LIMELIGHT_MOUNTING_ANGLE = 45;
+    public static final double LIMELIGHT_MOUNTING_ANGLE = 60;
 
     // Xbox Controller Buttons
     public static final int RUN_LAUNCHER = XboxController.Button.kA.value;
     public static final int RUN_INDEXER = XboxController.Button.kX.value;
     // Ball Picker Upper (BPU)
     public static final int RUN_BPU = XboxController.Button.kB.value;
-    public static final int RAISE_BPU = XboxController.Button.kBack.value;
-    public static final int LOWER_Drawbridge = XboxController.Button.kStart.value;
+    public static final int LIFT_BPU = XboxController.Button.kBack.value;
+    public static final int LOWER_BPU = XboxController.Button.kStart.value;
 
     // Logitech Joystick Buttons
-    public static final int RUN_LIDAR = 2;
+    public static final int RUN_LIDAR = 10;
 
     // Other (other constants with no category)
     public static final double PICK_UP_SPEED = 0;

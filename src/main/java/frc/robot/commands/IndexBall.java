@@ -34,6 +34,7 @@ public class IndexBall extends CommandBase {
   public void execute() {
 
     indexer.load();
+    System.out.println("LOADING!!!");
 
   }
 
@@ -42,6 +43,7 @@ public class IndexBall extends CommandBase {
   public void end(boolean interrupted) {
 
     indexer.stop();
+    System.out.println("Stopping...");
 
   }
 
