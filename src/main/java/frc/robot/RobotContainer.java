@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
+import frc.robot.commands.DriveAuto;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.PickUpBalls;
 import frc.robot.commands.RunTheLauncher;
@@ -46,6 +47,7 @@ public class RobotContainer {
   private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
   private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
   private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
+  private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
 
@@ -96,6 +98,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return run_auto;
+    return run_drive_auto;
   }
 }
