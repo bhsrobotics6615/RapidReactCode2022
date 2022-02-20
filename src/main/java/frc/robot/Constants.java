@@ -32,7 +32,7 @@ public final class Constants {
     // Heights
     public static final int HEIGHT_OF_HUB = 0;
     public static final int HEIGHT_OF_CAMERA = 0;
-
+  
     // Angles
     public static final double LIMELIGHT_MOUNTING_ANGLE = 45;
 
@@ -52,4 +52,8 @@ public final class Constants {
 
     // Speed Conversion
     public static final double SPEED_CONVERT = 6.23;
+
+    //Encoder Math Counts to Feet
+    public static final double kCOUNTS_FEET = (1/64)*(10.71/1)*(6*Math.PI) *
+(1/12);
 }
