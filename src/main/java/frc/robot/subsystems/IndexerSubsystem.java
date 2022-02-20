@@ -16,6 +16,7 @@ public class IndexerSubsystem extends SubsystemBase {
   public void load() {
 
     indexer.set(0.5);
+    System.out.println("INDEXER " + Constants.INDEXER);
 
   }
 
@@ -25,7 +26,5 @@ public class IndexerSubsystem extends SubsystemBase {
     indexer.set(0);
 
   }
-
-
   
 }

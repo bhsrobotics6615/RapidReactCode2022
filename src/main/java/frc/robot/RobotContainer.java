@@ -9,10 +9,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
+import frc.robot.commands.LiftDrawBridge;
+import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.PickUpBalls;
 import frc.robot.commands.RunTheLauncher;
 import frc.robot.commands.PreLaunch;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
+import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
@@ -38,6 +41,7 @@ public class RobotContainer {
   private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
   private final IndexerSubsystem indexer_subsystem = new IndexerSubsystem();
   private final BallPickerUpperSubsystem picker_upper_subsystem = new BallPickerUpperSubsystem();
+  private final DrawBridgeSubsystem draw_bridge_subsystem = new DrawBridgeSubsystem();
 
   //Commands
   private final Drive drive_command = new Drive(drive_subsystem);
@@ -48,6 +52,8 @@ public class RobotContainer {
   private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
+  private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
+  private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
 
   //Controllers
   public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
@@ -58,6 +64,8 @@ public class RobotContainer {
   public JoystickButton Run_Pre_Launch_Proceedures = new JoystickButton(Logitech, Constants.RUN_LIDAR);
   public JoystickButton Run_Indexer = new JoystickButton(Xbox360, Constants.INDEXER);
   public JoystickButton Run_BPU = new JoystickButton(Xbox360, Constants.PICKER_UPPER); //Ball Picker Upper
+  public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
+  public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
 
   // public 
   /**
@@ -86,6 +94,9 @@ public class RobotContainer {
     Run_Pre_Launch_Proceedures.whenPressed(pre_launch);
     Run_BPU.whileHeld(pick_up_ball);
     Run_Indexer.whileHeld(index_ball);
+    Lift_BPU.whileHeld(lift_bpu);
+    Lower_BPU.whileHeld(lower_bpu);
+    
   }
 
   /**

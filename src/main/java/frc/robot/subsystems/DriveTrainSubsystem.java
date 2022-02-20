@@ -18,7 +18,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
         final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
         final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
 
-        //TODO: Invert the motors on either the left or the right side
+        //todo: Invert the motors on either the left or the right side
         drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
     }
@@ -30,6 +30,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
         horizontalSpeed = Math.pow(horizontalSpeed, 2);
         rotationRate = Math.pow(rotationRate, 2);
         drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
+        System.out.println("MOVING!!!");
 
     }
 
@@ -57,6 +58,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     public void stop() { // Stop motor movement 
 
         drive.driveCartesian(0, 0, 0);
+        System.out.println("NOT MOVING!");
 
     }
 

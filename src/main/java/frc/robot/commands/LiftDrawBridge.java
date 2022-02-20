@@ -34,7 +34,7 @@ public class LiftDrawBridge extends CommandBase {
   @Override
   public void execute() {
 
-    bpu.raise();
+    bpu.lift();
 
   }
 

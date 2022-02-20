@@ -31,7 +31,10 @@ public class PickUpBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ball_picker_upper_subsystem.load();
+
+    ball_picker_upper_subsystem.pickUpTheBall();
+    System.out.println("SUCKING!!!");
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +42,7 @@ public class PickUpBalls extends CommandBase {
   public void end(boolean interrupted) {
 
     ball_picker_upper_subsystem.stopBPU();
+    System.out.println("Stopping...");
 
   }
 

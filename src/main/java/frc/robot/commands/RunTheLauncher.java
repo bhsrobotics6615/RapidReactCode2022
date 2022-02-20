@@ -32,6 +32,7 @@ public class RunTheLauncher extends CommandBase {
   public void execute() {
     
     launch_subsystem.rev();
+    System.out.println("REV UP THOSE FRYERS!");
 
   }
 
@@ -40,6 +41,7 @@ public class RunTheLauncher extends CommandBase {
   public void end(boolean interrupted) {
 
     launch_subsystem.stop();
+    System.out.println("Launchers done...");
 
   }
 

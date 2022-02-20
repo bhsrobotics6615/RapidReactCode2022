@@ -18,6 +18,8 @@ public class LauncherSubsystem extends SubsystemBase {
     Variables.launcherSpeed = 1;
     // Variables.launcherSpeed = Constants.speedConvConst / Math.sin(Variables.thetaDegrees);
     launcher.set(-(Variables.launcherSpeed));
+    System.out.println("LAUNCHER " + Constants.LAUNCHER);
+    System.out.println("launcherSpeed " + Variables.launcherSpeed);
     
   }
 
@@ -25,9 +27,4 @@ public class LauncherSubsystem extends SubsystemBase {
     launcher.set(0);
   }
 
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
 }

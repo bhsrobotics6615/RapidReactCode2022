@@ -42,7 +42,7 @@ public class AutoRunTheLauncher extends CommandBase {
   {
     if(time < endTime)
     {
-      launch_subsystem.setLaunchSpeedAuto();
+      // launch_subsystem.setLaunchSpeedAuto();
     }
     else
     {

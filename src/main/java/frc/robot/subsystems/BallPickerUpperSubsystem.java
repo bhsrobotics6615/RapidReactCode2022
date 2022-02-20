@@ -12,17 +12,11 @@ public class BallPickerUpperSubsystem extends SubsystemBase {
   /** Creates a new LoaderSubsystem. */
   
   WPI_TalonSRX loader = new WPI_TalonSRX(Constants.PICKER_UPPER);
-  WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
-
-  /*public void load() {
-    
-    loader.set(1);
-    
-  }*/
 
   public void pickUpTheBall() {
 
     loader.set(0.50);
+    System.out.println("PICKER_UPPER " + Constants.PICKER_UPPER);
 
   }
 
@@ -30,14 +24,6 @@ public class BallPickerUpperSubsystem extends SubsystemBase {
 
     loader.set(0);
     
-  }
-
-  public void liftDrawBridge() {
-    drawBridge.set(0.1);
-  }
-
-  public void lowerDrawBridge() {
-    drawBridge.set(-0.1);
   }
 
 }
