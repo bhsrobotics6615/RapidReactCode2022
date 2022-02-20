@@ -5,12 +5,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.LoaderSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class LoadTheLauncher extends CommandBase {
+public class IndexBall extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final LoaderSubsystem loader;
+  private final IndexerSubsystem indexer;
 
 
   /**
@@ -18,8 +18,8 @@ public class LoadTheLauncher extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public LoadTheLauncher(LoaderSubsystem subsystem) {
-    loader = subsystem;
+  public IndexBall(IndexerSubsystem subsystem) {
+    indexer = subsystem;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -33,7 +33,7 @@ public class LoadTheLauncher extends CommandBase {
   @Override
   public void execute() {
 
-    loader.load();
+    indexer.load();
 
   }
 
@@ -41,7 +41,7 @@ public class LoadTheLauncher extends CommandBase {
   @Override
   public void end(boolean interrupted) {
 
-    loader.stop();
+    indexer.stop();
 
   }
 

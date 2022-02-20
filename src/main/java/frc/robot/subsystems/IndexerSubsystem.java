@@ -8,30 +8,24 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class LoaderSubsystem extends SubsystemBase {
-  /** Creates a new LoaderSubsystem. */
-  
-  WPI_TalonSRX loader = new WPI_TalonSRX(Constants.LOADER);
-  WPI_TalonSRX loaderLifter = new WPI_TalonSRX(Constants.LOADER_LIFTER);
+public class IndexerSubsystem extends SubsystemBase {
+  /** Creates a new IteratorSubsystem. */
 
+    WPI_TalonSRX indexer = new WPI_TalonSRX(Constants.INDEXER);
+    
   public void load() {
-    loader.set(1);
+
+    indexer.set(0.5);
+
   }
 
   // Think about renaming this function
   public void stop() {
-    loader.set(0);
+
+    indexer.set(0);
+
   }
 
-  public void liftTheLoader() {
-    loaderLifter.set(1);
-  }
 
-  public void stopLiftingLoader() {
-    loaderLifter.set(0);
-  }
-
-  public void lowerTheLoader() {
-    loaderLifter.set(-1);
-  }
+  
 }
