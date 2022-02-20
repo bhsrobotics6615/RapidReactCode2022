@@ -3,30 +3,24 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 // import frc.robot.Limelight;
 import frc.robot.subsystems.DriveTrainSubsystem;
-import edu.wpi.first.wpilibj.Timer;
 
 public class DriveAuto extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final DriveTrainSubsystem drive_subsystem;
     private boolean driveAutoDone = false;
-    private double startTime;
-    private double time;
-    private double endTime;
+  
     
-    public DriveAuto(DriveTrainSubsystem driveSubsystem, double seconds) {
+    public DriveAuto(DriveTrainSubsystem driveSubsystem) {
         
         drive_subsystem = driveSubsystem;
-        startTime = Timer.getFPGATimestamp();
-        endTime = startTime + seconds;
-        addRequirements(driveSubsystem);
-        
+       
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() 
     {
-        time = Timer.getFPGATimestamp();
+
 
     }
 
@@ -35,14 +29,6 @@ public class DriveAuto extends CommandBase {
     public void execute() 
     {
 
-        if(time < endTime)
-        {
-        drive_subsystem.move(-0.3,0,0.0);
-        }
-        else
-        {
-        driveAutoDone = true;
-        }
         
     }
 
