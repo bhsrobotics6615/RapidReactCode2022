@@ -60,7 +60,7 @@ public class DriveAuto extends CommandBase {
 
         if(distance < 5)
         {
-            drive_subsystem.move(0.5, 0, 0);
+            drive_subsystem.moveAuto(0.5, 0, 0);
         }
         else
         {

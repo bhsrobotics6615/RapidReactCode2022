@@ -28,6 +28,14 @@ public class DriveTrainSubsystem extends SubsystemBase {
    
 
     
+    public void moveAuto(double forwardSpeed, double horizontalSpeed, double rotationRate) { 
+        // Move the robot in a specified direction
+
+        // horizontal, forward, and rotation speeds are between -1 and 1, where positive is right/forward/clockwise.
+       
+        drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
+
+    }
     public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a specified direction
 
         // horizontal, forward, and rotation speeds are between -1 and 1, where positive is right/forward/clockwise.
