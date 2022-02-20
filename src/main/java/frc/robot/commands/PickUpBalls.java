@@ -31,7 +31,7 @@ public class PickUpBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ball_picker_upper_subsystem.pickUpTheBall();
+    ball_picker_upper_subsystem.load();
   }
 
   // Called once the command ends or is interrupted.

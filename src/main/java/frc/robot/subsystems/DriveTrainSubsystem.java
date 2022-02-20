@@ -13,11 +13,12 @@ public class DriveTrainSubsystem extends SubsystemBase {
     public DriveTrainSubsystem(){
 
         // Drive control motors
-        final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 3
-        final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 1
-        final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 2
-        final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 4
+        final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
+        final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
+        final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
+        final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
 
+        //TODO: Invert the motors on either the left or the right side
         drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
     }
@@ -34,7 +35,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     public double smoothOutput(double speedInput) { // Use linear interpolation to smooth changes in acceleration (Autonomous period only)
 
-          double maxSpeedOfMotor = 10; //rpm
+          double maxSpeedOfMotor = 10; //rpm 
+          // Do we know that the maximum speed of the motors is going to be 10rpm??
+
           double output = speedInput * maxSpeedOfMotor;
           return output;
 

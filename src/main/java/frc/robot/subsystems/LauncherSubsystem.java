@@ -15,7 +15,6 @@ public class LauncherSubsystem extends SubsystemBase {
   WPI_TalonSRX launcher = new WPI_TalonSRX(Constants.LAUNCHER);
 
   public void rev() {
-    
     Variables.launcherSpeed = 1;
     // Variables.launcherSpeed = Constants.speedConvConst / Math.sin(Variables.thetaDegrees);
     launcher.set(-(Variables.launcherSpeed));
@@ -23,9 +22,7 @@ public class LauncherSubsystem extends SubsystemBase {
   }
 
   public void stop() {
-
     launcher.set(0);
-    
   }
 
 
