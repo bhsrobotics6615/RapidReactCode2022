@@ -18,11 +18,7 @@ public class DriveAuto extends CommandBase {
     
     
     public DriveAuto(DriveTrainSubsystem driveSubsystem) {
-        
         drive_subsystem = driveSubsystem;
-
-        
-       
     }
 
     // Called when the command is initially scheduled.
