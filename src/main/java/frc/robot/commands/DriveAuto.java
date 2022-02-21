@@ -58,13 +58,9 @@ public class DriveAuto extends CommandBase {
         double rightPosition = frontRight.getSelectedSensorPosition() * kCOUNTS_FEET;
         double distance = (leftPosition + rightPosition)/2;
 
-        if(distance < 5)
+        while(distance < 5)
         {
             drive_subsystem.moveAuto(0.5, 0, 0);
-        }
-        else
-        {
-            driveAutoDone = true;
         }
     }
 
