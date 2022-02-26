@@ -64,8 +64,8 @@ public class RobotContainer {
   //Buttons
   public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
   public JoystickButton Run_Pre_Launch_Proceedures = new JoystickButton(Logitech, Constants.RUN_LIDAR);
-  public JoystickButton Run_Indexer = new JoystickButton(Xbox360, Constants.INDEXER);
-  public JoystickButton Run_BPU = new JoystickButton(Xbox360, Constants.PICKER_UPPER); //Ball Picker Upper
+  public JoystickButton Run_Indexer = new JoystickButton(Xbox360, Constants.RUN_INDEXER);
+  public JoystickButton Run_BPU = new JoystickButton(Xbox360, Constants.RUN_BPU); //Ball Picker Upper
   public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);

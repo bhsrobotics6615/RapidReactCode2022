@@ -16,13 +16,13 @@ public class DrawBridgeSubsystem extends SubsystemBase {
 
   public void lift() {
 
-    draw_bridge.set(0.1);
+    draw_bridge.set(0.25);
 
   }
 
   public void lower() {
 
-    draw_bridge.set(-0.1);
+    draw_bridge.set(-0.25);
 
   }
 
