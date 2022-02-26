@@ -14,22 +14,31 @@ public class LauncherSubsystem extends SubsystemBase {
   
   WPI_TalonSRX launcher = new WPI_TalonSRX(Constants.LAUNCHER);
 
+  double heightDif;
+  double numerator;
+  double denominator;
+
   public void rev() {
     Variables.launcherSpeed = 1;
-    // Variables.launcherSpeed = Constants.SPEED_CONVERT / Math.sin(Variables.thetaDegrees);
     launcher.set(-(Variables.launcherSpeed));
-    System.out.println("LAUNCHER " + Constants.LAUNCHER);
-    System.out.println("launcherSpeed " + Variables.launcherSpeed);
     
   }
 
   public void reverse() {
 
     Variables.launcherSpeed = 1;
-    // Variables.launcherSpeed = Constants.SPEED_CONVERT / Math.sin(Variables.thetaDegrees);
     launcher.set(Variables.launcherSpeed);
-    System.out.println("LAUNCHER " + Constants.LAUNCHER);
-    System.out.println("launcherSpeed " + Variables.launcherSpeed);
+
+  }
+
+  // Finds velocity required for distance
+  public double findVelocity(double distance) {
+
+    heightDif = Constants.HEIGHT_OF_HUB - Constants.HEIGHT_OF_LAUNCHER; // Difference between height of the hub and height of the launcher
+
+    numerator = -32.2 * Math.pow(distance, 2);
+    denominator = 2 * Math.pow(Math.cos(Constants.LAUNCHER_ANGLE), 2) * (heightDif - distance * Math.tan(Constants.LAUNCHER_ANGLE));
+    return Math.pow(numerator / denominator, 0.5);
 
   }
 

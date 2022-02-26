@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+// import frc.robot.Constants;
 // import frc.robot.Limelight;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import edu.wpi.first.wpilibj.Timer;
@@ -9,24 +10,28 @@ public class DriveAuto extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final DriveTrainSubsystem drive_subsystem;
     private boolean driveAutoDone = false;
-    private double startTime;
-    private double time;
-    private double endTime;
+    // private double startTime;
+    // private double time;
+    private Timer timer;
+    // private double endTime;
+
     
     public DriveAuto(DriveTrainSubsystem driveSubsystem, double seconds) {
         
         drive_subsystem = driveSubsystem;
-        startTime = Timer.getFPGATimestamp();
-        endTime = startTime + seconds;
+        timer = new Timer();
+        // startTime = Timer.getFPGATimestamp();
+        // endTime = startTime + seconds;
         addRequirements(driveSubsystem);
         
     }
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() 
+    public void initialize()
     {
-        time = Timer.getFPGATimestamp();
+        // time = Timer.getFPGATimestamp();
+        timer.start();
 
     }
 
@@ -34,14 +39,15 @@ public class DriveAuto extends CommandBase {
     @Override
     public void execute() 
     {
+        
+        if (timer.get() < 5.0) {
 
-        if(time < endTime)
-        {
-        drive_subsystem.move(-0.3,0,0.0);
-        }
-        else
-        {
-        driveAutoDone = true;
+            drive_subsystem.move(-0.3,0,0.0);
+        
+        } else {
+
+            driveAutoDone = true;
+
         }
         
     }
@@ -56,7 +62,11 @@ public class DriveAuto extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+
+        timer.stop();
+        timer.reset();
         drive_subsystem.stop();
+
     }
 
    

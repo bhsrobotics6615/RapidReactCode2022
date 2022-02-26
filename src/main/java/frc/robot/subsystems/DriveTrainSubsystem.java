@@ -17,6 +17,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
         final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
         final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
         final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
+        backRight.setInverted(true);
 
         //todo: Invert the motors on either the left or the right side
         drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
@@ -26,11 +27,38 @@ public class DriveTrainSubsystem extends SubsystemBase {
     public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a specified direction
 
         // horizontal, forward, and rotation speeds are between -1 and 1, where positive is right/forward/clockwise.
-        forwardSpeed = Math.pow(forwardSpeed, 2);
-        horizontalSpeed = Math.pow(horizontalSpeed, 2);
-        rotationRate = Math.pow(rotationRate, 2);
+        if (forwardSpeed > 0) {
+
+            forwardSpeed = Math.pow(forwardSpeed, 2);
+            
+        } else if (forwardSpeed < 0) {
+            
+            forwardSpeed = Math.pow(forwardSpeed, 2);
+            forwardSpeed = -forwardSpeed;
+        
+        }
+
+        if (horizontalSpeed > 0) {
+
+            horizontalSpeed = Math.pow(horizontalSpeed, 2);
+            
+        } else if (horizontalSpeed < 0) {
+
+            horizontalSpeed = Math.pow(horizontalSpeed, 2);
+            horizontalSpeed = -horizontalSpeed;
+        
+        }
+
+        if (rotationRate > 0) {
+
+            rotationRate = Math.pow(rotationRate, 2);
+            
+        } else if (rotationRate < 0) {
+            rotationRate = Math.pow(rotationRate, 2);
+            rotationRate = -rotationRate;
+        }
+
         drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
-        System.out.println("MOVING!!!");
 
     }
 
@@ -58,7 +86,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
     public void stop() { // Stop motor movement 
 
         drive.driveCartesian(0, 0, 0);
-        System.out.println("NOT MOVING!");
 
     }
 
