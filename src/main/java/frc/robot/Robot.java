@@ -58,6 +58,9 @@ public class Robot extends TimedRobot {
 
     frontLeft.setSensorPhase(false);
     frontRight.setSensorPhase(true);
+
+    frontLeft.setSelectedSensorPosition(0,0,10);
+    frontRight.setSelectedSensorPosition(0,0,10);
     
    
   }
@@ -109,7 +112,8 @@ public class Robot extends TimedRobot {
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
-
+    SmartDashboard.putNumber("Front Left Encoder Value", frontLeft.getSelectedSensorPosition() * kCOUNTS_FEET);
+    SmartDashboard.putNumber("Front Left Encoder Value", frontRight.getSelectedSensorPosition() * kCOUNTS_FEET);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
