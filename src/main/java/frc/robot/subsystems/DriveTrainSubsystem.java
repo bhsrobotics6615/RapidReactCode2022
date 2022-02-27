@@ -89,8 +89,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
     public void stop() { // Stop motor movement
 
         drive.driveCartesian(0, 0, 0);
-        // public void Start() {
-        // drive.driveCartesian(startYSpeed, startXSpeed, 0);
-        // }
+        
     }
 }

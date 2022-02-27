@@ -31,8 +31,21 @@ public final class Constants {
 
     // Heights
     public static final double HEIGHT_OF_HUB = 2.6416;
-    public static final double HEIGHT_OF_CAMERA = 0.7747;
+    public static final double HEIGHT_OF_CAMERA = 0.7493;
     public static final double HEIGHT_OF_LAUNCHER = 0;
+
+    // Limelight
+    public static final double LIMELIGHT_X_PRECISION = 0.25; // Precision expected looking on the x-axis
+    public static final double LIMELIGHT_TARGET_X = 0; // Target value on the x-axis
+    public static final double LIMELIGHT_Y_PRECISION = 0.25; // Precision expected looking on the y-axis
+    public static final double LIMELIGHT_TARGET_Y = 0; // Target value on the y-axis
+
+    // Align
+    public static final double SEARCH_ROTATION_SPEED = 0.2;
+
+    // Align
+    public static final double ALIGN_ROTATION_SPEED = 0.125;
+    public static final double ALIGN_MOVEMENT_SPEED = 0.125;
 
     // Angles
     public static final double LIMELIGHT_MOUNTING_ANGLE = 60;

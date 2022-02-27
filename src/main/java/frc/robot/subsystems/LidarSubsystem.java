@@ -29,12 +29,4 @@ public class LidarSubsystem extends SubsystemBase {
     return distance;
 
   }
-
-  // Calculates power for distance
-  public double findPower(double distance) {
-    
-    return 0.0;
-    
-  }
-
 }
