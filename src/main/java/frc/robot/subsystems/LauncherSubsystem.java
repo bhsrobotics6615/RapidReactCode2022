@@ -43,7 +43,7 @@ public class LauncherSubsystem extends SubsystemBase {
   }
 
   public void stop() {
-    launcher.set(0);
+    launcher.stopMotor();
   }
 
 }

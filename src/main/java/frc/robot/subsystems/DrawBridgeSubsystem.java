@@ -28,7 +28,7 @@ public class DrawBridgeSubsystem extends SubsystemBase {
 
   public void stop() {
 
-    draw_bridge.set(0);
+    draw_bridge.stopMotor();
 
   }
 
