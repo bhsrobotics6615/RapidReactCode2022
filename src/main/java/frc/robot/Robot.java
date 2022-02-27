@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -26,7 +26,12 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
   int run_counter = 1;
   int run_clock = 0;
-
+  final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
+  final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
+  final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
+  final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
+  final double kCOUNTS_FEET = (1/64)*(10.71/1)*(6*Math.PI) *
+        (1/12);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -36,6 +41,21 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+   
+    frontLeft.setInverted(true);
+    frontRight.setInverted(false);
+    backLeft.follow(frontLeft);
+    backRight.follow(frontRight);
+
+    backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+    backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+    frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+    frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+
+    frontLeft.setSensorPhase(false);
+    frontRight.setSensorPhase(true);
+    
+   
   }
 
   /**
@@ -99,17 +119,21 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+ 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    frontLeft.setSelectedSensorPosition(0,0,10);
+    frontRight.setSelectedSensorPosition(0,0,10);
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
-
+  public void autonomousPeriodic() { double leftPosition = frontLeft.getSelectedSensorPosition() * kCOUNTS_FEET;
+    double rightPosition = frontRight.getSelectedSensorPosition() * kCOUNTS_FEET;
+    double distance = (leftPosition + rightPosition)/2;}
+ 
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
