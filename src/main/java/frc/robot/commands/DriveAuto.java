@@ -75,6 +75,4 @@ public class DriveAuto extends CommandBase {
 
     }
 
-   
-
 }
