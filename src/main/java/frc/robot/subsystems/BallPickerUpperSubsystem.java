@@ -21,7 +21,7 @@ public class BallPickerUpperSubsystem extends SubsystemBase {
 
   public void stopBPU() {
 
-    loader.set(0);
+    loader.stopMotor();
     
   }
 

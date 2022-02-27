@@ -1,5 +1,7 @@
 package frc.robot.commands;
-
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 // import frc.robot.Constants;
 // import frc.robot.Limelight;
@@ -14,8 +16,10 @@ public class DriveAuto extends CommandBase {
     // private double time;
     private Timer timer;
     // private double endTime;
-
-    
+   // setEncoder;
+     Encoder enc;
+    private static final double cpr = 1024;
+      private static final double whd = 6; // for 6 inch wheel
     public DriveAuto(DriveTrainSubsystem driveSubsystem, double seconds) {
         
         drive_subsystem = driveSubsystem;
@@ -32,7 +36,8 @@ public class DriveAuto extends CommandBase {
     {
         // time = Timer.getFPGATimestamp();
         timer.start();
-
+       enc = new Encoder(0,1);
+      enc.setDistancePerPulse(Math.PI*whd/cpr); //distance per pulse is pi* (wheel diameter / counts per revolution)
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -49,7 +54,8 @@ public class DriveAuto extends CommandBase {
             driveAutoDone = true;
 
         }
-        
+        double dist = enc.getDistance();
+    SmartDashboard.putNumber("Encoder", dist);
     }
 
     @Override
