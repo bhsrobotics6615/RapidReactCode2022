@@ -4,7 +4,8 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -30,12 +31,15 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
   int run_counter = 1;
   int run_clock = 0;
+  
   final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
   final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
   final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
   final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
-  final double kCOUNTS_FEET = (1/64)*(10.71/1)*(6*Math.PI) *
-        (1/12);
+  final double kTicks_Feet = (1/6900 );
+  
+  MecanumDrive driveRobot = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -45,9 +49,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-   
+    
     frontLeft.setInverted(true);
-    frontRight.setInverted(false);
+    frontRight.setInverted(true);
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
 
@@ -112,8 +116,8 @@ public class Robot extends TimedRobot {
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
-    SmartDashboard.putNumber("Front Left Encoder Value", frontLeft.getSelectedSensorPosition() * kCOUNTS_FEET);
-    SmartDashboard.putNumber("Front Left Encoder Value", frontRight.getSelectedSensorPosition() * kCOUNTS_FEET);
+    SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
+    SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -138,9 +142,24 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() { double leftPosition = frontLeft.getSelectedSensorPosition() * kCOUNTS_FEET;
-    double rightPosition = frontRight.getSelectedSensorPosition() * kCOUNTS_FEET;
-    double distance = (leftPosition + rightPosition)/2;}
+  public void autonomousPeriodic() {
+    double leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
+    double rightPosition = (frontRight.getSelectedSensorPosition()/6900);
+    double distance = (leftPosition + rightPosition)/2;
+
+    while(distance < 5)
+    {
+       leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
+       rightPosition = (frontRight.getSelectedSensorPosition()/6900);
+       distance = (leftPosition + rightPosition)/2;
+      driveRobot.driveCartesian(0, -0.4, 0);
+    }
+  
+    driveRobot.driveCartesian(0, 0, 0);
+    
+    
+    }
+    
  
   @Override
   public void teleopInit() {
