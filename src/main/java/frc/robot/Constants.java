@@ -54,6 +54,6 @@ public final class Constants {
     public static final double SPEED_CONVERT = 6.23;
 
     //Encoder Math Counts to Feet
-    public static final double kCOUNTS_FEET = (1/64)*(10.71/1)*(6*Math.PI) *
-(1/12);
+    public static final double kTICKS_FEET = (1/6900);
+
 }
