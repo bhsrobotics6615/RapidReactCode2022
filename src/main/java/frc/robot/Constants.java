@@ -24,6 +24,9 @@ public final class Constants {
     public static final int PICKER_UPPER = 1;
     public static final int INDEXER = 10;
     public static final int DRAW_BRIDGE = 11;
+    public static final int BACK_CLIMBER = 420;
+    public static final int MIDDLE_CLIMBERS = 69;
+    public static final int DRAW_BRIDGE_CLIMBERS = 34;
 
     // Controller Ports
     public static final int JOYSTICK = 0;
@@ -66,4 +69,8 @@ public final class Constants {
     // Other (other constants with no category)
     public static final double PICK_UP_SPEED = 0;
     public static final double AUTOTIME = 0;
+	
+	
+
+
 }
