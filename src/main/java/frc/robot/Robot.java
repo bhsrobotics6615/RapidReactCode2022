@@ -50,21 +50,6 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     
-    frontLeft.setInverted(true);
-    frontRight.setInverted(true);
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight);
-
-    backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
-    backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
-    frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
-    frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
-
-    frontLeft.setSensorPhase(false);
-    frontRight.setSensorPhase(true);
-
-    frontLeft.setSelectedSensorPosition(0,0,10);
-    frontRight.setSelectedSensorPosition(0,0,10);
     
    
   }
@@ -130,35 +115,21 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
  
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    frontLeft.setSelectedSensorPosition(0,0,10);
-    frontRight.setSelectedSensorPosition(0,0,10);
+    
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-    double leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
-    double rightPosition = (frontRight.getSelectedSensorPosition()/6900);
-    double distance = (leftPosition + rightPosition)/2;
-
-    while(distance < 5)
-    {
-       leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
-       rightPosition = (frontRight.getSelectedSensorPosition()/6900);
-       distance = (leftPosition + rightPosition)/2;
-      driveRobot.driveCartesian(0, -0.4, 0);
-    }
-  
-    driveRobot.driveCartesian(0, 0, 0);
+  public void autonomousPeriodic() {}
     
     
-    }
+    
     
  
   @Override
