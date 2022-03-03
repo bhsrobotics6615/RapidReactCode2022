@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -31,7 +32,11 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
   int run_counter = 1;
   int run_clock = 0;
-  
+  double setpoint = 10;
+  double kp = 0.25; //0.25
+  double ki = 0.05;
+  double errorSum = 0;
+  double lastTimestamp = 0;
   final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
   final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
   final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
@@ -40,7 +45,7 @@ public class Robot extends TimedRobot {
   
   MecanumDrive driveRobot = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
   
-  /**
+  /**P
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
@@ -50,21 +55,22 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     
-    frontLeft.setInverted(true);
+    //frontLeft.setInverted(true);
     frontRight.setInverted(true);
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight);
+    backRight.setInverted(true);
+   // backLeft.follow(frontLeft);
+   // backRight.follow(frontRight);
 
     backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
     backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
     frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
     frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
 
-    frontLeft.setSensorPhase(false);
+    frontLeft.setSensorPhase(true);
     frontRight.setSensorPhase(true);
 
-    frontLeft.setSelectedSensorPosition(0,0,10);
     frontRight.setSelectedSensorPosition(0,0,10);
+    frontLeft.setSelectedSensorPosition(0,0,10);
     
    
   }
@@ -116,8 +122,8 @@ public class Robot extends TimedRobot {
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
-    SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
-    SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
+    SmartDashboard.putNumber("Front Left Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000) );
+    SmartDashboard.putNumber("Front Right Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -136,8 +142,10 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    frontLeft.setSelectedSensorPosition(0,0,10);
     frontRight.setSelectedSensorPosition(0,0,10);
+    frontLeft.setSelectedSensorPosition(0,0,10);
+    errorSum = 0;
+    lastTimestamp = Timer.getFPGATimestamp();
   }
 
   /** This function is called periodically during autonomous. */
@@ -145,14 +153,25 @@ public class Robot extends TimedRobot {
   public void autonomousPeriodic() {
     double leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
     double rightPosition = (frontRight.getSelectedSensorPosition()/6900);
-    double distance = (leftPosition + rightPosition)/2;
-
-    while(distance < 5)
+    double distance = (rightPosition+leftPosition)/2;
+    double error = (setpoint) - distance;
+    
+    double outputspeed = kp * error + ki * errorSum;
+   boolean done = false;
+    while(done == false)
     {
-       leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
-       rightPosition = (frontRight.getSelectedSensorPosition()/6900);
-       distance = (leftPosition + rightPosition)/2;
-      driveRobot.driveCartesian(0, -0.4, 0);
+      leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
+      rightPosition = (frontRight.getSelectedSensorPosition()/6900);
+      distance = (rightPosition+leftPosition)/2;
+      System.out.println(distance);
+      //distance = Math.abs(distance);
+      error = (setpoint) - distance;
+      double dt = Timer.getFPGATimestamp() - lastTimestamp;
+      errorSum += error * dt;
+      outputspeed = kp * error + ki * errorSum;
+      driveRobot.driveCartesian(outputspeed, 0,0);
+
+      lastTimestamp = Timer.getFPGATimestamp();
     }
   
     driveRobot.driveCartesian(0, 0, 0);
