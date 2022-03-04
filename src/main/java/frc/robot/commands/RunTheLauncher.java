@@ -17,6 +17,8 @@ public class RunTheLauncher extends CommandBase {
   private final IndexerSubsystem indexer_subsystem;
   public Timer timer;
 
+  double startTime;
+
   /**
    * Creates a new ExampleCommand.
    *
@@ -33,15 +35,17 @@ public class RunTheLauncher extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    startTime = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (!timer.hasElapsed(Constants.LAUNCH_RUN_TIME)) {
+    
+    while (Timer.getFPGATimestamp() < (startTime + Constants.LAUNCH_RUN_TIME)) {
       launch_subsystem.rev();
       System.out.println("REV UP THOSE FRYERS!");
-      if (timer.hasElapsed(Constants.LAUNCH_RUN_TIME - Constants.INDEX_TIME)) {
+      if (Timer.getFPGATimestamp() < (startTime + Constants.LAUNCH_RUN_TIME - Constants.INDEX_TIME)) {
         indexer_subsystem.load();
       }
     }
