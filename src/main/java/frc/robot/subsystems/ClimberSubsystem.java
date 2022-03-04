@@ -17,16 +17,16 @@ public class ClimberSubsystem extends SubsystemBase {
   WPI_TalonSRX middle_climbers = new WPI_TalonSRX(Constants.MIDDLE_CLIMBERS);
   WPI_TalonSRX draw_bridge_climbers = new WPI_TalonSRX(Constants.DRAW_BRIDGE_CLIMBERS);
  
-  public void back_extend() {
-    back_climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-     backClimberPosition = back_climber.get
-    while(backClimberPosition < Constants.EXTENDED_POSITION ){
-       back_climber.set(0.25);
-    }
+  //public void back_extend() {
+   // back_climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+     //backClimberPosition = back_climber.get
+   // while(backClimberPosition < Constants.EXTENDED_POSITION ){
+   //    back_climber.set(0.25);
+    //}
     
-    // speed not final
+    // speed not final }
 
-  }
+  
 
   public void back_reset() {
 

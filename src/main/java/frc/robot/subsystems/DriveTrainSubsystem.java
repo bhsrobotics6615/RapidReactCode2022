@@ -21,38 +21,39 @@ public class DriveTrainSubsystem extends SubsystemBase {
                                                                                          // specified direction
         backRight.setInverted(true);
 
-        // horizontal, forward, and rotation speeds are between -1 and 1, where positive
+        // horizontal, forward, and rotation
+        //  speeds are between -1 and 1, where positive
         // is right/forward/clockwise.
-        if (forwardSpeed > 0) {
+        // if (forwardSpeed > 0) {
 
-            forwardSpeed = Math.pow(forwardSpeed, 2);
+        //     forwardSpeed = Math.pow(forwardSpeed, 2);
 
-        } else if (forwardSpeed < 0) {
+        // } else if (forwardSpeed < 0) {
 
-            forwardSpeed = Math.pow(forwardSpeed, 2);
-            forwardSpeed = -forwardSpeed;
+        //     forwardSpeed = Math.pow(forwardSpeed, 2);
+        //     forwardSpeed = -forwardSpeed;
 
-        }
+        // }
 
-        if (horizontalSpeed > 0) {
+        // if (horizontalSpeed > 0) {
 
-            horizontalSpeed = Math.pow(horizontalSpeed, 2);
+        //     horizontalSpeed = Math.pow(horizontalSpeed, 2);
 
-        } else if (horizontalSpeed < 0) {
+        // } else if (horizontalSpeed < 0) {
 
-            horizontalSpeed = Math.pow(horizontalSpeed, 2);
-            horizontalSpeed = -horizontalSpeed;
+        //     horizontalSpeed = Math.pow(horizontalSpeed, 2);
+        //     horizontalSpeed = -horizontalSpeed;
 
-        }
+        // }
 
-        if (rotationRate > 0) {
+        // if (rotationRate > 0) {
 
-            rotationRate = Math.pow(rotationRate, 2);
+        //     rotationRate = Math.pow(rotationRate, 2);
 
-        } else if (rotationRate < 0) {
-            rotationRate = Math.pow(rotationRate, 2);
-            rotationRate = -rotationRate;
-        }
+        // } else if (rotationRate < 0) {
+        //     rotationRate = Math.pow(rotationRate, 2);
+        //     rotationRate = -rotationRate;
+        // }
 
         drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
 

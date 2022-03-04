@@ -4,12 +4,17 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import com.ctre.phoenix.motorcontrol.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,9 +32,11 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
   int run_counter = 1;
   int run_clock = 0;
+  final WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
+  Encoder drawBridgeEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 
   /**
-   * This function is run when the robot is first started up and should be used for any
+   * This function is run when the robot is first started up and should be used for any 
    * initialization code.
    */
   @Override
@@ -37,7 +44,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    
+    drawBridgeEncoder.reset();
+   
+
   }
 
   /**
@@ -85,8 +94,13 @@ public class Robot extends TimedRobot {
 
     
 
-    prevXAccel = filteredXAccel;
+    prevXAccel = filteredXAccel; 
     prevYAccel = yAccel;
+    
+
+    SmartDashboard.putNumber("Draw Bridge Encoder Raw Value", drawBridgeEncoder.getRaw());
+    SmartDashboard.putNumber("Draw Bridge Encoder Distance Value", drawBridgeEncoder.getDistance());
+    SmartDashboard.putNumber("Draw Bridge Encoder Rate Value", drawBridgeEncoder.getRate());
 
   }
 
