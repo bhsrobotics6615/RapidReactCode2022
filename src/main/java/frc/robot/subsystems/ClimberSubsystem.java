@@ -6,9 +6,10 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
+import frc.robot.Variables;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Encoder;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+// import edu.wpi.first.wpilibj.Encoder;
+// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
@@ -18,11 +19,12 @@ public class ClimberSubsystem extends SubsystemBase {
   WPI_TalonSRX draw_bridge_climbers = new WPI_TalonSRX(Constants.DRAW_BRIDGE_CLIMBERS);
  
   public void back_extend() {
-    back_climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-     backClimberPosition = back_climber.get
-    while(backClimberPosition < Constants.EXTENDED_POSITION ){
-       back_climber.set(0.25);
-    }
+   
+    while(!Variables.reachedClimbax){
+
+      back_climber.set(0.25);
+    
+      }
     
     // speed not final
 

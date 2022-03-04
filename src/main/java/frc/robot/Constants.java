@@ -69,8 +69,9 @@ public final class Constants {
     // Other (other constants with no category)
     public static final double PICK_UP_SPEED = 0;
     public static final double AUTOTIME = 0;
-	
-	
+	public static final int EXTENDED_POSITION = 0;
 
-
+    // Launcher Run
+    public static final double LAUNCH_RUN_TIME = 3;
+    public static final double INDEX_TIME = 1;
 }
