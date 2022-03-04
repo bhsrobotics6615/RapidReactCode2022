@@ -49,7 +49,7 @@ public class RobotContainer {
 
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
   private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
-  private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
+  private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem, indexer_subsystem);
   private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
