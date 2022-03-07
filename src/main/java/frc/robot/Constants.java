@@ -25,8 +25,7 @@ public final class Constants {
     public static final int INDEXER = 10;
     public static final int DRAW_BRIDGE = 11;
     public static final int BACK_CLIMBER = 420;
-    public static final int MIDDLE_CLIMBERS = 69;
-    public static final int DRAW_BRIDGE_CLIMBERS = 34;
+    public static final int FRONT_CLIMBERS = 69;
 
     // Controller Ports
     public static final int JOYSTICK = 0;
@@ -58,6 +57,7 @@ public final class Constants {
     public static final int RUN_LAUNCHER = XboxController.Button.kA.value;
     public static final int RUN_INDEXER = XboxController.Button.kX.value;
     public static final int CHOKING = XboxController.Button.kRightBumper.value;
+    public static final int AUTO_LAUNCH = XboxController.Button.kY.value;
     // Ball Picker Upper (BPU)
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
@@ -69,8 +69,9 @@ public final class Constants {
     // Other (other constants with no category)
     public static final double PICK_UP_SPEED = 0;
     public static final double AUTOTIME = 0;
-	
-	
+	public static final int EXTENDED_POSITION = 0;
 
-
+    // Launcher Run
+    public static final double LAUNCH_RUN_TIME = 3;
+    public static final double INDEX_TIME = 1;
 }

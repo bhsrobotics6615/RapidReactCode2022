@@ -13,6 +13,7 @@ public class Variables {
 
     public static double targetDistance = 0;
     public static double launcherSpeed = 1;
+    public static boolean reachedClimbax = false;
     // public static double theta = 0; // Theta for launcher
     // public static double thetaDegrees = 3.1415 * theta;
     public static double scoreDistance;

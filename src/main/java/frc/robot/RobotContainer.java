@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
 import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
@@ -50,7 +51,7 @@ public class RobotContainer {
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
   private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
   private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
-  private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
+  private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem/*, lidar_subsystem*/);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
@@ -69,6 +70,7 @@ public class RobotContainer {
   public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
+  public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
 
   // public 
   /**
@@ -100,6 +102,7 @@ public class RobotContainer {
     Lift_BPU.whileHeld(lift_bpu);
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
+    Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem, 10));
     
   }
 

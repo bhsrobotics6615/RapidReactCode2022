@@ -6,25 +6,24 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
+import frc.robot.Variables;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Encoder;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+// import edu.wpi.first.wpilibj.Encoder;
+// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
 
   WPI_TalonSRX back_climber = new WPI_TalonSRX(Constants.BACK_CLIMBER);
-  WPI_TalonSRX middle_climbers = new WPI_TalonSRX(Constants.MIDDLE_CLIMBERS);
-  WPI_TalonSRX draw_bridge_climbers = new WPI_TalonSRX(Constants.DRAW_BRIDGE_CLIMBERS);
+  WPI_TalonSRX front_climbers = new WPI_TalonSRX(Constants.FRONT_CLIMBERS);
  
   public void back_extend() {
-    back_climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-     backClimberPosition = back_climber.get
-    while(backClimberPosition < Constants.EXTENDED_POSITION ){
-       back_climber.set(0.25);
-    }
+   
+    while(!Variables.reachedClimbax){
+
+      back_climber.set(0.25);
     
-    // speed not final
+    }
 
   }
 
@@ -40,40 +39,21 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
   
-  public void middle_extend() {
+  public void front_extend() {
 
-    middle_climbers.set(0.25);
-
-  }
-
-  public void middle_reset() {
-
-    middle_climbers.stopMotor();
+    front_climbers.set(0.25);
 
   }
 
-  public void middle_lift() {
+  public void front_reset() {
 
-    middle_climbers.set(-0.25);
-
-  }
-  
-  public void draw_bridge_extend() {
-
-    draw_bridge_climbers.set(0.25);
+    front_climbers.stopMotor();
 
   }
 
-  public void draw_bridge_reset() {
+  public void front_lift() {
 
-    draw_bridge_climbers.stopMotor();
-
-  }
-
-  public void draw_bridge_lift() {
-
-    draw_bridge_climbers.set(-0.25);
+    front_climbers.set(-0.25);
 
   }
-
 }

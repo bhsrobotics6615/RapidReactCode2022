@@ -11,7 +11,7 @@ import frc.robot.Constants;
 public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new IteratorSubsystem. */
 
-    WPI_TalonSRX indexer = new WPI_TalonSRX(Constants.INDEXER);
+  WPI_TalonSRX indexer = new WPI_TalonSRX(Constants.INDEXER);
     
   public void load() {
 

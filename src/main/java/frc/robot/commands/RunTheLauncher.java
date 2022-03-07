@@ -6,33 +6,39 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.LauncherSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 /** An example command that uses an example subsystem. */
 public class RunTheLauncher extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final LauncherSubsystem launch_subsystem;
+  public Timer timer;
+
+  double startTime;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public RunTheLauncher(LauncherSubsystem subsystem) {
-    launch_subsystem = subsystem;
+  public RunTheLauncher(LauncherSubsystem launcher) {
+    launch_subsystem = launcher;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(launcher);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    launch_subsystem.rev();
-    System.out.println("REV UP THOSE FRYERS!");
+
+      launch_subsystem.rev();
+      System.out.println("REV UP THOSE FRYERS!");
 
   }
 
