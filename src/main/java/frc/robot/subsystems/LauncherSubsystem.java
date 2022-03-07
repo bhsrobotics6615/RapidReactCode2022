@@ -19,14 +19,13 @@ public class LauncherSubsystem extends SubsystemBase {
   double denominator;
 
   public void rev() {
-    Variables.launcherSpeed = 1;
+ 
     launcher.set(-(Variables.launcherSpeed));
     
   }
 
   public void reverse() {
 
-    Variables.launcherSpeed = 1;
     launcher.set(Variables.launcherSpeed);
 
   }
