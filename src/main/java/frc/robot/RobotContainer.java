@@ -14,7 +14,6 @@ import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.PickUpBalls;
-import frc.robot.commands.RunTheLauncher;
 import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
@@ -50,7 +49,6 @@ public class RobotContainer {
 
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
   private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
-  private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
   private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem/*, lidar_subsystem*/);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
@@ -95,7 +93,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    Run_Launcher.whileHeld(run_launch);
     Run_Search_And_Align.whenPressed(search_and_align);
     Run_BPU.whileHeld(pick_up_ball);
     Run_Indexer.whileHeld(index_ball);
