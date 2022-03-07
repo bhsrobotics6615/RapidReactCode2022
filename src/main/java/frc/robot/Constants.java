@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -70,7 +71,13 @@ public final class Constants {
     public static final double PICK_UP_SPEED = 0;
     public static final double AUTOTIME = 0;
 	
-	
+	//Draw Bridge
+    public static final int DESIRED_POSITION = 0; //Find the Encoder ticks from when the drawbridge is flat (0) to the desired position
+    public static final int LOWER_FLAT = 0; //From the desired position to when its flat. This is when the encoder is inverted. The amount of ticks might be the same as the previous variable but just to be sure.
+    public static final int DESIRED_POSITION_BUTTON = XboxController.Button.kLeftBumper.value; //This is the button pressed before the game in teleop to raise it to the desired position
+    public static final double LIFT_AUTO_POWER = 0.25; //Power for the command
+    public static final double LOWER_AUTO_POWER = -0.25; //Power for the command
+
 
 
 }

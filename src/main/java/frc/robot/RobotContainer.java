@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AutoDesiredDrawBridge;
 import frc.robot.commands.Choking;
 import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
@@ -56,6 +57,7 @@ public class RobotContainer {
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
   private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
+  private final AutoDesiredDrawBridge raiseDrawBridgeToDesiredPosition = new AutoDesiredDrawBridge(draw_bridge_subsystem, false);
 
   //Controllers
   public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
@@ -69,7 +71,7 @@ public class RobotContainer {
   public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
-
+  public JoystickButton desiredPositionButton = new JoystickButton(Xbox360, Constants.DESIRED_POSITION_BUTTON);
   // public 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -100,6 +102,7 @@ public class RobotContainer {
     Lift_BPU.whileHeld(lift_bpu);
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
+    desiredPositionButton.whenPressed(raiseDrawBridgeToDesiredPosition);
     
   }
 
