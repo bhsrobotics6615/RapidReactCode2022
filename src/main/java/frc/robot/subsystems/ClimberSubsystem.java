@@ -15,8 +15,7 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
 
   WPI_TalonSRX back_climber = new WPI_TalonSRX(Constants.BACK_CLIMBER);
-  WPI_TalonSRX middle_climbers = new WPI_TalonSRX(Constants.MIDDLE_CLIMBERS);
-  WPI_TalonSRX draw_bridge_climbers = new WPI_TalonSRX(Constants.DRAW_BRIDGE_CLIMBERS);
+  WPI_TalonSRX front_climbers = new WPI_TalonSRX(Constants.FRONT_CLIMBERS);
  
   public void back_extend() {
    
@@ -24,9 +23,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
       back_climber.set(0.25);
     
-      }
-    
-    // speed not final
+    }
 
   }
 
@@ -42,40 +39,21 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
   
-  public void middle_extend() {
+  public void front_extend() {
 
-    middle_climbers.set(0.25);
-
-  }
-
-  public void middle_reset() {
-
-    middle_climbers.stopMotor();
+    front_climbers.set(0.25);
 
   }
 
-  public void middle_lift() {
+  public void front_reset() {
 
-    middle_climbers.set(-0.25);
-
-  }
-  
-  public void draw_bridge_extend() {
-
-    draw_bridge_climbers.set(0.25);
+    front_climbers.stopMotor();
 
   }
 
-  public void draw_bridge_reset() {
+  public void front_lift() {
 
-    draw_bridge_climbers.stopMotor();
-
-  }
-
-  public void draw_bridge_lift() {
-
-    draw_bridge_climbers.set(-0.25);
+    front_climbers.set(-0.25);
 
   }
-
 }
