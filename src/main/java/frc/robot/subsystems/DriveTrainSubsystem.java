@@ -20,7 +20,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a
                                                                                          // specified direction
         backRight.setInverted(true);
-
+        backLeft.setInverted(true);
         // horizontal, forward, and rotation speeds are between -1 and 1, where positive
         // is right/forward/clockwise.
         if (forwardSpeed > 0) {
@@ -55,30 +55,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
         }
 
         drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
-
-    }
-
-    public double smoothOutput(double speedInput) { // Use linear interpolation to smooth changes in acceleration
-                                                    // (Autonomous period only)
-
-        double maxSpeedOfMotor = 10; // rpm
-        // Do we know that the maximum speed of the motors is going to be 10rpm??
-
-        double output = speedInput * maxSpeedOfMotor;
-        return output;
-
-    }
-
-    public int calculateRPM(String motorType, WPI_TalonSRX motorController) { // Calculate the current motor's RPM given
-                                                                              // current cartesianDrive settings
-
-        double currentSpeedValue = motorController.get();
-
-        // all motors are type CIM Motor 217-2000
-        // use motor curve, voltage, weight translating to resistance, torque created,
-        // etc. to calculate rpm
-
-        return (int) (Math.abs(currentSpeedValue) * 5330);
 
     }
      

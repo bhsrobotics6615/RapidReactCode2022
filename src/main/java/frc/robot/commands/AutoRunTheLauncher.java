@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.LauncherSubsystem;
+import frc.robot.Constants;
 import frc.robot.subsystems.IndexerSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -20,15 +21,12 @@ public class AutoRunTheLauncher extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-   private double time;
-   private double endTime;
    private boolean hasLauncherEnded = false;
-   private double total_seconds;
+   private double startTime;
 
   public AutoRunTheLauncher(LauncherSubsystem l_subsystem, IndexerSubsystem i_subsystem, double seconds) {
     launch_subsystem = l_subsystem;
     indexer_subsystem = i_subsystem;
-    total_seconds = seconds;
     addRequirements(l_subsystem);
     addRequirements(i_subsystem);
   }
@@ -36,26 +34,20 @@ public class AutoRunTheLauncher extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    time = Timer.getFPGATimestamp();
-    endTime = time + total_seconds;
+    startTime = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() 
-  {
-    if(time > ((endTime - time) / 2) && time < endTime)
-    {
+  public void execute(){ 
+    while (Timer.getFPGATimestamp() < (startTime + Constants.LAUNCH_RUN_TIME)) {
       launch_subsystem.rev();
-      indexer_subsystem.load();
-    }
-    else if(time < endTime)
-    {
-      launch_subsystem.rev();
-    }
-    else
-    {
-      hasLauncherEnded = true;
+      
+      // if (Timer.hasElapsed(Constants.LAUNCH_RUN_TIME - Constants.INDEX_TIME)) {
+      
+      if (Timer.getFPGATimestamp() > (startTime + Constants.LAUNCH_RUN_TIME - Constants.INDEX_TIME)) {
+        indexer_subsystem.load();
+      }
     }
   }
 
