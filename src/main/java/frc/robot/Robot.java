@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   int run_counter = 1;
   int run_clock = 0;
   final WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
-  Encoder drawBridgeEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+  Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
 
   /**
    * This function is run when the robot is first started up and should be used for any 
