@@ -75,4 +75,8 @@ public final class Constants {
     // Launcher Run
     public static final double LAUNCH_RUN_TIME = 3;
     public static final double INDEX_TIME = 1;
+
+    // back climb limit switches
+    public static final int BACK_CLIMB_TOP_LIMIT = 0;
+    public static final int BACK_CLIMB_BOTTOM_LIMIT = 0;
 }
