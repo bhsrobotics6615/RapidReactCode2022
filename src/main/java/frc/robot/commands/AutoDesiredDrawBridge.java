@@ -11,13 +11,13 @@ import frc.robot.subsystems.DrawBridgeSubsystem;
 public class AutoDesiredDrawBridge extends CommandBase {
   /** Creates a new AutoDesiredDrawBridge. */
   DrawBridgeSubsystem drawBridge;
-  boolean flag;
-  boolean isFinished = false;
-  public AutoDesiredDrawBridge(DrawBridgeSubsystem drawBridge, boolean flag) {
+  boolean flag = false;
+  boolean isFinished = false; 
+  public AutoDesiredDrawBridge(DrawBridgeSubsystem drawBridgeA, boolean flagA) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.drawBridge = drawBridge;
+    drawBridge = drawBridgeA;
     //If the flag is TRUE, then the command thinks the encoder is already at the desired position and will therefore lower the drawbridge to the default position
-    this.flag = flag;
+    flag = flagA;
   }
 
   // Called when the command is initially scheduled.

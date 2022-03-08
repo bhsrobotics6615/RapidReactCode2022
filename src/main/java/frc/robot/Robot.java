@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
