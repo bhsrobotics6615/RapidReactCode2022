@@ -28,7 +28,8 @@ public final class Constants {
     public static final int FRONT_CLIMBERS = 69;
 
     // Controller Ports
-    public static final int JOYSTICK = 0;
+    // public static final int JOYSTICK = 0;
+    public static final int DRIVE_CONTROLLER = 0;
     public static final int XBOX = 1;
 
     // Heights

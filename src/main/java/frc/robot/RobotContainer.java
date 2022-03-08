@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
@@ -14,7 +14,7 @@ import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.PickUpBalls;
-import frc.robot.commands.SearchAndAlign;
+//import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -48,7 +48,7 @@ public class RobotContainer {
   private final Drive drive_command = new Drive(drive_subsystem);
 
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
-  private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
+  // private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
   private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem/*, lidar_subsystem*/);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
@@ -57,12 +57,13 @@ public class RobotContainer {
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
 
   //Controllers
-  public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
+  //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
+  public XboxController DriveController = new XboxController(Constants.DRIVE_CONTROLLER); // Port is 0
   public XboxController Xbox360 = new XboxController(Constants.XBOX); // Port is 1
 
   //Buttons
   public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
-  public JoystickButton Run_Search_And_Align = new JoystickButton(Logitech, Constants.RUN_LIDAR);
+  // public JoystickButton Run_Search_And_Align = new JoystickButton(Logitech, Constants.RUN_LIDAR);
   public JoystickButton Run_Indexer = new JoystickButton(Xbox360, Constants.RUN_INDEXER);
   public JoystickButton Run_BPU = new JoystickButton(Xbox360, Constants.RUN_BPU); //Ball Picker Upper
   public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
@@ -93,7 +94,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    Run_Search_And_Align.whenPressed(search_and_align);
+    //Run_Search_And_Align.whenPressed(search_and_align);
     Run_BPU.whileHeld(pick_up_ball);
     Run_Indexer.whileHeld(index_ball);
     Lift_BPU.whileHeld(lift_bpu);

@@ -49,7 +49,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
             rotationRate = -Math.pow(rotationRate, 2);
 
         } else if (rotationRate < 0) {
+
             rotationRate = Math.pow(rotationRate, 2);
+            
         }
 
         drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
