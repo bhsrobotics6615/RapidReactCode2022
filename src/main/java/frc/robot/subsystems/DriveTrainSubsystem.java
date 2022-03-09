@@ -13,15 +13,15 @@ public class DriveTrainSubsystem extends SubsystemBase {
     final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
     final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
     final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
+    
+    // Invert motors that need inverting
+    backRight.setInverted(true);
+    backLeft.setInverted(true);
 
     MecanumDrive drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
  
-
-    public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a
-                                                                                         // specified direction
-        backRight.setInverted(true);
-        backLeft.setInverted(true);
-
+    public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a specified direction
+        
         // horizontal, forward, and rotation speeds are between -1 and 1, where positive
         // is right/forward/clockwise.
         if (forwardSpeed > 0) {
