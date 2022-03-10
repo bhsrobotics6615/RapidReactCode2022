@@ -27,8 +27,6 @@ public class ClimberStageOne extends CommandBase {
 
 @Override
   public void execute() {
-  if ()
-    
 
   }
 
