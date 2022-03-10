@@ -15,21 +15,26 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
 
   WPI_TalonSRX back_climber = new WPI_TalonSRX(Constants.BACK_CLIMBER);
-  WPI_TalonSRX front_climbers = new WPI_TalonSRX(Constants.FRONT_CLIMBERS);
+  WPI_TalonSRX front_climber_1 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
+  WPI_TalonSRX front_climber_2 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
+  
   DigitalInput back_climb_top_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
   DigitalInput back_climb_bottom_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_BOTTOM_LIMIT);
+  DigitalInput front_climb_top_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_TOP_LIMIT_SWITCH);
+  DigitalInput front_climb_bottom_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_BOTTOM_LIMIT_SWITCH);
 
 
- public void back_climber(double speed) {
-    if (speed > 0) {
+ public void back_climber_lift(double speed) {
         if (back_climb_top_limit_Switch.get()) {
             // We are going up and top limit is tripped so stop
             back_climber.set(0);
         } else {
             // We are going up but top limit is not tripped so go at commanded speed
-            back_climber.set(0.25);
+            back_climber.set(0.75);
         }
-    } else {
+      }
+
+  public void backClimberLower(double speed){
         if (back_climb_bottom_limit_Switch.get()) {
             // We are going down and bottom limit is tripped so stop
             back_climber.set(0);
@@ -38,28 +43,29 @@ public class ClimberSubsystem extends SubsystemBase {
             back_climber.set(-0.25);
         }
     }
-    }
-
-
-  
-
-  
   
   public void front_extend() {
-
-    front_climbers.set(0.25);
-
+      if (front_climb_top_limit_Switch.get()) {
+        // We are going up and top limit is tripped so stop
+        front_climber_1.set(0);
+        front_climber_2.set(0);
+      } else {
+        // We are going up but top limit is not tripped so go at commanded speed
+        front_climber_1.set(0.75);
+        front_climber_2.set(0.75);
+      }
   }
 
-  public void front_reset() {
+  public void frontLower() {
 
-    front_climbers.stopMotor();
-
-  }
-
-  public void front_lift() {
-
-    front_climbers.set(-0.25);
-
+    if (front_climb_bottom_limit_Switch.get()) {
+      // We are going down and bottom limit is tripped so stop
+      front_climber_1.set(0);
+      front_climber_2.set(0);
+  } else {
+      // We are going down but bottom limit is not tripped so go at commanded speed
+      front_climber_1.set(-0.75);
+      front_climber_2.set(-0.75);
+    }
   }
 }

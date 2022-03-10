@@ -11,6 +11,10 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 /** Add your docs here. */
 public class Limelight {
 
+    //TODO: Set this up as a subsystem
+    //TODO: Set up limelight to recognize the tape
+    //TODO: Test tape position measurements
+
     private static NetworkTable limelight_table = NetworkTableInstance.getDefault().getTable("limelight");
     private static NetworkTableEntry tx = limelight_table.getEntry("tx");
     private static NetworkTableEntry ty = limelight_table.getEntry("ty");

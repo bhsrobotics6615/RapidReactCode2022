@@ -79,4 +79,9 @@ public final class Constants {
     // back climb limit switches
     public static final int BACK_CLIMB_TOP_LIMIT = 0;
     public static final int BACK_CLIMB_BOTTOM_LIMIT = 0;
+    public static final int FRONT_CLIMBER_1 = 0;
+    public static final int FRONT_CLIMBER_2 = 0;
+    public static final int FRONT_CLIMB_LIMIT_SWITCH = 0;
+    public static final int FRONT_CLIMB_TOP_LIMIT_SWITCH = 0;
+    public static final int FRONT_CLIMB_BOTTOM_LIMIT_SWITCH = 0;
 }
