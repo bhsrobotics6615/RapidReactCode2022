@@ -10,6 +10,7 @@ import frc.robot.Constants;
 
 public class BallPickerUpperSubsystem extends SubsystemBase {
   /** Creates a new LoaderSubsystem. */
+  // TODO: Get rid of this subsystem I suppose
   
   WPI_TalonSRX loader = new WPI_TalonSRX(Constants.PICKER_UPPER);
 
