@@ -26,10 +26,18 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/BallPickerUpperSubsystem": "Subsystem",
+      "/LiveWindow/DrawBridgeSubsystem": "Subsystem",
       "/LiveWindow/DriveTrainSubsystem": "Subsystem",
+      "/LiveWindow/IndexerSubsystem": "Subsystem",
       "/LiveWindow/LauncherSubsystem": "Subsystem",
       "/LiveWindow/LidarSubsystem": "Subsystem",
-      "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive"
+      "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/Talon SRX [10]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [11]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [1]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [6]": "Motor Controller"
     }
   },
   "NetworkTables": {
@@ -48,6 +56,18 @@
           "open": true
         },
         "PWMTalonSRX[5]": {
+          "open": true
+        },
+        "Talon SRX [10]": {
+          "open": true
+        },
+        "Talon SRX [11]": {
+          "open": true
+        },
+        "Talon SRX [1]": {
+          "open": true
+        },
+        "Talon SRX [6]": {
           "open": true
         },
         "open": true

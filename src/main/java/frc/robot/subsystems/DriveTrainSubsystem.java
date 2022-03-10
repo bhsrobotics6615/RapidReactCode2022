@@ -9,8 +9,6 @@ import frc.robot.Robot;
 
 public class DriveTrainSubsystem extends SubsystemBase {
 
-    // Drive control motors
-
     public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a specified direction
         
         // horizontal, forward, and rotation speeds are between -1 and 1, where positive
@@ -45,7 +43,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
             
         }
 
-        Robot.m_robotContainer.drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
+        Robot.m_robotContainer.drive.driveCartesian(horizontalSpeed, forwardSpeed, -rotationRate);
 
     }
      
