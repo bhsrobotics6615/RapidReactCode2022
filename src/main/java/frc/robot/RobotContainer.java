@@ -5,7 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
@@ -14,7 +16,7 @@ import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.PickUpBalls;
-import frc.robot.commands.SearchAndAlign;
+//import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -36,10 +38,18 @@ import frc.robot.commands.TheFirst15;
  */
 public class RobotContainer {
   
+  //DriveTrain Setup
+  public WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
+  public WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
+  public WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
+  public WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
+
+  public MecanumDrive drive;
+
   //Subsystems
+  private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
   private final LauncherSubsystem launcher_subsystem = new LauncherSubsystem();
   // private final LidarSubsystem lidar_subsystem = new LidarSubsystem();
-  private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
   private final IndexerSubsystem indexer_subsystem = new IndexerSubsystem();
   private final BallPickerUpperSubsystem picker_upper_subsystem = new BallPickerUpperSubsystem();
   private final DrawBridgeSubsystem draw_bridge_subsystem = new DrawBridgeSubsystem();
@@ -48,7 +58,7 @@ public class RobotContainer {
   private final Drive drive_command = new Drive(drive_subsystem);
 
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
-  private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
+  // private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
   private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem/*, lidar_subsystem*/);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
@@ -57,12 +67,13 @@ public class RobotContainer {
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
 
   //Controllers
-  public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0
+  //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
+  public XboxController DriveController = new XboxController(Constants.DRIVE_CONTROLLER); // Port is 0
   public XboxController Xbox360 = new XboxController(Constants.XBOX); // Port is 1
 
   //Buttons
   public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
-  public JoystickButton Run_Search_And_Align = new JoystickButton(Logitech, Constants.RUN_LIDAR);
+  // public JoystickButton Run_Search_And_Align = new JoystickButton(Logitech, Constants.RUN_LIDAR);
   public JoystickButton Run_Indexer = new JoystickButton(Xbox360, Constants.RUN_INDEXER);
   public JoystickButton Run_BPU = new JoystickButton(Xbox360, Constants.RUN_BPU); //Ball Picker Upper
   public JoystickButton Lower_BPU = new JoystickButton(Xbox360, Constants.LOWER_BPU);
@@ -75,6 +86,12 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    // Configure driveTrain
+    frontLeft.setInverted(true);
+    backLeft.setInverted(true);
+    
+    drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+
     // Configure default commands
     drive_subsystem.setDefaultCommand(drive_command);
     // launcher_subsystem.setDefaultCommand(run_launch);
@@ -93,7 +110,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     
-    Run_Search_And_Align.whenPressed(search_and_align);
+    //Run_Search_And_Align.whenPressed(search_and_align);
     Run_BPU.whileHeld(pick_up_ball);
     Run_Indexer.whileHeld(index_ball);
     Lift_BPU.whileHeld(lift_bpu);

@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ClimberStageOne extends CommandBase {
 
@@ -20,13 +21,12 @@ public class ClimberStageOne extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
+
+@Override
   public void execute() {
-  
-    
 
   }
 
