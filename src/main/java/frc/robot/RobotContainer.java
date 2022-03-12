@@ -13,6 +13,7 @@ import frc.robot.commands.AlignAndLaunch;
 import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
 import frc.robot.commands.Drive;
+import frc.robot.commands.DriveAuto;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
@@ -59,8 +60,10 @@ public class RobotContainer {
   private final Drive drive_command = new Drive(drive_subsystem);
 
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
-  // private final SearchAndAlign search_and_align = new SearchAndAlign(drive_subsystem);
-  private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem/*, lidar_subsystem*/);
+  private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
+  private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
+  private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
+  private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 5);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
@@ -130,6 +133,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return run_auto;
+    return run_drive_auto;
   }
 }

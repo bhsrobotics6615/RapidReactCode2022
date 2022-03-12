@@ -86,4 +86,10 @@ public final class Constants {
    
     public static final int FRONT_CLIMB_TOP_LIMIT_SWITCH = 0;
     public static final int FRONT_CLIMB_BOTTOM_LIMIT_SWITCH = 0;
+    // Speed Conversion
+    public static final double SPEED_CONVERT = 6.23;
+
+    //Encoder Math Counts to Feet
+    public static final double kTICKS_FEET = (1/6900);
+
 }

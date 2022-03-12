@@ -3,6 +3,11 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
@@ -33,7 +38,15 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
   int run_counter = 1;
   int run_clock = 0;
-
+  
+  final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
+  final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
+  final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
+  final WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
+  final double kTicks_Feet = (1/6900 );
+  
+  MecanumDrive driveRobot = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -113,7 +126,8 @@ public class Robot extends TimedRobot {
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
-
+    SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
+    SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -127,17 +141,22 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+ 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {}
-
+    
+    
+    
+    
+ 
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
