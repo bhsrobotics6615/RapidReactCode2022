@@ -41,7 +41,7 @@ public class Limelight {
 
     public static boolean hasTarget() {
 
-        return tv.getBoolean(false);
+        return (tv.getDouble(0.0) == 1);
 
     }
 
