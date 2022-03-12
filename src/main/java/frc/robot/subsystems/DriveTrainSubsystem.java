@@ -102,7 +102,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
             
 //         }
 
-        Robot.m_robotContainer.drive.driveCartesian(forwardSpeed, horizontalSpeed, rotationRate);
+        drive.driveCartesian(forwardSpeed, horizontalSpeed, rotationRate);
 
     }
      
@@ -112,7 +112,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     public void stop() { // Stop motor movement
 
-        Robot.m_robotContainer.drive.driveCartesian(0, 0, 0);
+       drive.driveCartesian(0, 0, 0);
         
     }
 }
