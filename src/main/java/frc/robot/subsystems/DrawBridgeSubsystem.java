@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -11,14 +12,28 @@ import frc.robot.Constants;
 
 public class DrawBridgeSubsystem extends SubsystemBase {
   /** Creates a new LiftDrawBridgeSubsystem. */
-  
-  WPI_TalonSRX draw_bridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
 
-  public void lift() {
+    WPI_TalonSRX draw_Bridge; 
+    public boolean bpuStatus = false;
+
+  public DrawBridgeSubsystem()
+  {
+    draw_Bridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
+    draw_Bridge.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    
+    draw_Bridge.setSensorPhase(false);
+
+    draw_Bridge.setSelectedSensorPosition(0, 0, 10);
+    draw_Bridge.setInverted(false);
+
+  }
+
+  
+
+  public boolean lift() {
     // TODO: Create a boolean that checks whether the drawbridge is up or down
     // TODO: Set draw bridge functions to be dependent on encoder positions
     draw_bridge.set(0.4);
-
   }
 
   public void lower() {
@@ -29,9 +44,13 @@ public class DrawBridgeSubsystem extends SubsystemBase {
 
   public void stop() {
 
-    draw_bridge.stopMotor();
+    draw_Bridge.stopMotor();
 
   }
+  public double getEncoderValue() {
+    return draw_Bridge.getSelectedSensorPosition();
+  }
 
+  
   
 }

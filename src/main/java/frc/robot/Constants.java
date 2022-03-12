@@ -25,8 +25,10 @@ public final class Constants {
     public static final int INDEXER = 10;
     public static final int DRAW_BRIDGE = 11;
     public static final int BACK_CLIMBER = 420;
-    public static final int FRONT_CLIMBERS = 69;
+    public static final int FRONT_CLIMBER_1 = 0;
+    public static final int FRONT_CLIMBER_2 = 0;
 
+    
     // Controller Ports
     // public static final int JOYSTICK = 0;
     public static final int DRIVE_CONTROLLER = 0;
@@ -63,6 +65,8 @@ public final class Constants {
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
     public static final int LOWER_BPU = XboxController.Button.kStart.value;
+    public static final int BALL_DETECTOR = 4;
+    public static final int BALL_ENTERED = 5;
 
     // Logitech Joystick Buttons
     public static final int RUN_LIDAR = 10;
@@ -76,12 +80,10 @@ public final class Constants {
     public static final double LAUNCH_RUN_TIME = 3;
     public static final double INDEX_TIME = 1;
 
-    // back climb limit switches
+    // limit switches
     public static final int BACK_CLIMB_TOP_LIMIT = 0;
     public static final int BACK_CLIMB_BOTTOM_LIMIT = 0;
-    public static final int FRONT_CLIMBER_1 = 0;
-    public static final int FRONT_CLIMBER_2 = 0;
-    public static final int FRONT_CLIMB_LIMIT_SWITCH = 0;
+   
     public static final int FRONT_CLIMB_TOP_LIMIT_SWITCH = 0;
     public static final int FRONT_CLIMB_BOTTOM_LIMIT_SWITCH = 0;
 }

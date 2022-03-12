@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.subsystems.BallPickerUpperSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,6 +25,10 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer;
   public static Accelerometer accelerometer = new BuiltInAccelerometer();
   public static LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
+  public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
+  public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
+  private final BallPickerUpperSubsystem ballPickerUpper = new BallPickerUpperSubsystem();
+  boolean latch = false;
   double prevXAccel = 0;
   double prevYAccel = 0;
   int run_counter = 1;
@@ -62,9 +68,9 @@ public class Robot extends TimedRobot {
     // Calculates the jerk in the X and Y directions
     // Divides by .02 because default loop timing is 20ms
     
-    double xJerk = (filteredXAccel - prevXAccel) / .02;
+    // double xJerk = (filteredXAccel - prevXAccel) / .02;
     
-    double yJerk = (yAccel - prevYAccel) / .02;
+    // double yJerk = (yAccel - prevYAccel) / .02;
 
     if (run_counter == 50) {
 
@@ -83,7 +89,27 @@ public class Robot extends TimedRobot {
 
     }
 
-    
+    if (ballDetected.get() && !ballEntered.get()) {
+
+      latch = true;
+
+    }
+
+    if (!ballDetected.get() && ballEntered.get()) {
+
+      latch = false;
+
+    }
+
+    if (latch) {
+
+      ballPickerUpper.pickUpTheBall();
+
+    } else {
+
+      ballPickerUpper.stopBPU();
+
+    }
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
