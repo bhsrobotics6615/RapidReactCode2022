@@ -23,9 +23,9 @@ public class Drive extends CommandBase {
     public void execute() {
      
         drive_subsystem.move(
-            -Robot.m_robotContainer.DriveController.getLeftX(), 
-            Robot.m_robotContainer.DriveController.getLeftY(),
-            -Robot.m_robotContainer.DriveController.getRightX()
+            -Robot.m_robotContainer.DriveController.getLeftY(), // This is negative because the controllers joystick Y-Axis is flipped (Up is -1)
+            Robot.m_robotContainer.DriveController.getLeftX(),
+            Robot.m_robotContainer.DriveController.getRightX()
         );
 
     }
