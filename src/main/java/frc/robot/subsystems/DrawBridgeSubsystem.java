@@ -20,6 +20,10 @@ public class DrawBridgeSubsystem extends SubsystemBase {
     drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
     drawBridge.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
     
+      final WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
+  Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+      
+     Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X)
     drawBridge.setSensorPhase(false);
 
     drawBridge.setSelectedSensorPosition(0, 0, 10);
