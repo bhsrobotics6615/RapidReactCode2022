@@ -6,6 +6,9 @@ import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class Drive extends CommandBase {
     private final DriveTrainSubsystem drive_subsystem;
+    double forwardSpeed;
+    double horizontalSpeed;
+    double rotationRate;
     
     public Drive(DriveTrainSubsystem subsystem) {
         drive_subsystem  = subsystem;
@@ -21,11 +24,50 @@ public class Drive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-     
+        
+        double leftY = -Robot.m_robotContainer.DriveController.getLeftY(); // This is negative because the controllers joystick Y-Axis is flipped (Up is -1)
+        double leftX = Robot.m_robotContainer.DriveController.getLeftX();
+        double rightX = Robot.m_robotContainer.DriveController.getRightX();
+
+
+        forwardSpeed = leftY;
+        horizontalSpeed = leftX;
+        rotationRate = rightX;
+
+        // if (leftY > 0) {
+
+        //     forwardSpeed = Math.pow(leftY, 2);
+
+        // } else if (leftY < 0) {
+
+        //     forwardSpeed = -Math.pow(leftY, 2);
+
+        // }
+
+        // if (leftX > 0) {
+
+        //     horizontalSpeed = Math.pow(leftX, 2);
+
+        // } else if (leftX < 0) {
+
+        //     horizontalSpeed = -Math.pow(leftX, 2);
+
+        // }
+
+        // if (rightX > 0) {
+
+        //     rotationRate = Math.pow(rightX, 2);
+
+        // } else if (rightX < 0) {
+
+        //     rotationRate = -Math.pow(rightX, 2);
+            
+        // }
+        
         drive_subsystem.move(
-            -Robot.m_robotContainer.DriveController.getLeftX(), 
-            Robot.m_robotContainer.DriveController.getLeftY(),
-            -Robot.m_robotContainer.DriveController.getRightX()
+            forwardSpeed,
+            horizontalSpeed,
+            rotationRate
         );
 
     }

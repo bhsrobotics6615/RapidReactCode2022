@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AlignAndLaunch;
 import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
 import frc.robot.commands.Drive;
@@ -87,8 +88,8 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure driveTrain
-    frontLeft.setInverted(true);
-    backLeft.setInverted(true);
+    frontRight.setInverted(true);
+    backRight.setInverted(true);
     
     drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
@@ -116,7 +117,8 @@ public class RobotContainer {
     Lift_BPU.whileHeld(lift_bpu);
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
-    Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem, 10));
+    Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
+    //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     
   }
 
