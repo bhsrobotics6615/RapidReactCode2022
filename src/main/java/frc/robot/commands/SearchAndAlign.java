@@ -38,45 +38,41 @@ public class SearchAndAlign extends CommandBase {
     double y_offset = Limelight.getY();
     boolean hasTarget = Limelight.hasTarget();
 
-    System.out.println(x_offset);
-    System.out.println(y_offset);
-    System.out.println(hasTarget);
-
-    // if (!hasTarget) {
+    if (!hasTarget) {
       
-    //     // We don't see the target, seek for the target by spinning in place at a safe speed.
-    //     // Search
-    //     drive_subsystem.move(0, 0, Constants.SEARCH_ROTATION_SPEED);
+        // We don't see the target, seek for the target by spinning in place at a safe speed.
+        // Search
+        drive_subsystem.move(0, 0, Constants.SEARCH_ROTATION_SPEED);
     
-    // } else {
+    } else {
       
-    //     // We do see the target, execute aiming code
-    //     // Align
-    //     if (x_offset > Constants.LIMELIGHT_X_PRECISION + Constants.LIMELIGHT_TARGET_X) {
+        // We do see the target, execute aiming code
+        // Align
+        if (x_offset > Constants.LIMELIGHT_X_PRECISION + Constants.LIMELIGHT_TARGET_X) {
 
-    //       drive_subsystem.move(0, 0, Constants.ALIGN_ROTATION_SPEED);
+          drive_subsystem.move(0, 0, Constants.ALIGN_ROTATION_SPEED);
 
-    //     } else if (x_offset < -Constants.LIMELIGHT_X_PRECISION + Constants.LIMELIGHT_TARGET_X) {
+        } else if (x_offset < -Constants.LIMELIGHT_X_PRECISION + Constants.LIMELIGHT_TARGET_X) {
 
-    //       drive_subsystem.move(0, 0, -Constants.ALIGN_ROTATION_SPEED);
+          drive_subsystem.move(0, 0, -Constants.ALIGN_ROTATION_SPEED);
 
-    //     } else {
+        } else {
 
-    //       if (y_offset > Constants.LIMELIGHT_Y_PRECISION + Constants.LIMELIGHT_TARGET_Y) {
+          if (y_offset > Constants.LIMELIGHT_Y_PRECISION + Constants.LIMELIGHT_TARGET_Y) {
 
-    //         drive_subsystem.move(-Constants.ALIGN_MOVEMENT_SPEED, 0, 0);
+            drive_subsystem.move(-Constants.ALIGN_MOVEMENT_SPEED, 0, 0);
             
-    //       } else if (y_offset < -Constants.LIMELIGHT_Y_PRECISION + Constants.LIMELIGHT_TARGET_Y) {
+          } else if (y_offset < -Constants.LIMELIGHT_Y_PRECISION + Constants.LIMELIGHT_TARGET_Y) {
 
-    //         drive_subsystem.move(Constants.ALIGN_MOVEMENT_SPEED, 0, 0);
+            drive_subsystem.move(Constants.ALIGN_MOVEMENT_SPEED, 0, 0);
 
-    //       } else {
+          } else {
 
-    //         hasFinished = true;
+            hasFinished = true;
 
-    //       }
-    //     }
-    // }
+          }
+        }
+    }
   }
 
   // Called once the command ends or is interrupted.
