@@ -28,8 +28,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
             backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
             frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
     
-           
-    
+            frontLeft.setInverted(true);
+            backLeft.setInverted(true);
+            
             
             //TODO: Invert the motors on either the left or the right side
             drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
@@ -53,7 +54,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
         frontRight.setSelectedSensorPosition(0,0,10);
 
         frontLeft.setInverted(true);
-        frontRight.setInverted(true);
+        frontRight.setInverted(false);
         backLeft.follow(frontLeft);
         backRight.follow(frontRight);
     }
@@ -93,14 +94,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
     }
 
     
-    public void moveAuto(double forwardSpeed, double horizontalSpeed, double rotationRate) { 
-        // Move the robot in a specified direction
-
-        // horizontal, forward, and rotation speeds are between -1 and 1, where positive is right/forward/clockwise.
-       
-        drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
-
-    }
+   
+    
     public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a specified direction
 
 //             horizontalSpeed = Math.pow(horizontalSpeed, 2);
@@ -121,7 +116,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
             
 //         }
 
-        Robot.m_robotContainer.drive.driveCartesian(forwardSpeed, horizontalSpeed, rotationRate);
+        drive.driveCartesian(forwardSpeed, horizontalSpeed, rotationRate);
 
     }
      
@@ -131,7 +126,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     public void stop() { // Stop motor movement
 
-        Robot.m_robotContainer.drive.driveCartesian(0, 0, 0);
+        drive.driveCartesian(0, 0, 0);
         
     }
 }
