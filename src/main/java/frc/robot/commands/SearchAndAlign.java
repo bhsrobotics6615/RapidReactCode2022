@@ -71,6 +71,7 @@ public class SearchAndAlign extends CommandBase {
             hasFinished = true;
 
           }
+          
         }
     }
   }

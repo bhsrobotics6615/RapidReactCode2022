@@ -40,6 +40,8 @@ public class AutoRunTheLauncher extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute(){ 
+
+
     while (Timer.getFPGATimestamp() < (startTime + Constants.LAUNCH_RUN_TIME)) {
       launch_subsystem.rev();
       

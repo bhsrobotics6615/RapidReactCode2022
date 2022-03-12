@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 // import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.subsystems.BallPickerUpperSubsystem;
 
 public class ClimberStageOne extends CommandBase {
 
@@ -30,20 +29,33 @@ public class ClimberStageOne extends CommandBase {
     bpu.lower();
   }
 
-
-@Override
+  @Override
   public void execute() {
-    // TODO: Create sequence of events as follows: 
-    // TODO: 1) Lower back hook until latch limit switch is TRUE
-    // TODO: 2) Turn off back hook motor (limit switch TRUE stops motor)
-    // TODO: 3) Extend front hooks
-    // TODO: 4) Lift the bpu
-    // TODO: 5) Lower the front hooks until back hooks lift off of the rung
+    int step = 0;
+    while (step <4){
+      if (step == 0) {
+          climbers.backClimberLower();
+          step++;
+      }
+      else if (step == 1 && climbers.backClimberStatus){
+          climbers.front_extend();
+          step++;
+      }
+      else if (step == 2 && climbers.frontClimberStatus){
+          bpu.lift();
+          step++;
+      }
+      else if (step == 3 && bpu.bpuStatus){
+          climbers.frontLower();
+          step++;
+      }
+  }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
