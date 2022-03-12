@@ -15,7 +15,8 @@ public class DrawBridgeSubsystem extends SubsystemBase {
   WPI_TalonSRX draw_bridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
 
   public void lift() {
-
+    // TODO: Create a boolean that checks whether the drawbridge is up or down
+    // TODO: Set draw bridge functions to be dependent on encoder positions
     draw_bridge.set(0.25);
 
   }

@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AutoRunTheLauncher;
@@ -36,10 +38,18 @@ import frc.robot.commands.TheFirst15;
  */
 public class RobotContainer {
   
+  //DriveTrain Setup
+  public WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
+  public WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
+  public WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
+  public WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
+
+  public MecanumDrive drive;
+
   //Subsystems
+  private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
   private final LauncherSubsystem launcher_subsystem = new LauncherSubsystem();
   // private final LidarSubsystem lidar_subsystem = new LidarSubsystem();
-  private final DriveTrainSubsystem drive_subsystem = new DriveTrainSubsystem();
   private final IndexerSubsystem indexer_subsystem = new IndexerSubsystem();
   private final BallPickerUpperSubsystem picker_upper_subsystem = new BallPickerUpperSubsystem();
   private final DrawBridgeSubsystem draw_bridge_subsystem = new DrawBridgeSubsystem();
@@ -76,6 +86,12 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    // Configure driveTrain
+    frontLeft.setInverted(true);
+    backLeft.setInverted(true);
+    
+    drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+
     // Configure default commands
     drive_subsystem.setDefaultCommand(drive_command);
     // launcher_subsystem.setDefaultCommand(run_launch);
