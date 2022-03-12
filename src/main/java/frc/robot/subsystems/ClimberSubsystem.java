@@ -23,36 +23,43 @@ public class ClimberSubsystem extends SubsystemBase {
   DigitalInput front_climb_top_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_TOP_LIMIT_SWITCH);
   DigitalInput front_climb_bottom_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_BOTTOM_LIMIT_SWITCH);
 
+  public boolean backClimberStatus = false;
+  public boolean frontClimberStatus = false;
 
- public void back_climber_lift(double speed) {
+
+ public boolean back_climber_lift() {
         if (back_climb_top_limit_Switch.get()) {
             // We are going up and top limit is tripped so stop
             back_climber.set(0);
+            return backClimberStatus = true; // this identifies the climber as lowered
         } else {
             // We are going up but top limit is not tripped so go at commanded speed
             back_climber.set(0.75);
+            return backClimberStatus = false; // this identifies the climber as raised
         }
       }
 
-  public void backClimberLower(double speed){
+  public void backClimberLower(){
         if (back_climb_bottom_limit_Switch.get()) {
             // We are going down and bottom limit is tripped so stop
             back_climber.set(0);
         } else {
             // We are going down but bottom limit is not tripped so go at commanded speed
-            back_climber.set(-0.25);
+            back_climber.set(-0.75);
         }
     }
   
-  public void front_extend() {
+  public boolean front_extend() {
       if (front_climb_top_limit_Switch.get()) {
         // We are going up and top limit is tripped so stop
         front_climber_1.set(0);
         front_climber_2.set(0);
+        return frontClimberStatus = true;
       } else {
         // We are going up but top limit is not tripped so go at commanded speed
         front_climber_1.set(0.75);
         front_climber_2.set(0.75);
+         return frontClimberStatus = false;
       }
   }
 

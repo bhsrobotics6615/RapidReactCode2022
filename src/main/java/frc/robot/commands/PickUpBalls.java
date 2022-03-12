@@ -33,7 +33,7 @@ public class PickUpBalls extends CommandBase {
   public void execute() {
 
     ball_picker_upper_subsystem.pickUpTheBall();
-    System.out.println("SUCKING!!!");
+    // System.out.println("SUCKING!!!");
     
   }
 
@@ -42,7 +42,7 @@ public class PickUpBalls extends CommandBase {
   public void end(boolean interrupted) {
 
     ball_picker_upper_subsystem.stopBPU();
-    System.out.println("Stopping...");
+    // System.out.println("Stopping...");
 
   }
 
