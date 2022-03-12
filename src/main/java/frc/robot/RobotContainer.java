@@ -87,8 +87,8 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure driveTrain
-    frontLeft.setInverted(true);
-    backLeft.setInverted(true);
+    frontRight.setInverted(true);
+    backRight.setInverted(true);
     
     drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
