@@ -15,10 +15,10 @@ public class TheFirst15 extends SequentialCommandGroup {
   /** Creates a new TheFirst15. */
   public TheFirst15(DriveTrainSubsystem driveTrain, LauncherSubsystem launcher, IndexerSubsystem indexer/*, LidarSubsystem limelight*/) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addCommands(
-      new DriveAuto(driveTrain, 4),
-      new AutoRunTheLauncher(launcher, indexer, 6)
-     // new TargetAim(limelight, driveTrain)
-    );
+    // addCommands(
+    //   new DriveAuto(driveTrain, 4),
+    //  new AutoRunTheLauncher(launcher, indexer, 6)
+    //  // new TargetAim(limelight, driveTrain)
+    // );
   }
 }

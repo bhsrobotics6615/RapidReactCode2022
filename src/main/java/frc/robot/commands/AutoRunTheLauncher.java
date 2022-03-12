@@ -24,7 +24,7 @@ public class AutoRunTheLauncher extends CommandBase {
    private boolean hasLauncherEnded = false;
    private double startTime;
 
-  public AutoRunTheLauncher(LauncherSubsystem l_subsystem, IndexerSubsystem i_subsystem, double seconds) {
+  public AutoRunTheLauncher(LauncherSubsystem l_subsystem, IndexerSubsystem i_subsystem) {
     launch_subsystem = l_subsystem;
     indexer_subsystem = i_subsystem;
     addRequirements(l_subsystem);
@@ -40,6 +40,8 @@ public class AutoRunTheLauncher extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute(){ 
+    
+
     while (Timer.getFPGATimestamp() < (startTime + Constants.LAUNCH_RUN_TIME)) {
       launch_subsystem.rev();
       

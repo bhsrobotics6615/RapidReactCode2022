@@ -6,6 +6,9 @@ import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class Drive extends CommandBase {
     private final DriveTrainSubsystem drive_subsystem;
+    double forwardSpeed;
+    double horizontalSpeed;
+    double rotationRate;
     
     public Drive(DriveTrainSubsystem subsystem) {
         drive_subsystem  = subsystem;
@@ -25,36 +28,41 @@ public class Drive extends CommandBase {
         double leftY = -Robot.m_robotContainer.DriveController.getLeftY(); // This is negative because the controllers joystick Y-Axis is flipped (Up is -1)
         double leftX = Robot.m_robotContainer.DriveController.getLeftX();
         double rightX = Robot.m_robotContainer.DriveController.getRightX();
-        
-        if (leftY > 0) {
 
-            double forwardSpeed = Math.pow(leftY, 2);
 
-        } else if (leftY < 0) {
+        forwardSpeed = leftY;
+        horizontalSpeed = leftX;
+        rotationRate = rightX;
 
-            double forwardSpeed = -Math.pow(leftY, 2);
+        // if (leftY > 0) {
 
-        }
+        //     forwardSpeed = Math.pow(leftY, 2);
 
-        if (leftX > 0) {
+        // } else if (leftY < 0) {
 
-            double horizontalSpeed = Math.pow(leftX, 2);
+        //     forwardSpeed = -Math.pow(leftY, 2);
 
-        } else if (leftX < 0) {
+        // }
 
-            double horizontalSpeed = -Math.pow(leftX, 2);
+        // if (leftX > 0) {
 
-        }
+        //     horizontalSpeed = Math.pow(leftX, 2);
 
-        if (rightX > 0) {
+        // } else if (leftX < 0) {
 
-            double rotationRate = Math.pow(rightX, 2);
+        //     horizontalSpeed = -Math.pow(leftX, 2);
 
-        } else if (rightX < 0) {
+        // }
 
-            double rotationRate = -Math.pow(rightX, 2);
+        // if (rightX > 0) {
+
+        //     rotationRate = Math.pow(rightX, 2);
+
+        // } else if (rightX < 0) {
+
+        //     rotationRate = -Math.pow(rightX, 2);
             
-        }
+        // }
         
         drive_subsystem.move(
             forwardSpeed,

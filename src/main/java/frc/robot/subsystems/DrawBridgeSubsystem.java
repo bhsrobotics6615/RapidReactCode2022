@@ -17,13 +17,13 @@ public class DrawBridgeSubsystem extends SubsystemBase {
   public void lift() {
     // TODO: Create a boolean that checks whether the drawbridge is up or down
     // TODO: Set draw bridge functions to be dependent on encoder positions
-    draw_bridge.set(0.25);
+    draw_bridge.set(0.4);
 
   }
 
   public void lower() {
 
-    draw_bridge.set(-0.25);
+    draw_bridge.set(-0.4);
 
   }
 
