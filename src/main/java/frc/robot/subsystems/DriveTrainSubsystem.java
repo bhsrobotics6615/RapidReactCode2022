@@ -35,15 +35,15 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
         if (rotationRate > 0) {
 
-            rotationRate = -Math.pow(rotationRate, 2);
+            rotationRate = Math.pow(rotationRate, 2);
 
         } else if (rotationRate < 0) {
 
-            rotationRate = Math.pow(rotationRate, 2);
+            rotationRate = -Math.pow(rotationRate, 2);
             
         }
 
-        Robot.m_robotContainer.drive.driveCartesian(horizontalSpeed, forwardSpeed, -rotationRate);
+        Robot.m_robotContainer.drive.driveCartesian(forwardSpeed, horizontalSpeed, rotationRate);
 
     }
      
