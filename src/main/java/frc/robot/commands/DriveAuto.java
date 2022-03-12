@@ -27,19 +27,21 @@ public class DriveAuto extends CommandBase {
     @Override
     public void initialize() 
     {
-       drive_subsystem.encoderOn();
+       errorSum = 0;
+       lastTimestamp = Timer.getFPGATimestamp();
+       drive_subsystem.encoderOnBackwards();
        drive_subsystem.encoderZero();
-
+    
         
     }
-
+    
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() 
     {
        while(drive_subsystem.getDistance() < distance)
        {
-        drive_subsystem.moveAuto(0, -0.4, 0);
+        drive_subsystem.move(-0.4, 0, 0); //Move backwards
        }
        driveAutoDone = true;
     }

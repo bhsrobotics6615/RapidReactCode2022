@@ -58,6 +58,25 @@ public class DriveTrainSubsystem extends SubsystemBase {
         backRight.follow(frontRight);
     }
 
+    public void encoderOnBackwards()
+    {
+        backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+
+        frontLeft.setSensorPhase(false);
+        frontRight.setSensorPhase(true);
+
+        frontLeft.setSelectedSensorPosition(0,0,10);
+        frontRight.setSelectedSensorPosition(0,0,10);
+
+        frontLeft.setInverted(false);
+        frontRight.setInverted(false);
+        backLeft.follow(frontLeft);
+        backRight.follow(frontRight);
+    }
+
     public void encoderZero()
     {
         frontLeft.setSelectedSensorPosition(0,0,10);
