@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.commands.AlignAndLaunch;
+import frc.robot.commands.DriveAuto;
+
 // import frc.robot.subsystems.LidarSubsystem;
 
 
@@ -15,10 +18,10 @@ public class TheFirst15 extends SequentialCommandGroup {
   /** Creates a new TheFirst15. */
   public TheFirst15(DriveTrainSubsystem driveTrain, LauncherSubsystem launcher, IndexerSubsystem indexer/*, LidarSubsystem limelight*/) {
     // Use addRequirements() here to declare subsystem dependencies.
-    // addCommands(
-    //   new DriveAuto(driveTrain, 4),
-    //  new AutoRunTheLauncher(launcher, indexer, 6)
-    //  // new TargetAim(limelight, driveTrain)
+     addCommands(
+      new DriveAuto(driveTrain, 10),
+      new AlignAndLaunch(driveTrain, launcher, indexer));
+      //new TargetAim(limelight, driveTrain)
     // );
   }
 }

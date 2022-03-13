@@ -68,6 +68,10 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     public void encoderZero()
     {
+        backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
         frontLeft.setSelectedSensorPosition(0,0,10);
         frontRight.setSelectedSensorPosition(0,0,10);   
     }

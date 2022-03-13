@@ -59,10 +59,11 @@ public class RobotContainer {
   //Commands
   private final Drive drive_command = new Drive(drive_subsystem);
 
+
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
  // private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
   //private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
-//  private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem/*, lidar_subsystem*/);
+private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem);
   private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
@@ -133,6 +134,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    return run_drive_auto;
+    return run_auto;
   }
 }
