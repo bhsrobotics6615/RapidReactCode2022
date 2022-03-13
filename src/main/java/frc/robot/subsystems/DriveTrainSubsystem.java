@@ -27,9 +27,17 @@ public class DriveTrainSubsystem extends SubsystemBase {
             backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
             backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
             frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR); // 2022 7
-    
-           
-    
+            
+            //Encoders
+            backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+            backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+            frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+            frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+
+            frontLeft.setSelectedSensorPosition(0,0,10);
+            frontRight.setSelectedSensorPosition(0,0,10);
+          //  frontRight.setInverted(true);
+          //  backRight.setInverted(true);
             
             //TODO: Invert the motors on either the left or the right side
             drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
@@ -46,16 +54,16 @@ public class DriveTrainSubsystem extends SubsystemBase {
         frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
         frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
 
-        frontLeft.setSensorPhase(false);
-        frontRight.setSensorPhase(true);
+        //frontLeft.setSensorPhase(false);
+        //frontRight.setSensorPhase(true);
 
         frontLeft.setSelectedSensorPosition(0,0,10);
         frontRight.setSelectedSensorPosition(0,0,10);
 
-        frontLeft.setInverted(true);
-        frontRight.setInverted(true);
-        backLeft.follow(frontLeft);
-        backRight.follow(frontRight);
+        //frontLeft.setInverted(false);
+        //frontRight.setInverted(true);
+        //backLeft.follow(frontLeft);
+        //backRight.follow(frontRight);
     }
 
     public void encoderZero()
@@ -64,24 +72,21 @@ public class DriveTrainSubsystem extends SubsystemBase {
         frontRight.setSelectedSensorPosition(0,0,10);   
     }
     public double getDistance()
-    {
-    
+    { 
+        backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,10);
+        System.out.println("this code ran hehe!");
         double leftPosition = (frontLeft.getSelectedSensorPosition()/6900);
         double rightPosition = (frontRight.getSelectedSensorPosition()/6900);
-        double distance = (leftPosition + rightPosition)/2;
-
+        double distance = Math.abs((leftPosition + rightPosition)/2);
+        System.out.println(distance);
         return distance;
     }
 
     
-    public void moveAuto(double forwardSpeed, double horizontalSpeed, double rotationRate) { 
-        // Move the robot in a specified direction
-
-        // horizontal, forward, and rotation speeds are between -1 and 1, where positive is right/forward/clockwise.
-       
-        drive.driveCartesian(horizontalSpeed, -forwardSpeed, rotationRate);
-
-    }
+ 
     public void move(double forwardSpeed, double horizontalSpeed, double rotationRate) { // Move the robot in a specified direction
 
 //             horizontalSpeed = Math.pow(horizontalSpeed, 2);

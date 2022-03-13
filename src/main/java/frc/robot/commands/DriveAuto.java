@@ -27,7 +27,7 @@ public class DriveAuto extends CommandBase {
     @Override
     public void initialize() 
     {
-       drive_subsystem.encoderOn();
+       //drive_subsystem.encoderOn();
        drive_subsystem.encoderZero();
 
         
@@ -39,7 +39,8 @@ public class DriveAuto extends CommandBase {
     {
        while(drive_subsystem.getDistance() < distance)
        {
-        drive_subsystem.moveAuto(0, -0.4, 0);
+        System.out.println(drive_subsystem.getDistance());
+        drive_subsystem.move(-0.4, 0, 0);
        }
        driveAutoDone = true;
     }

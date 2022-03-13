@@ -38,8 +38,8 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
   int run_counter = 1;
   int run_clock = 0;
-  final WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
-  Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+  //final WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
+  //Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
   final WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR); // 2022 2
   final WPI_TalonSRX backRight = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR); // 2022 5
   final WPI_TalonSRX backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR); // 2022 4
@@ -122,9 +122,9 @@ public class Robot extends TimedRobot {
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
-    SmartDashboard.putNumber("Draw Bridge Encoder Raw Value", drawBridgeEncoder.getRaw());
-    SmartDashboard.putNumber("Draw Bridge Encoder Distance Value", drawBridgeEncoder.getDistance());
-    SmartDashboard.putNumber("Draw Bridge Encoder Rate Value", drawBridgeEncoder.getRate());
+    //SmartDashboard.putNumber("Draw Bridge Encoder Raw Value", drawBridgeEncoder.getRaw());
+    //SmartDashboard.putNumber("Draw Bridge Encoder Distance Value", drawBridgeEncoder.getDistance());
+    //SmartDashboard.putNumber("Draw Bridge Encoder Rate Value", drawBridgeEncoder.getRate());
     SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
     SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
   }
