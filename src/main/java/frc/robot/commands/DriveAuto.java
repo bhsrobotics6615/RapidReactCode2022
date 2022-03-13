@@ -47,14 +47,14 @@ public class DriveAuto extends CommandBase {
     public void execute() 
     {
    
-        
+        System.out.println("Sheesh");
        
-        while(error != 0)
+        while(error > 0)
         {
 
           System.out.println(distance);
           //distance = Math.abs(distance);
-          error = (setpoint) - distance;
+          error = (setpoint) - drive_subsystem.getDistance();
           double dt = Timer.getFPGATimestamp() - lastTimestamp;
           errorSum += error * dt;
           outputspeed = kp * error  /* + ki * errorSum*/;
