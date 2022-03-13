@@ -87,11 +87,6 @@ public class Robot extends TimedRobot {
 
     if (run_counter == 50) {
 
-      // System.out.println("xJerk: "+xJerk);
-      // System.out.println("yJerk: "+yJerk);
-      // System.out.println(run_counter);
-      // System.out.println(run_clock);
-      // System.out.println();
       run_counter = 1;
       run_clock ++;
 

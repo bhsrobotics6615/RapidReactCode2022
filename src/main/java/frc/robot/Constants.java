@@ -18,6 +18,7 @@ public final class Constants {
     // Talon SRX Ports
     public static final int FRONT_RIGHT_MOTOR = 2;
     public static final int BACK_RIGHT_MOTOR = 5;
+
     public static final int BACK_LEFT_MOTOR = 4;
     public static final int FRONT_LEFT_MOTOR = 7;
     public static final int LAUNCHER = 6;
@@ -41,7 +42,7 @@ public final class Constants {
 
     // Limelight
     public static final double LIMELIGHT_X_PRECISION = 0.25; // Precision expected looking on the x-axis
-    public static final double LIMELIGHT_TARGET_X = 0; // Target value on the x-axis
+    public static final double LIMELIGHT_TARGET_X = 2; // Target value on the x-axis
     public static final double LIMELIGHT_Y_PRECISION = 0.25; // Precision expected looking on the y-axis
     public static final double LIMELIGHT_TARGET_Y = 0; // Target value on the y-axis
 

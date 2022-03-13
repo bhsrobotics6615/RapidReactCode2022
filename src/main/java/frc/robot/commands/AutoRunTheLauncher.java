@@ -50,6 +50,10 @@ public class AutoRunTheLauncher extends CommandBase {
         indexer_subsystem.load();
       }
     }
+
+    if (Timer.getFPGATimestamp() > startTime + Constants.LAUNCH_RUN_TIME) {
+      hasLauncherEnded = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
