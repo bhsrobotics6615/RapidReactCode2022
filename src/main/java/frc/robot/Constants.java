@@ -41,17 +41,17 @@ public final class Constants {
     public static final double HEIGHT_OF_LAUNCHER = 0;
 
     // Limelight
-    public static final double LIMELIGHT_X_PRECISION = 0.25; // Precision expected looking on the x-axis
-    public static final double LIMELIGHT_TARGET_X = 2; // Target value on the x-axis
-    public static final double LIMELIGHT_Y_PRECISION = 0.25; // Precision expected looking on the y-axis
-    public static final double LIMELIGHT_TARGET_Y = 0; // Target value on the y-axis
+    public static final double LIMELIGHT_X_PRECISION = 0.15; // Precision expected looking on the x-axis
+    public static final double LIMELIGHT_TARGET_X = 0; // Target value on the x-axis
+    public static final double LIMELIGHT_Y_PRECISION = 0.2; // Precision expected looking on the y-axis
+    public static final double LIMELIGHT_TARGET_Y = -3.5; // Target value on the y-axis
+
+    // Search
+    public static final double SEARCH_ROTATION_SPEED = 0.3;
 
     // Align
-    public static final double SEARCH_ROTATION_SPEED = 0.2;
-
-    // Align
-    public static final double ALIGN_ROTATION_SPEED = 0.125;
-    public static final double ALIGN_MOVEMENT_SPEED = 0.125;
+    public static final double ALIGN_ROTATION_SPEED = 0.15;
+    public static final double ALIGN_MOVEMENT_SPEED = 0.2;
 
     // Angles
     public static final double LIMELIGHT_MOUNTING_ANGLE = 60;
@@ -79,7 +79,7 @@ public final class Constants {
 
     // Launcher Run
     public static final double LAUNCH_RUN_TIME = 3;
-    public static final double INDEX_TIME = 1;
+    public static final double INDEX_TIME = 2;
 
     // limit switches
     public static final int BACK_CLIMB_TOP_LIMIT = 0;

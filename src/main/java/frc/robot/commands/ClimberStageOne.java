@@ -45,7 +45,7 @@ public class ClimberStageOne extends CommandBase {
           bpu.lift();
           step++;
       }
-      else if (step == 3 && bpu.bpuStatus){
+      else if (step == 3){
           climbers.frontLower();
           step++;
       }
