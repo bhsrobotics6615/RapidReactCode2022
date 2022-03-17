@@ -85,6 +85,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
   public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
+  public JoystickButton Front_Climb = new JoystickButton(Xbox360, Constants.FRONT_CLIMB);
 
   // public 
   /**

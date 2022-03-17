@@ -31,7 +31,9 @@ public class ClimberStageOne extends CommandBase {
 
   @Override
   public void execute() {
-    int step = 0;
+climbers.front_climber_lift();
+
+    /*int step = 0;
     while (step <4){
       if (step == 0) {
           climbers.backClimberLower();
@@ -49,7 +51,7 @@ public class ClimberStageOne extends CommandBase {
           climbers.frontLower();
           step++;
       }
-  }
+  }*/
   }
 
   // Called once the command ends or is interrupted.
