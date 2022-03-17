@@ -26,7 +26,7 @@ public class DrawBridgeSubsystem extends SubsystemBase {
   public void lower() {
     
    
-    drawBridge.set(0.50);
+    drawBridge.set(-0.50);
 
   }
 
