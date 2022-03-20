@@ -35,7 +35,7 @@ public class ClimberStageOne extends CommandBase {
   @Override
   public void execute() {
     //while (Timer.getFPGATimestamp() < startTime + 2.0){
-      climbers.back_climber_lift();
+      climbers.front_climber_down();
     //} 
     
     /*if(Timer.getFPGATimestamp() > startTime + 2.0) {
@@ -66,7 +66,7 @@ public class ClimberStageOne extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climbers.back_climber_off();
+    climbers.front_climber_stop();
   }
 
   // Returns true when the command should end.

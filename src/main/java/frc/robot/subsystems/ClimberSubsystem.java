@@ -26,9 +26,9 @@ public class ClimberSubsystem extends SubsystemBase {
   public boolean frontLeftClimberPosition = false;
   public boolean frontRightClimberPosition = false;
 
- public void front_climber_lift() {
-   front_climber_1.set(.2);
-   front_climber_2.set(.2);
+ public void front_climber_down() {
+   front_climber_1.set(-.5);
+   front_climber_2.set(-.5);
         /*if (front_climb_1_limit_Switch.get() ==false && frontLeftClimberPosition == false) {
             // We are going up and top limit is tripped so stop
            
@@ -40,12 +40,23 @@ public class ClimberSubsystem extends SubsystemBase {
             return frontLeftClimberPosition = false; // this identifies the climber as raised
         }*/
   }
+  
+  public void front_climber_extend(){
+    front_climber_1.set(.5);
+    front_climber_2.set(.5);
+  }
+  public void front_climber_stop(){
+    front_climber_1.set(0);
+    front_climber_2.set(0);
+
+  }
+
   public void back_climber_lift() {
     back_climber.set(-.3);
   }
 
   public void back_climber_down() {
-    back_climber.set(1);
+    back_climber.set(.3);
   }
 
   public void back_climber_off() {
