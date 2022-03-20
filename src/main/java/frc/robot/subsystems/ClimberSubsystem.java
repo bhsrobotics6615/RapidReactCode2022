@@ -18,44 +18,47 @@ public class ClimberSubsystem extends SubsystemBase {
   WPI_TalonSRX front_climber_1 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
   WPI_TalonSRX front_climber_2 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
   
-  DigitalInput back_climb_top_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
-  DigitalInput back_climb_bottom_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_BOTTOM_LIMIT);
-  DigitalInput front_climb_top_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_TOP_LIMIT_SWITCH);
-  DigitalInput front_climb_bottom_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_BOTTOM_LIMIT_SWITCH);
+  DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
+  DigitalInput front_climb_1_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
+  DigitalInput front_climb_2_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
 
   public boolean backClimberStatus = false;
-  public boolean frontClimberStatus = false;
+  public boolean frontLeftClimberPosition = false;
+  public boolean frontRightClimberPosition = false;
 
-
- public boolean back_climber_lift() {
-        if (back_climb_top_limit_Switch.get()) {
+  public void front_climber_lift() {
+    front_climber_1.set(.2);
+    front_climber_2.set(.2);
+        /*if (front_climb_1_limit_Switch.get() ==false && frontLeftClimberPosition == false) {
             // We are going up and top limit is tripped so stop
-            back_climber.set(0);
-            return backClimberStatus = true; // this identifies the climber as lowered
+           
+            front_climber_1.set(0.75);
+            return frontLeftClimberPosition = true; // this identifies the climber as lowered
         } else {
             // We are going up but top limit is not tripped so go at commanded speed
-            back_climber.set(0.75);
-            return backClimberStatus = false; // this identifies the climber as raised
-        }
-      }
-
-  public void backClimberLower(){
-        if (back_climb_bottom_limit_Switch.get()) {
-            // We are going down and bottom limit is tripped so stop
-            back_climber.set(0);
-        } else {
-            // We are going down but bottom limit is not tripped so go at commanded speed
-            back_climber.set(-0.75);
-        }
+            front_climber_1.set(-0.75);
+            return frontLeftClimberPosition = false; // this identifies the climber as raised
+        }*/
     }
+  }
+
+  /*public void frontClimberLower(){
+        if (front_climb_2_limit_Switch.get() == true && frontRightClimberPosition == true);
+        
+            // We are going down and bottom limit is tripped so stop
+            climber_2.set(-o.75);
+            // We are going down but bottom limit is not tripped so go at commanded speed
+            climber.set-0.75);
+        }*/
+    
   
-  public boolean front_extend() {
-      if (front_climb_top_limit_Switch.get()) {
+ /*public boolean front_extend() {
+      if (front_climb_top_limit_Switch.get() frontClimberPosition) {
         // We are going up and top limit is tripped so stop
         front_climber_1.set(0);
         front_climber_2.set(0);
-        return frontClimberStatus = true;
-      } else {
+        return frontClimberPosition = true;
+    //  } else {
         // We are going up but top limit is not tripped so go at commanded speed
         front_climber_1.set(0.75);
         front_climber_2.set(0.75);
@@ -63,9 +66,9 @@ public class ClimberSubsystem extends SubsystemBase {
       }
   }
 
-  public void frontLower() {
+ // public void frontLower() {
 
-    if (front_climb_bottom_limit_Switch.get()) {
+    if (front_climb__limit_Switch.get()) {
       // We are going down and bottom limit is tripped so stop
       front_climber_1.set(0);
       front_climber_2.set(0);
@@ -74,5 +77,5 @@ public class ClimberSubsystem extends SubsystemBase {
       front_climber_1.set(-0.75);
       front_climber_2.set(-0.75);
     }
-  }
-}
+  }*/
+

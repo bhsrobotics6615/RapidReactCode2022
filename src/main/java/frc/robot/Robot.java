@@ -5,10 +5,10 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+// import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
+// import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.subsystems.BallPickerUpperSubsystem;
+// import frc.robot.subsystems.BallPickerUpperSubsystem;
+import edu.wpi.first.cameraserver.CameraServer;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,7 +33,7 @@ public class Robot extends TimedRobot {
   public static LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
   public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
-  private final BallPickerUpperSubsystem ballPickerUpper = new BallPickerUpperSubsystem();
+  // private final BallPickerUpperSubsystem ballPickerUpper = new BallPickerUpperSubsystem();
   boolean latch = false;
   double prevXAccel = 0;
   double prevYAccel = 0;
@@ -56,6 +57,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    CameraServer.startAutomaticCapture(0);
+    CameraServer.startAutomaticCapture(1);
     m_robotContainer = new RobotContainer();
     
   }
