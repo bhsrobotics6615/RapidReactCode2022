@@ -10,16 +10,18 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignAndLaunch;
-// import frc.robot.commands.AutoRunTheLauncher;
+import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
+import frc.robot.commands.ClimberStageTwo;
 import frc.robot.commands.Drive;
-// import frc.robot.commands.DriveAuto;
+import frc.robot.commands.DriveAuto;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.PickUpBalls;
 //import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
@@ -55,6 +57,7 @@ public class RobotContainer {
   private final IndexerSubsystem indexer_subsystem = new IndexerSubsystem();
   private final BallPickerUpperSubsystem picker_upper_subsystem = new BallPickerUpperSubsystem();
   private final DrawBridgeSubsystem draw_bridge_subsystem = new DrawBridgeSubsystem();
+  private final ClimberSubsystem climber_subsystem = new ClimberSubsystem();
 
   //Commands
   private final Drive drive_command = new Drive(drive_subsystem);
@@ -64,12 +67,13 @@ public class RobotContainer {
  // private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
   //private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
 private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem);
-  // private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
+  private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
   private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
+  private final ClimberStageTwo back_climb = new ClimberStageTwo(climber_subsystem);
 
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
@@ -86,6 +90,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
   public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
   public JoystickButton Front_Climb = new JoystickButton(Xbox360, Constants.FRONT_CLIMB);
+  public JoystickButton Back_Climb = new JoystickButton(Xbox360, Constants.BACK_CLIMB);
 
   // public 
   /**
@@ -123,6 +128,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
+    Back_Climb.whileHeld(back_climb);
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     
   }
