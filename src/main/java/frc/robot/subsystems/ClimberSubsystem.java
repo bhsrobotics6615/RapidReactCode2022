@@ -18,17 +18,17 @@ public class ClimberSubsystem extends SubsystemBase {
   WPI_TalonSRX front_climber_1 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
   WPI_TalonSRX front_climber_2 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
   
-  DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
-  DigitalInput front_climb_1_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
-  DigitalInput front_climb_2_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+ // DigitalInput back_climb_sensor = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
+  DigitalInput front_climb_1_sensor = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
+  DigitalInput front_climb_2_sensor = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
 
   public boolean backClimberStatus = false;
   public boolean frontLeftClimberPosition = false;
   public boolean frontRightClimberPosition = false;
 
- public void front_climber_lift() {
+ public void front_climber1_lift() {
    front_climber_1.set(.2);
-   front_climber_2.set(.2);
+  
         /*if (front_climb_1_limit_Switch.get() ==false && frontLeftClimberPosition == false) {
             // We are going up and top limit is tripped so stop
            
@@ -40,21 +40,49 @@ public class ClimberSubsystem extends SubsystemBase {
             return frontLeftClimberPosition = false; // this identifies the climber as raised
         }*/
   }
-  public void back_climber_lift() {
-    back_climber.set(.5);
+  
+  public void backClimberExtend(){
+    back_climber.set(-0.3);
   }
-}
+  public void backClimberRetract() {
+    back_climber.set(0.3);
+  }
+  public void backClimberStop(){
+    back_climber.stopMotor();
+  }
 
-  /*public void frontClimberLower(){
-        if (front_climb_2_limit_Switch.get() == true && frontRightClimberPosition == true);
+  public void frontClimbersRetract(){
+    front_climber_1.set(.3);
+    front_climber_2.set(.3);
+        /*if (front_climb_2_sensor.get() == true && frontRightClimberPosition == true);
         
             // We are going down and bottom limit is tripped so stop
             climber_2.set(-o.75);
             // We are going down but bottom limit is not tripped so go at commanded speed
             climber.set-0.75);
         }*/
-    
-  
+      }
+  public void frontClimbersExtend(){
+    front_climber_1.set(-0.3);
+    front_climber_2.set(-0.3);
+  }
+  public void frontClimbersStop(){
+    front_climber_1.stopMotor();
+    front_climber_2.stopMotor();
+  }
+ 
+ /* public boolean getBackClimberValue(){
+   return front_climb_2_sensor.get();
+  }*/
+  public boolean getClimber1Value(){
+    return front_climb_1_sensor.get();
+
+  }
+  public boolean getClimber2Value(){
+    return front_climb_2_sensor.get();
+  }
+}
+
  /*public boolean front_extend() {
       if (front_climb_top_limit_Switch.get() frontClimberPosition) {
         // We are going up and top limit is tripped so stop

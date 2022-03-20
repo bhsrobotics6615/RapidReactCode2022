@@ -62,6 +62,7 @@ public final class Constants {
     public static final int RUN_INDEXER = XboxController.Button.kX.value;
     public static final int CHOKING = XboxController.Button.kRightBumper.value;
     public static final int AUTO_LAUNCH = XboxController.Button.kY.value;
+    public static final int RUN_FRONT_ARMS = XboxController.Button.kRightBumper.value;
     // Ball Picker Upper (BPU)
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
@@ -94,6 +95,11 @@ public final class Constants {
     //Encoder Math Counts to Feet
     public static final double kTICKS_FEET = (1/6900);
     public static final int FRONT_CLIMB = 0;
+	public static final int BACK_CLIMB = 0;
+   
+   //Climber stuff
+    public static final double back_climber_extend_time = 3;
+    
 
 
 }
