@@ -10,25 +10,36 @@ import frc.robot.subsystems.DrawBridgeSubsystem;
 public class LowerDrawBridge extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DrawBridgeSubsystem bpu;
-
+  boolean isDone;
   public LowerDrawBridge(DrawBridgeSubsystem subsystem) {
     bpu = subsystem;
-
+    isDone = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() 
+  {
+    bpu.resetEncoder();
+    bpu.reverseEncoder(true);
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    while(bpu.getRawEncoderValue() < 2310)// 2130 encoder raw value for when darwbridge goes up
+    {
+      bpu.lower();
+      
+    }
 
-    bpu.lower();
-
-  }
+    isDone = true;
+   }
+    
+    
 
   // Called once the command ends or is interrupted.
   @Override
@@ -41,6 +52,6 @@ public class LowerDrawBridge extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isDone;
   }
 }
