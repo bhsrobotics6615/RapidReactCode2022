@@ -66,6 +66,9 @@ public final class Constants {
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
     public static final int LOWER_BPU = XboxController.Button.kStart.value;
+    public static final int AUTO_RAISE = XboxController.Button.kA.value;
+    public static final int AUTO_LOWER = XboxController.Button.kB.value;
+
     public static final int BALL_DETECTOR = 4;
     public static final int BALL_ENTERED = 5;
 
@@ -94,6 +97,7 @@ public final class Constants {
     //Encoder Math Counts to Feet
     public static final double kTICKS_FEET = (1/6900);
     public static final int FRONT_CLIMB = 0;
+    
 
 
 }

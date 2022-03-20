@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 //import edu.wpi.first.wpilibj.Joystick;
@@ -17,6 +19,8 @@ import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
+import frc.robot.commands.ManualLower;
+import frc.robot.commands.ManualRaise;
 import frc.robot.commands.PickUpBalls;
 //import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
@@ -67,8 +71,10 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   // private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
-  private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
-  private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
+  private final ManualLower lower_bpu = new ManualLower(draw_bridge_subsystem);
+  private final ManualRaise lift_bpu = new ManualRaise(draw_bridge_subsystem);
+  private final LiftDrawBridge auto_lift = new LiftDrawBridge(draw_bridge_subsystem);
+  private final LowerDrawBridge auto_lower = new LowerDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
 
   //Controllers
@@ -86,6 +92,9 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
   public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
   public JoystickButton Front_Climb = new JoystickButton(Xbox360, Constants.FRONT_CLIMB);
+  public JoystickButton auto_Raise = new JoystickButton(DriveController, Constants.AUTO_RAISE);
+  public JoystickButton auto_Lower = new JoystickButton(DriveController, Constants.AUTO_LOWER);
+
 
   // public 
   /**
@@ -123,6 +132,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
+    auto_Raise.whenPressed(auto_lift);
+
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     
   }
