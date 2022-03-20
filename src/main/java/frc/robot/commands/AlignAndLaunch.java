@@ -24,6 +24,6 @@ public class AlignAndLaunch extends SequentialCommandGroup {
     launch_subsystem = l_subsystem;
     indexer_subsystem = i_subsystem;
 
-    addCommands(new SearchAndAlign(d_subsystem), new AutoRunTheLauncher(l_subsystem, i_subsystem));
+    addCommands(new SearchAndAlign(drive_subsystem), new AutoRunTheLauncher(launch_subsystem, indexer_subsystem));
   }
 }

@@ -31,7 +31,7 @@ public class ClimberStageOne extends CommandBase {
 
   @Override
   public void execute() {
-climbers.front_climber_lift();
+    climbers.front_climber_lift();
 
     /*int step = 0;
     while (step <4){
