@@ -129,7 +129,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
-    //  Back_Climb.whileHeld(back_climb);
+     Back_Climb.whileHeld(back_climb);
     Front_Climb.whenPressed(front_climb_toggle);
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     

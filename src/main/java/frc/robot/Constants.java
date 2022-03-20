@@ -25,9 +25,9 @@ public final class Constants {
     public static final int PICKER_UPPER = 1;
     public static final int INDEXER = 10;
     public static final int DRAW_BRIDGE = 11;
-    public static final int BACK_CLIMBER = 420;
-    public static final int FRONT_CLIMBER_1 = 0;
-    public static final int FRONT_CLIMBER_2 = 0;
+    public static final int BACK_CLIMBER = 8;
+    public static final int FRONT_CLIMBER_1 = 3;
+    public static final int FRONT_CLIMBER_2 = 9;
 
     
     // Controller Ports
