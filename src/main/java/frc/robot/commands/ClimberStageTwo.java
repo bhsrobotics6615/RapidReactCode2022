@@ -38,11 +38,11 @@ public class ClimberStageTwo extends CommandBase {
 
       if (up) {
 
-        climbers.backClimberExtend();
+        climbers.frontClimbersExtend();
 
       } else if (!up) {
 
-        climbers.backClimberRetract();
+        climbers.frontClimbersRetract();
 
       }
 
@@ -57,7 +57,7 @@ public class ClimberStageTwo extends CommandBase {
   @Override
   public void end(boolean interrupted) {
 
-    climbers.backClimberStop();
+    climbers.frontClimbersStop();
 
   }
 
