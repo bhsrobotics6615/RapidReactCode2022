@@ -16,6 +16,7 @@ public class ClimberStageTwo extends CommandBase {
   /** Creates a new ClimberStageTwo. */
   public ClimberStageTwo(ClimberSubsystem climber_Subsystem) {
     climbers = climber_Subsystem;
+    up = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climber_Subsystem);
   }
@@ -23,9 +24,6 @@ public class ClimberStageTwo extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    up = false;
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
