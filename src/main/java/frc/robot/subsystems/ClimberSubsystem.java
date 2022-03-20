@@ -43,6 +43,14 @@ public class ClimberSubsystem extends SubsystemBase {
   public void back_climber_lift() {
     back_climber.set(-.3);
   }
+
+  public void back_climber_down() {
+    back_climber.set(1);
+  }
+
+  public void back_climber_off() {
+    back_climber.set(0);
+  }
 }
 
   /*public void frontClimberLower(){

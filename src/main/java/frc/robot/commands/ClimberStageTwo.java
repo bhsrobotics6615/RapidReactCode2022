@@ -26,12 +26,14 @@ public class ClimberStageTwo extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climbers.back_climber_lift();
+    climbers.back_climber_down();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    climbers.back_climber_off();
+  }
 
   // Returns true when the command should end.
   @Override

@@ -4,34 +4,43 @@
 
 package frc.robot.commands;
 
+import java.sql.Time;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.subsystems.DrawBridgeSubsystem;
 // import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ClimberStageOne extends CommandBase {
 
   private final ClimberSubsystem climbers;
-  private final DrawBridgeSubsystem bpu;
+  private double startTime;
+  private boolean hasClimbEnded = false;
 
   /** Creates a new ClimberStageOne. */
-  public ClimberStageOne(ClimberSubsystem climber_subsystem, DrawBridgeSubsystem bpu_subsystem) {
+  public ClimberStageOne(ClimberSubsystem climber_subsystem) {
     climbers = climber_subsystem;
-    bpu = bpu_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(climber_subsystem, bpu_subsystem);
+    addRequirements(climber_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     // TODO: initialize the front and back hooks to be in the proper position
-    bpu.lower();
+    // bpu.lower();
+    startTime = Timer.getFPGATimestamp();
   }
 
   @Override
   public void execute() {
-    climbers.front_climber_lift();
+    //while (Timer.getFPGATimestamp() < startTime + 2.0){
+      climbers.back_climber_lift();
+    //} 
+    
+    /*if(Timer.getFPGATimestamp() > startTime + 2.0) {
+      hasClimbEnded = true;
+    }*/
 
     /*int step = 0;
     while (step <4){
@@ -57,11 +66,12 @@ public class ClimberStageOne extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    climbers.back_climber_off();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return hasClimbEnded;
   }
 }
