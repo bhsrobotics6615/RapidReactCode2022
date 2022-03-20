@@ -5,6 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+
+import javax.swing.JPanel;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 //import edu.wpi.first.wpilibj.Joystick;
@@ -12,7 +15,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignAndLaunch;
 import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
+import frc.robot.commands.ClimberStageFour;
 import frc.robot.commands.ClimberStageOne;
+import frc.robot.commands.ClimberStageThree;
 import frc.robot.commands.ClimberStageTwo;
 import frc.robot.commands.Drive;
 import frc.robot.commands.DriveAuto;
@@ -74,8 +79,10 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
   private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
-  private final ClimberStageOne back_climb = new ClimberStageOne(climber_subsystem);
-  private final ClimberStageTwo back_lift_robot = new ClimberStageTwo(climber_subsystem);
+  private final ClimberStageOne back_climber_extend = new ClimberStageOne(climber_subsystem);
+  private final ClimberStageTwo back_climber_retract = new ClimberStageTwo(climber_subsystem);
+  private final ClimberStageThree front_climber_extend = new ClimberStageThree(climber_subsystem);
+  private final ClimberStageFour front_climber_retract = new ClimberStageFour(climber_subsystem);
 
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
@@ -91,9 +98,10 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
   public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
-  public JoystickButton Front_Climb = new JoystickButton(Xbox360, Constants.FRONT_CLIMB);
-  public JoystickButton Back_Climb = new JoystickButton(Xbox360, Constants.BACK_CLIMB);
-  public JoystickButton Back_Lift_Robot = new JoystickButton(DriveController, Constants.BACK_CLIMB_LIFT_ROBOT);
+  public JoystickButton Front_Climber_Extend = new JoystickButton(DriveController, Constants.FRONT_CLIMB);
+  public JoystickButton Back_Climber_Extend = new JoystickButton(Xbox360, Constants.BACK_CLIMB);
+  public JoystickButton Back_Climber_Retract = new JoystickButton(DriveController, Constants.BACK_CLIMB_LIFT_ROBOT);
+  public JoystickButton Front_Climber_Retract = new JoystickButton(DriveController, Constants.FRONT_LIFT_ROBOT);
 
   // public 
   /**
@@ -131,8 +139,10 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
-    Back_Climb.whileHeld(back_climb);
-    Back_Lift_Robot.whileHeld(back_lift_robot);
+    Back_Climber_Extend.whileHeld(back_climber_extend);
+    Back_Climber_Retract.whileHeld(back_climber_retract);
+    Front_Climber_Extend.whileHeld(front_climber_extend); //TODO: Change the name to front extend
+    Front_Climber_Retract.whileHeld(front_climber_retract);   //TODO: Change this stupid name to Front Retract
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     
   }

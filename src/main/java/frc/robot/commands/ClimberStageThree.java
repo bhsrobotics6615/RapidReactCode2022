@@ -4,21 +4,19 @@
 
 package frc.robot.commands;
 
-import java.sql.Time;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 // import edu.wpi.first.wpilibj.DigitalInput;
 
-public class ClimberStageOne extends CommandBase {
+public class ClimberStageThree extends CommandBase {
 
   private final ClimberSubsystem climbers;
   private double startTime;
   private boolean hasClimbEnded = false;
 
   /** Creates a new ClimberStageOne. */
-  public ClimberStageOne(ClimberSubsystem climber_subsystem) {
+  public ClimberStageThree(ClimberSubsystem climber_subsystem) {
     climbers = climber_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climber_subsystem);
@@ -35,7 +33,7 @@ public class ClimberStageOne extends CommandBase {
   @Override
   public void execute() {
     //while (Timer.getFPGATimestamp() < startTime + 2.0){
-      climbers.back_climber_extend();
+      climbers.front_climber_extend();
     //} 
     
     /*if(Timer.getFPGATimestamp() > startTime + 2.0) {
@@ -66,7 +64,7 @@ public class ClimberStageOne extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climbers.back_climber_off();
+    climbers.front_climber_stop();
   }
 
   // Returns true when the command should end.
