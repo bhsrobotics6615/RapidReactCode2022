@@ -88,7 +88,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
   public XboxController DriveController = new XboxController(Constants.DRIVE_CONTROLLER); // Port is 0
   public XboxController Xbox360 = new XboxController(Constants.XBOX); // Port is 1
-
+  
   //Buttons
   public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
   // public JoystickButton Run_Search_And_Align = new JoystickButton(Logitech, Constants.RUN_LIDAR);
@@ -98,10 +98,10 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
   public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
-  public JoystickButton Front_Climber_Extend = new JoystickButton(DriveController, Constants.FRONT_CLIMB);
-  public JoystickButton Back_Climber_Extend = new JoystickButton(Xbox360, Constants.BACK_CLIMB);
-  public JoystickButton Back_Climber_Retract = new JoystickButton(DriveController, Constants.BACK_CLIMB_LIFT_ROBOT);
-  public JoystickButton Front_Climber_Retract = new JoystickButton(DriveController, Constants.FRONT_LIFT_ROBOT);
+  public JoystickButton Front_Climber_Extend = new JoystickButton(DriveController, Constants.FRONT_CLIMBER_EXTEND);
+  public JoystickButton Back_Climber_Extend = new JoystickButton(DriveController, Constants.BACK_CLIMBER_EXTEND);
+  public JoystickButton Back_Climber_Retract = new JoystickButton(DriveController, Constants.BACK_CLIMBER_RETRACT);
+  public JoystickButton Front_Climber_Retract = new JoystickButton(DriveController, Constants.FRONT_CLIMBER_RETRACT);
 
   // public 
   /**
@@ -141,7 +141,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
     Back_Climber_Extend.whileHeld(back_climber_extend);
     Back_Climber_Retract.whileHeld(back_climber_retract);
-    Front_Climber_Extend.whileHeld(front_climber_extend); //TODO: Change the name to front extend
+    Front_Climber_Extend.whenPressed(front_climber_extend); //TODO: Change the name to front extend
     Front_Climber_Retract.whileHeld(front_climber_retract);   //TODO: Change this stupid name to Front Retract
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     

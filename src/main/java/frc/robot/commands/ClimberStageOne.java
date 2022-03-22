@@ -4,17 +4,20 @@
 
 package frc.robot.commands;
 
-import java.sql.Time;
-
-import edu.wpi.first.wpilibj.Timer;
+// import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+//import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
-// import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ClimberStageOne extends CommandBase {
-
+ 
+  /*DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
+  DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
+  DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+*/
   private final ClimberSubsystem climbers;
-  private double startTime;
+  // private double startTime;
   private boolean hasClimbEnded = false;
 
   /** Creates a new ClimberStageOne. */
@@ -29,38 +32,13 @@ public class ClimberStageOne extends CommandBase {
   public void initialize() {
     // TODO: initialize the front and back hooks to be in the proper position
     // bpu.lower();
-    startTime = Timer.getFPGATimestamp();
+    // startTime = Timer.getFPGATimestamp();
+
   }
 
   @Override
   public void execute() {
-    //while (Timer.getFPGATimestamp() < startTime + 2.0){
       climbers.back_climber_extend();
-    //} 
-    
-    /*if(Timer.getFPGATimestamp() > startTime + 2.0) {
-      hasClimbEnded = true;
-    }*/
-
-    /*int step = 0;
-    while (step <4){
-      if (step == 0) {
-          climbers.backClimberLower();
-          step++;
-      }
-      else if (step == 1 && climbers.backClimberStatus){
-          climbers.front_extend();
-          step++;
-      }
-      else if (step == 2 && climbers.frontClimberStatus){
-          bpu.lift();
-          step++;
-      }
-      else if (step == 3){
-          climbers.frontLower();
-          step++;
-      }
-  }*/
   }
 
   // Called once the command ends or is interrupted.

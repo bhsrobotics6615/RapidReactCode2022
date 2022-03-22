@@ -26,39 +26,16 @@ public class ClimberStageThree extends CommandBase {
   @Override
   public void initialize() {
     // TODO: initialize the front and back hooks to be in the proper position
-    // bpu.lower();
+ 
     startTime = Timer.getFPGATimestamp();
+
   }
 
   @Override
   public void execute() {
-    //while (Timer.getFPGATimestamp() < startTime + 2.0){
-      climbers.front_climber_extend();
-    //} 
     
-    /*if(Timer.getFPGATimestamp() > startTime + 2.0) {
-      hasClimbEnded = true;
-    }*/
-
-    /*int step = 0;
-    while (step <4){
-      if (step == 0) {
-          climbers.backClimberLower();
-          step++;
-      }
-      else if (step == 1 && climbers.backClimberStatus){
-          climbers.front_extend();
-          step++;
-      }
-      else if (step == 2 && climbers.frontClimberStatus){
-          bpu.lift();
-          step++;
-      }
-      else if (step == 3){
-          climbers.frontLower();
-          step++;
-      }
-  }*/
+    climbers.front_climber_extend();
+    
   }
 
   // Called once the command ends or is interrupted.

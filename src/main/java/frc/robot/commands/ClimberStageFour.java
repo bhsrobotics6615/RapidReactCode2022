@@ -36,29 +36,6 @@ public class ClimberStageFour extends CommandBase {
       climbers.front_climber_retract();
     //} 
     
-    /*if(Timer.getFPGATimestamp() > startTime + 2.0) {
-      hasClimbEnded = true;
-    }*/
-
-    /*int step = 0;
-    while (step <4){
-      if (step == 0) {
-          climbers.backClimberLower();
-          step++;
-      }
-      else if (step == 1 && climbers.backClimberStatus){
-          climbers.front_extend();
-          step++;
-      }
-      else if (step == 2 && climbers.frontClimberStatus){
-          bpu.lift();
-          step++;
-      }
-      else if (step == 3){
-          climbers.frontLower();
-          step++;
-      }
-  }*/
   }
 
   // Called once the command ends or is interrupted.

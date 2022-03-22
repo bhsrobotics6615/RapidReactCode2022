@@ -67,10 +67,10 @@ public final class Constants {
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
     public static final int LOWER_BPU = XboxController.Button.kStart.value;
-    public static final int BACK_CLIMB = XboxController.Button.kLeftBumper.value;
-    public static final int BACK_CLIMB_LIFT_ROBOT = XboxController.Button.kY.value;
-    public static final int FRONT_CLIMB = XboxController.Button.kX.value;
-    public static final int FRONT_LIFT_ROBOT = XboxController.Button.kB.value;
+    public static final int BACK_CLIMBER_EXTEND = XboxController.Button.kA.value;
+    public static final int BACK_CLIMBER_RETRACT = XboxController.Button.kY.value;
+    public static final int FRONT_CLIMBER_EXTEND = XboxController.Button.kX.value;
+    public static final int FRONT_CLIMBER_RETRACT = XboxController.Button.kB.value;
     public static final int BALL_DETECTOR = 4;
     public static final int BALL_ENTERED = 5;
 
@@ -91,7 +91,7 @@ public final class Constants {
     public static final int BACK_CLIMB_BOTTOM_LIMIT = 0;
    
     public static final int FRONT_CLIMB_2_LIMIT_SWITCH = 7;
-    public static final int FRONT_CLIMB_1_LIMIT_SWITCH = 8;
+    public static final int FRONT_CLIMB_1_LIMIT_SWITCH = 6;
 
     // Speed Conversion
     public static final double SPEED_CONVERT = 6.23;
