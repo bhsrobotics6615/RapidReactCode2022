@@ -27,33 +27,33 @@ public class ClimberSubsystem extends SubsystemBase {
   public boolean frontLeftClimberPosition = false;
   public boolean frontRightClimberPosition = false;
 
- public void front_climber_retract() {
-   /* int step = 0;
+  public void front_climber_retract() {
+    /* int step = 0;
 
-   if(front_climb_right_limit_Switch.get() && step == 0){
-    front_climber_right.set(-.4);
-    front_climber_left.set(-.65);
-    step++;
-   } 
-   
-   else if(!front_climb_right_limit_Switch.get() && step == 1){
-    front_climber_right.set(-.4);
-    front_climber_left.set(-.65);
-    step++;
-   } 
-   
-   else if(!front_climb_right_limit_Switch.get() && step == 2){
-    front_climber_right.set(0);
-    front_climber_left.set(0);
-    step++;
-   } 
-   
-   else {
-    front_climber_right.set(0);
-    front_climber_left.set(0);
-   }
+    if(front_climb_right_limit_Switch.get() && step == 0){
+      front_climber_right.set(-.4);
+      front_climber_left.set(-.65);
+      step++;
+    } 
+    
+    else if(!front_climb_right_limit_Switch.get() && step == 1){
+      front_climber_right.set(-.4);
+      front_climber_left.set(-.65);
+      step++;
+    } 
+    
+    else if(!front_climb_right_limit_Switch.get() && step == 2){
+      front_climber_right.set(0);
+      front_climber_left.set(0);
+      step++;
+    } 
+    
+    else {
+      front_climber_right.set(0);
+      front_climber_left.set(0);
+    }
 
-   System.out.print(step);
+    System.out.print(step);
 */
     System.out.println("RETRACTING!");
     front_climber_right.set(-.4);
