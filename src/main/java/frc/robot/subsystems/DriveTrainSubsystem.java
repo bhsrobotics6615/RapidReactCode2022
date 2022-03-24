@@ -39,7 +39,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
           //  frontRight.setInverted(true);
           //  backRight.setInverted(true);
             
-            //TODO: Invert the motors on either the left or the right side
             drive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
     
         }

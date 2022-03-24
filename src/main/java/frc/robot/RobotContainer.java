@@ -6,38 +6,33 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 
-import javax.swing.JPanel;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignAndLaunch;
-import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
 import frc.robot.commands.ClimberStageFour;
 import frc.robot.commands.ClimberStageOne;
 import frc.robot.commands.ClimberStageThree;
 import frc.robot.commands.ClimberStageTwo;
 import frc.robot.commands.Drive;
-import frc.robot.commands.DriveAuto;
+// import frc.robot.commands.DriveAuto;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.PickUpBalls;
-//import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-// import frc.robot.subsystems.LidarSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.TheFirst15;
 import frc.robot.commands.AutoLiftDrawBridge;
 import frc.robot.commands.AutoLowerDrawBridge;
+import frc.robot.commands.AutoRunTheLauncher;
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a
@@ -74,7 +69,7 @@ public class RobotContainer {
  // private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
   //private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
 private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem);
-  private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
+  // private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
@@ -86,6 +81,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   private final ClimberStageFour front_climber_retract = new ClimberStageFour(climber_subsystem);
   private final AutoLiftDrawBridge lift_Auto_BPU = new AutoLiftDrawBridge(draw_bridge_subsystem);
   private final AutoLowerDrawBridge lower_Auto_BPU = new AutoLowerDrawBridge(draw_bridge_subsystem);
+  private final AutoRunTheLauncher run_launcher_auto = new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem);
+
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
   public XboxController DriveController = new XboxController(Constants.DRIVE_CONTROLLER); // Port is 0
@@ -144,9 +141,9 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
     Back_Climber_Extend.whileHeld(back_climber_extend);
     Back_Climber_Retract.whileHeld(back_climber_retract);
-    Front_Climber_Extend.whenPressed(front_climber_extend); //TODO: Change the name to front extend
-    Front_Climber_Retract.whenPressed(front_climber_retract);   //TODO: Change this stupid name to Front Retract
-    //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
+    Front_Climber_Extend.whenPressed(front_climber_extend); 
+    Front_Climber_Retract.whenPressed(front_climber_retract);
+    Run_Launcher.whenPressed(run_launcher_auto);
   
     Lift_Auto_BPU.whenPressed(lift_Auto_BPU);
     Lower_Auto_BPU.whenPressed(lower_Auto_BPU);

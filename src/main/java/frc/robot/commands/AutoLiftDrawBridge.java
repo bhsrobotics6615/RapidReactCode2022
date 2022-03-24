@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrawBridgeSubsystem;
-import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class AutoLiftDrawBridge extends CommandBase {
   /** Creates a new AutoLiftDrawBridge. */

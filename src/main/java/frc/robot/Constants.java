@@ -42,9 +42,9 @@ public final class Constants {
 
     // Limelight
     public static final double LIMELIGHT_X_PRECISION = 0.15; // Precision expected looking on the x-axis
-    public static final double LIMELIGHT_TARGET_X = 0; // Target value on the x-axis
+    public static final double LIMELIGHT_TARGET_X = -2.0; // Target value on the x-axis
     public static final double LIMELIGHT_Y_PRECISION = 0.2; // Precision expected looking on the y-axis
-    public static final double LIMELIGHT_TARGET_Y = -3.5; // Target value on the y-axis
+    public static final double LIMELIGHT_TARGET_Y = 4.0; // Target value on the y-axis
 
     // Search
     public static final double SEARCH_ROTATION_SPEED = 0.3;
@@ -73,6 +73,7 @@ public final class Constants {
     public static final int FRONT_CLIMBER_RETRACT = XboxController.Button.kB.value;
     public static final int BALL_DETECTOR = 6;
     public static final int BALL_ENTERED = 7;
+
     public static final int Lift_Auto_BPU = XboxController.Button.kBack.value;
     public static final int Lower_Auto_BPU = XboxController.Button.kStart.value;
     // Logitech Joystick Buttons

@@ -4,10 +4,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
-// import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ClimberStageThree extends CommandBase {
 
@@ -23,9 +21,7 @@ public class ClimberStageThree extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    // TODO: initialize the front and back hooks to be in the proper position
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {

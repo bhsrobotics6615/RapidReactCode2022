@@ -6,10 +6,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.Constants;
-import frc.robot.commands.ClimberStageFour;
 import frc.robot.commands.ClimberStageThree;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // import edu.wpi.first.wpilibj.Encoder;
 // import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -21,8 +19,6 @@ public class ClimberSubsystem extends SubsystemBase {
   WPI_TalonSRX front_climber_right = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
   WPI_TalonSRX front_climber_left = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
   
- // DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_LIMIT);
-  // DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
   DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH); 
 
   public boolean backClimberStatus = false;
@@ -67,41 +63,3 @@ public class ClimberSubsystem extends SubsystemBase {
     back_climber.set(0);
   }
 }
-
-  /*public void frontClimberLower(){p
-        if (front_climb_2_limit_Switch.get() == true && frontRightClimberPosition == true);
-        
-            // We are going down and bottom limit is tripped so stop
-            climber_2.set(-o.75);
-            // We are going down but bottom limit is not tripped so go at commanded speed
-            climber.set-0.75);
-        }*/
-    
-  
- /*public boolean front_extend() {
-      if (front_climb_top_limit_Switch.get() frontClimberPosition) {
-        // We are going up and top limit is tripped so stop
-        front_climber_1.set(0);
-        front_climber_2.set(0);
-        return frontClimberPosition = true;
-    //  } else {
-        // We are going up but top limit is not tripped so go at commanded speed
-        front_climber_1.set(0.75);
-        front_climber_2.set(0.75);
-         return frontClimberStatus = false;
-      }
-  }
-
- // public void frontLower() {
-
-    if (front_climb__limit_Switch.get()) {
-      // We are going down and bottom limit is tripped so stop
-      front_climber_1.set(0);
-      front_climber_2.set(0);
-  } else {
-      // We are going down but bottom limit is not tripped so go at commanded speed
-      front_climber_1.set(-0.75);
-      front_climber_2.set(-0.75);
-    }
-  }*/
-

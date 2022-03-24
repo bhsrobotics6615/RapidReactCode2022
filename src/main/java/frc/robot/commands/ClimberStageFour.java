@@ -30,10 +30,10 @@ public class ClimberStageFour extends CommandBase {
   @Override
   public void execute() 
   {
-    while (Timer.getFPGATimestamp() < startTime + 2){
+    while (Timer.getFPGATimestamp() < startTime + 3){
       climbers.front_climber_retract();
     }
-    if (Timer.getFPGATimestamp() >= startTime + 2){
+    if (Timer.getFPGATimestamp() >= startTime + 3){
       hasClimbEnded = true;
     }
   }

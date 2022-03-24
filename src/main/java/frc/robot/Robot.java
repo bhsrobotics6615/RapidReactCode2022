@@ -3,21 +3,16 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-// import com.ctre.phoenix.motorcontrol.ControlMode;
-// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-// import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
-// import frc.robot.subsystems.BallPickerUpperSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
 
 /**
@@ -87,13 +82,6 @@ public class Robot extends TimedRobot {
     double filteredXAccel = xAccelFilter.calculate(accelerometer.getX());
     double yAccel = accelerometer.getY();
 
-    // Calculates the jerk in the X and Y directions
-    // Divides by .02 because default loop timing is 20ms
-    
-    // double xJerk = (filteredXAccel - prevXAccel) / .02;
-    
-    // double yJerk = (yAccel - prevYAccel) / .02;
-
     if (run_counter == 50) {
 
       run_counter = 1;
@@ -105,28 +93,6 @@ public class Robot extends TimedRobot {
       run_clock ++;
 
     }
-/*
-    if (ballDetected.get() && !ballEntered.get()) {
-
-      latch = true;
-
-    }
-
-    if (!ballDetected.get() && ballEntered.get()) {
-
-      latch = false;
-
-    }
-
-    if (latch) {
-
-      ballPickerUpper.pickUpTheBall();
-
-    } else {
-
-      ballPickerUpper.stopBPU();
-
-    } */
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;

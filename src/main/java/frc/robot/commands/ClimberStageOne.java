@@ -30,10 +30,7 @@ public class ClimberStageOne extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // TODO: initialize the front and back hooks to be in the proper position
-    // bpu.lower();
     // startTime = Timer.getFPGATimestamp();
-
   }
 
   @Override
