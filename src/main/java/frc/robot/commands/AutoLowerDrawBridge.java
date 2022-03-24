@@ -4,43 +4,44 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ClimberSubsystem;
-// import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.subsystems.DrawBridgeSubsystem;
 
-public class ClimberStageThree extends CommandBase {
-
-  private final ClimberSubsystem climbers;
-  public static boolean hasClimbEnded = false;
-  
-  /** Creates a new ClimberStageOne. */
-  public ClimberStageThree(ClimberSubsystem climber_subsystem) {
-    climbers = climber_subsystem;
+public class AutoLowerDrawBridge extends CommandBase {
+  /** Creates a new AutoLowerDrawBridge. */
+  private final DrawBridgeSubsystem lower_bridge;
+  boolean isLowerFinished = false ;
+  public AutoLowerDrawBridge( DrawBridgeSubsystem subsystem) {
+    lower_bridge = subsystem;
+    addRequirements(lower_bridge);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(climber_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // TODO: initialize the front and back hooks to be in the proper position
+    lower_bridge.resets();
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      climbers.front_climber_extend();
+    while(lower_bridge.getRawEncoderValue() > -1500){
+       System.out.println(lower_bridge.getRawEncoderValue());
+      lower_bridge.lower();
+    }
+    isLowerFinished = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climbers.front_climber_stop();
+    lower_bridge.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return hasClimbEnded;
+    return isLowerFinished;
   }
 }

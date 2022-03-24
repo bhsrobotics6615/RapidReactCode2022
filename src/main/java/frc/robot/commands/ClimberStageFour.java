@@ -7,15 +7,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
-// import edu.wpi.first.wpilibj.DigitalInput;
 
 public class ClimberStageFour extends CommandBase {
 
   private final ClimberSubsystem climbers;
   private double startTime;
-  private boolean hasClimbEnded = false;
-
-  /** Creates a new ClimberStageOne. */
+  public static boolean hasClimbEnded = false;
+  
+  // Creates a new ClimberStageOne. 
   public ClimberStageFour(ClimberSubsystem climber_subsystem) {
     climbers = climber_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,17 +24,18 @@ public class ClimberStageFour extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    // TODO: initialize the front and back hooks to be in the proper position
-    // bpu.lower();
     startTime = Timer.getFPGATimestamp();
   }
 
   @Override
-  public void execute() {
-    //while (Timer.getFPGATimestamp() < startTime + 2.0){
+  public void execute() 
+  {
+    while (Timer.getFPGATimestamp() < startTime + 2){
       climbers.front_climber_retract();
-    //} 
-    
+    }
+    if (Timer.getFPGATimestamp() >= startTime + 2){
+      hasClimbEnded = true;
+    }
   }
 
   // Called once the command ends or is interrupted.

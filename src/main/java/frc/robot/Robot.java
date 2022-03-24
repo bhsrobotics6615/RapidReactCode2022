@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 // import frc.robot.subsystems.BallPickerUpperSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -33,6 +34,10 @@ public class Robot extends TimedRobot {
   public static LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
   public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
+  public static DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_LIMIT);
+  public static DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
+  //public static DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+
   // private final BallPickerUpperSubsystem ballPickerUpper = new BallPickerUpperSubsystem();
   boolean latch = false;
   double prevXAccel = 0;
@@ -128,8 +133,12 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putNumber("Draw Bridge Encoder Raw Value", drawBridgeEncoder.getRaw());
     //SmartDashboard.putNumber("Draw Bridge Encoder Distance Value", drawBridgeEncoder.getDistance());
     //SmartDashboard.putNumber("Draw Bridge Encoder Rate Value", drawBridgeEncoder.getRate());
-    SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
-    SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
+    //SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
+    //SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
+    //SmartDashboard.putBoolean("Ball Detector", ballDetected.get());
+    //SmartDashboard.putBoolean("Back Climb Limit", back_climb_limit_Switch.get());
+    //SmartDashboard.putBoolean("Front Climb Limit Left", front_climb_left_limit_Switch.get());
+    //SmartDashboard.putBoolean("Front Climb Limit Right", front_climb_right_limit_Switch.get());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

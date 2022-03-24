@@ -6,16 +6,18 @@ package frc.robot.subsystems;
 
 // import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-// import edu.wpi.first.wpilibj.Encoder;
+
+import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DrawBridgeSubsystem extends SubsystemBase {
   /** Creates a new LiftDrawBridgeSubsystem. */
   WPI_TalonSRX drawBridge = new WPI_TalonSRX(Constants.DRAW_BRIDGE);
-//Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+  Encoder drawBridgeEncoder = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
   
-    
+ 
  
   public void lift() {
     
@@ -36,9 +38,15 @@ public class DrawBridgeSubsystem extends SubsystemBase {
 
   }
 
-  /*public double getRawEncoderValue() {
-    
+ public void resets(){
+   
+   drawBridgeEncoder.reset();
+ }
+
+  public int getRawEncoderValue() {
+    //POSITIVE AS U GO UP 
     return drawBridgeEncoder.getRaw();
-  }*/
+
+  }
 
 }

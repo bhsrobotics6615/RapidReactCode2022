@@ -36,7 +36,8 @@ import frc.robot.subsystems.LauncherSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.TheFirst15;
-
+import frc.robot.commands.AutoLiftDrawBridge;
+import frc.robot.commands.AutoLowerDrawBridge;
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a
@@ -83,7 +84,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   private final ClimberStageTwo back_climber_retract = new ClimberStageTwo(climber_subsystem);
   private final ClimberStageThree front_climber_extend = new ClimberStageThree(climber_subsystem);
   private final ClimberStageFour front_climber_retract = new ClimberStageFour(climber_subsystem);
-
+  private final AutoLiftDrawBridge lift_Auto_BPU = new AutoLiftDrawBridge(draw_bridge_subsystem);
+  private final AutoLowerDrawBridge lower_Auto_BPU = new AutoLowerDrawBridge(draw_bridge_subsystem);
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
   public XboxController DriveController = new XboxController(Constants.DRIVE_CONTROLLER); // Port is 0
@@ -102,7 +104,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Back_Climber_Extend = new JoystickButton(DriveController, Constants.BACK_CLIMBER_EXTEND);
   public JoystickButton Back_Climber_Retract = new JoystickButton(DriveController, Constants.BACK_CLIMBER_RETRACT);
   public JoystickButton Front_Climber_Retract = new JoystickButton(DriveController, Constants.FRONT_CLIMBER_RETRACT);
-
+  public JoystickButton Lift_Auto_BPU = new JoystickButton(DriveController, Constants.Lift_Auto_BPU);
+  public JoystickButton Lower_Auto_BPU = new JoystickButton(DriveController, Constants.Lower_Auto_BPU);
   // public 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -142,9 +145,11 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Back_Climber_Extend.whileHeld(back_climber_extend);
     Back_Climber_Retract.whileHeld(back_climber_retract);
     Front_Climber_Extend.whenPressed(front_climber_extend); //TODO: Change the name to front extend
-    Front_Climber_Retract.whileHeld(front_climber_retract);   //TODO: Change this stupid name to Front Retract
+    Front_Climber_Retract.whenPressed(front_climber_retract);   //TODO: Change this stupid name to Front Retract
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
-    
+  
+    Lift_Auto_BPU.whenPressed(lift_Auto_BPU);
+    Lower_Auto_BPU.whenPressed(lower_Auto_BPU);
   }
 
   /**
