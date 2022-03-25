@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.math.filter.LinearFilter;
+import edu.wpi.first.util.net.PortForwarder;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
@@ -57,6 +58,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    PortForwarder.add(5800, "10.66.15.11", 5800);
+    PortForwarder.add(5801, "10.66.15.11", 5801);
+    PortForwarder.add(5805, "10.66.15.11", 5805);
     CameraServer.startAutomaticCapture(0);
     CameraServer.startAutomaticCapture(1);
     m_robotContainer = new RobotContainer();
