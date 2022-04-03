@@ -15,7 +15,8 @@ public class ClimberStageOne extends CommandBase {
   /*DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
   DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
   DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
-*/
+*/  
+
   private final ClimberSubsystem climbers;
   // private double startTime;
   private boolean hasClimbEnded = false;

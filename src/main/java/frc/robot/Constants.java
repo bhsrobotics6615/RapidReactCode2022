@@ -42,9 +42,10 @@ public final class Constants {
 
     // Limelight
     public static final double LIMELIGHT_X_PRECISION = 0.15; // Precision expected looking on the x-axis
-    public static final double LIMELIGHT_TARGET_X = -2.0; // Target value on the x-axis
+    public static final double LIMELIGHT_TARGET_X = -2; // Target value on the x-axis
     public static final double LIMELIGHT_Y_PRECISION = 0.2; // Precision expected looking on the y-axis
-    public static final double LIMELIGHT_TARGET_Y = 4.0; // Target value on the y-axis
+    // public static final double LIMELIGHT_TARGET_Y = 4.0; // (old) Target value on the y-axis
+    public static final double LIMELIGHT_TARGET_Y = 3.5;
 
     // Search
     public static final double SEARCH_ROTATION_SPEED = 0.3;
@@ -85,8 +86,8 @@ public final class Constants {
 	public static final int EXTENDED_POSITION = 0;
 
     // Launcher Run
-    public static final double LAUNCH_RUN_TIME = 3;
-    public static final double INDEX_TIME = 2;
+    public static final double LAUNCH_RUN_TIME = 3.5;
+    public static final double INDEX_TIME = 1;
 
     // limit switches
     //public static final int BACK_CLIMB_TOP_LIMIT = 0;
@@ -100,8 +101,6 @@ public final class Constants {
 
     //Encoder Math Counts to Feet
     public static final double kTICKS_FEET = (1/6900);
-   
-  
     
 
 

@@ -14,7 +14,7 @@ public class BallPickerUpperSubsystem extends SubsystemBase {
 
   public void pickUpTheBall() {
 
-    loader.set(-0.40);
+    loader.set(-0.38);
 
   }
 

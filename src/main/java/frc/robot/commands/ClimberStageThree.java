@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
@@ -11,6 +12,7 @@ public class ClimberStageThree extends CommandBase {
 
   private final ClimberSubsystem climbers;
   public static boolean hasClimbEnded = false;
+  public double startTime;
   
   /** Creates a new ClimberStageOne. */
   public ClimberStageThree(ClimberSubsystem climber_subsystem) {
@@ -21,11 +23,18 @@ public class ClimberStageThree extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    startTime = Timer.getFPGATimestamp();
+  }
 
   @Override
   public void execute() {
+    while (Timer.getFPGATimestamp() < startTime + 2.3){
       climbers.front_climber_extend();
+    }
+    if (Timer.getFPGATimestamp() >= startTime + 2.3){
+      hasClimbEnded = true;
+    }
   }
 
   // Called once the command ends or is interrupted.

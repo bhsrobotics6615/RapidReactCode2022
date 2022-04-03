@@ -71,7 +71,7 @@ public class RobotContainer {
 private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem, draw_bridge_subsystem);
   // private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
-  private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
+  private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem, indexer_subsystem);
   private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
   private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);

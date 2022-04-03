@@ -21,14 +21,10 @@ public class ClimberSubsystem extends SubsystemBase {
   
   DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH); 
 
-  public boolean backClimberStatus = false;
-  public boolean frontLeftClimberPosition = false;
-  public boolean frontRightClimberPosition = false;
-
   public void front_climber_retract() 
   {
-    front_climber_right.set(-.6);
-    front_climber_left.set(-.6);
+      front_climber_right.set(-.6);
+      front_climber_left.set(-.6);
   }
   
   public void front_climber_extend()
@@ -52,11 +48,11 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void back_climber_extend() {
-    back_climber.set(-.3);
+    back_climber.set(-0.75);
   }
 
   public void back_climber_retract() {
-    back_climber.set(1);
+      back_climber.set(1);
   }
 
   public void back_climber_off() {

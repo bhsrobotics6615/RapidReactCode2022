@@ -21,7 +21,7 @@ public class TheFirst15 extends SequentialCommandGroup {
   public TheFirst15(DriveTrainSubsystem driveTrain, LauncherSubsystem launcher, IndexerSubsystem indexer/*, LidarSubsystem limelight*/, DrawBridgeSubsystem drawBridge ) {
     // Use addRequirements() here to declare subsystem dependencies.
      addCommands(
-      new ParallelCommandGroup(new DriveAuto(driveTrain, 8), new AutoLowerDrawBridge(drawBridge)),
+      new ParallelCommandGroup(new DriveAuto(driveTrain, 10), new AutoLowerDrawBridge(drawBridge)),
       new AlignAndLaunch(driveTrain, launcher, indexer));
       //new TargetAim(limelight, driveTrain)
     // );
