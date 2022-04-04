@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.math.filter.LinearFilter;
@@ -28,11 +28,11 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer;
   public static Accelerometer accelerometer = new BuiltInAccelerometer();
   public static LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
-  public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
-  public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
-  public static DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_LIMIT);
-  public static DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
-  //public static DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+  //public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
+  //public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
+  DigitalInput back_climb_limit_Switch = Variables.back_climb_limit_switch;
+  DigitalInput front_climb_right_limit_Switch = Variables.front_climb_right_limit_switch;  
+  DigitalInput front_climb_left_limit_Switch = Variables.front_climb_left_limit_switch;
 
   // private final BallPickerUpperSubsystem ballPickerUpper = new BallPickerUpperSubsystem();
   boolean latch = false;
@@ -85,9 +85,13 @@ public class Robot extends TimedRobot {
     // Gets the current accelerations in the X and Y directions
     double filteredXAccel = xAccelFilter.calculate(accelerometer.getX());
     double yAccel = accelerometer.getY();
+    double xJerk = (filteredXAccel - prevXAccel)/.02;
+    double yJerk = (yAccel - prevYAccel)/.02;
 
     if (run_counter == 50) {
 
+      System.out.println("xJerk: "+ xJerk);
+      System.out.println("yJerk: "+ yJerk);
       run_counter = 1;
       run_clock ++;
 
@@ -98,6 +102,7 @@ public class Robot extends TimedRobot {
 
     }
 
+
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
     //SmartDashboard.putNumber("Draw Bridge Encoder Raw Value", drawBridgeEncoder.getRaw());
@@ -105,10 +110,10 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putNumber("Draw Bridge Encoder Rate Value", drawBridgeEncoder.getRate());
     //SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
     //SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
-    //SmartDashboard.putBoolean("Ball Detector", ballDetected.get());
-    //SmartDashboard.putBoolean("Back Climb Limit", back_climb_limit_Switch.get());
-    //SmartDashboard.putBoolean("Front Climb Limit Left", front_climb_left_limit_Switch.get());
-    //SmartDashboard.putBoolean("Front Climb Limit Right", front_climb_right_limit_Switch.get());
+   // SmartDashboard.putBoolean("Ball Detector", ballDetected.get());
+    SmartDashboard.putBoolean("Back Climb Limit", back_climb_limit_Switch.get());
+    SmartDashboard.putBoolean("Front Climb Limit Left", front_climb_left_limit_Switch.get());
+    SmartDashboard.putBoolean("Front Climb Limit Right", front_climb_right_limit_Switch.get());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

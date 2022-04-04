@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+
 /**
  * The Variables class provides a convenient place for teams to hold robot-wide numerical or boolean
  * variables. This class should not be used for any other purpose. All variables should be declared
@@ -18,5 +20,8 @@ public class Variables {
     // public static double thetaDegrees = 3.1415 * theta;
     public static double scoreDistance;
 
+    public static DigitalInput front_climb_right_limit_switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+    public static DigitalInput front_climb_left_limit_switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
+    public static DigitalInput back_climb_limit_switch = new DigitalInput(Constants.BACK_CLIMB_LIMIT);
     // public static int loaderSpeed = 1;
 }

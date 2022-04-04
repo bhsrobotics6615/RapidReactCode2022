@@ -5,10 +5,15 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import org.ejml.equation.Variable;
+
 import frc.robot.Constants;
+import frc.robot.Variables;
 import frc.robot.commands.ClimberStageThree;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 // import edu.wpi.first.wpilibj.Encoder;
 // import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
@@ -19,7 +24,8 @@ public class ClimberSubsystem extends SubsystemBase {
   WPI_TalonSRX front_climber_right = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
   WPI_TalonSRX front_climber_left = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
   
-  DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH); 
+  DigitalInput front_climb_right_limit_Switch = Variables.front_climb_right_limit_switch; 
+  //DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH); 
 
   public void front_climber_retract() 
   {
