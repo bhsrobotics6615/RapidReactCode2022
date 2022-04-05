@@ -5,40 +5,48 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.DrawBridgeSubsystem;
 
-public class ClimberStageTwo extends CommandBase {
-  private final ClimberSubsystem climbers;
+public class AutoLiftDrawBridge extends CommandBase {
+  /** Creates a new AutoLiftDrawBridge. */
+  private final DrawBridgeSubsystem draw_bridge;
+  boolean isLiftFinished = false;
+  
+  public AutoLiftDrawBridge(DrawBridgeSubsystem subsystem) {
+    draw_bridge = subsystem;
 
-  /** Creates a new ClimberStageTwo. */
-  public ClimberStageTwo(ClimberSubsystem climber_Subsystem) {
-    climbers = climber_Subsystem;
-    addRequirements(climber_Subsystem);
-
+    addRequirements(subsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      // climbers.front_climber_extend();
+    draw_bridge.resets();
   }
-
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-          climbers.back_climber_retract();
+   
+    while( draw_bridge.getRawEncoderValue() < 2000){
+       System.out.println(draw_bridge.getRawEncoderValue());
+      draw_bridge.lift();
+    }
+    isLiftFinished = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    climbers.back_climber_off();
+  public void end(boolean interrupted) 
+  {
+    draw_bridge.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+
+    return isLiftFinished;
   }
 }

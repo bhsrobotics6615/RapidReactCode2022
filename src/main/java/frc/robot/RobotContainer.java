@@ -5,15 +5,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignAndLaunch;
-// import frc.robot.commands.AutoRunTheLauncher;
 import frc.robot.commands.Choking;
+import frc.robot.commands.ClimberStageFour;
+import frc.robot.commands.ClimberStageOne;
+import frc.robot.commands.ClimberStageThree;
+import frc.robot.commands.ClimberStageTwo;
 import frc.robot.commands.Drive;
 // import frc.robot.commands.DriveAuto;
 import frc.robot.commands.IndexBall;
@@ -30,11 +31,12 @@ import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
-// import frc.robot.subsystems.LidarSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.TheFirst15;
-
+import frc.robot.commands.AutoLiftDrawBridge;
+import frc.robot.commands.AutoLowerDrawBridge;
+import frc.robot.commands.AutoRunTheLauncher;
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a
@@ -70,22 +72,26 @@ public class RobotContainer {
   // private final AutoSpeenCommand m_autoCommand = new AutoSpeenCommand(drive_subsystem);
  // private final PreLaunch pre_launch = new PreLaunch(lidar_subsystem, drive_subsystem);
   //private final RunTheLauncher run_launch = new RunTheLauncher(launcher_subsystem);
-private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem);
+private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_subsystem, indexer_subsystem, draw_bridge_subsystem);
   // private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
-  private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem);
-  private final ManualLower lower_bpu = new ManualLower(draw_bridge_subsystem);
-  private final ManualRaise lift_bpu = new ManualRaise(draw_bridge_subsystem);
-  private final LiftDrawBridge auto_lift = new LiftDrawBridge(draw_bridge_subsystem);
-  private final LowerDrawBridge auto_lower = new LowerDrawBridge(draw_bridge_subsystem);
+  private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem, indexer_subsystem);
+  private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
+  private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
-  // private final TerminateProcedures kill = new TerminateProcedures(picker_upper_subsystem, climber_subsystem, draw_bridge_subsystem, drive_subsystem, indexer_subsystem, launcher_subsystem);
+  private final ClimberStageOne back_climber_extend = new ClimberStageOne(climber_subsystem);
+  private final ClimberStageTwo back_climber_retract = new ClimberStageTwo(climber_subsystem);
+  private final ClimberStageThree front_climber_extend = new ClimberStageThree(climber_subsystem);
+  private final ClimberStageFour front_climber_retract = new ClimberStageFour(climber_subsystem);
+  private final AutoLiftDrawBridge lift_Auto_BPU = new AutoLiftDrawBridge(draw_bridge_subsystem);
+  private final AutoLowerDrawBridge lower_Auto_BPU = new AutoLowerDrawBridge(draw_bridge_subsystem);
+  private final AutoRunTheLauncher run_launcher_auto = new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem);
 
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
   public XboxController DriveController = new XboxController(Constants.DRIVE_CONTROLLER); // Port is 0
   public XboxController Xbox360 = new XboxController(Constants.XBOX); // Port is 1
-
+  
   //Buttons
   public JoystickButton Run_Launcher = new JoystickButton(Xbox360, Constants.RUN_LAUNCHER);
   // public JoystickButton Run_Search_And_Align = new JoystickButton(Logitech, Constants.RUN_LIDAR);
@@ -95,11 +101,13 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Lift_BPU = new JoystickButton(Xbox360, Constants.LIFT_BPU);
   public JoystickButton Un_choke = new JoystickButton(Xbox360, Constants.CHOKING);
   public JoystickButton Auto_Launch = new JoystickButton(Xbox360, Constants.AUTO_LAUNCH);
-  public JoystickButton Front_Climb = new JoystickButton(Xbox360, Constants.FRONT_CLIMB);
-  public JoystickButton auto_Raise = new JoystickButton(DriveController, Constants.AUTO_RAISE);
-  public JoystickButton auto_Lower = new JoystickButton(DriveController, Constants.AUTO_LOWER);
+  public JoystickButton Front_Climber_Extend = new JoystickButton(DriveController, Constants.FRONT_CLIMBER_EXTEND);
+  public JoystickButton Back_Climber_Extend = new JoystickButton(DriveController, Constants.BACK_CLIMBER_EXTEND);
+  public JoystickButton Back_Climber_Retract = new JoystickButton(DriveController, Constants.BACK_CLIMBER_RETRACT);
+  public JoystickButton Front_Climber_Retract = new JoystickButton(DriveController, Constants.FRONT_CLIMBER_RETRACT);
+  public JoystickButton Lift_Auto_BPU = new JoystickButton(DriveController, Constants.Lift_Auto_BPU);
+  public JoystickButton Lower_Auto_BPU = new JoystickButton(DriveController, Constants.Lower_Auto_BPU);
   public JoystickButton stop_all = new JoystickButton(Xbox360, Constants.KILL_BUTTON);
-
 
   // public 
   /**
@@ -137,11 +145,17 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Lower_BPU.whileHeld(lower_bpu);
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
-    auto_Raise.whenPressed(auto_lift);
+    Back_Climber_Extend.whileHeld(back_climber_extend);
+    Back_Climber_Retract.whileHeld(back_climber_retract);
+    Front_Climber_Extend.whenPressed(front_climber_extend); 
+    Front_Climber_Retract.whenPressed(front_climber_retract);
+    Run_Launcher.whenPressed(run_launcher_auto);
+    Lift_Auto_BPU.whenPressed(lift_Auto_BPU);
+    Lower_Auto_BPU.whenPressed(lower_Auto_BPU);
     stop_all.whenPressed(new TerminateProcedures(picker_upper_subsystem, climber_subsystem, draw_bridge_subsystem, drive_subsystem, indexer_subsystem, launcher_subsystem));
 
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
-    
+
   }
 
   /**

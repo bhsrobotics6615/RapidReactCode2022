@@ -37,12 +37,12 @@ public class DriveAuto extends CommandBase {
     @Override
     public void execute() 
     {
-       while(drive_subsystem.getDistance() < distance)
-       {
-        System.out.println(drive_subsystem.getDistance());
-        drive_subsystem.move(-0.4, 0, 0);
-       }
-       driveAutoDone = true;
+        while(drive_subsystem.getDistance() < distance)
+        {
+         System.out.println(drive_subsystem.getDistance());
+         drive_subsystem.move(-0.4, 0, 0);
+        }
+        driveAutoDone = true;
     }
 
     @Override
