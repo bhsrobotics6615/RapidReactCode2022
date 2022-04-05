@@ -48,7 +48,7 @@ public class ClimbSequence extends CommandBase {
 
     do {
 
-      drive_subsystem.move(0.5, 0, 0);
+      drive_subsystem.move(0.2, 0, 0);
 
     } while (Variables.yJerk < -5);
 
