@@ -22,8 +22,10 @@ import frc.robot.commands.LowerDrawBridge;
 import frc.robot.commands.ManualLower;
 import frc.robot.commands.ManualRaise;
 import frc.robot.commands.PickUpBalls;
+import frc.robot.commands.TerminateProcedures;
 //import frc.robot.commands.SearchAndAlign;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
@@ -59,6 +61,7 @@ public class RobotContainer {
   private final IndexerSubsystem indexer_subsystem = new IndexerSubsystem();
   private final BallPickerUpperSubsystem picker_upper_subsystem = new BallPickerUpperSubsystem();
   private final DrawBridgeSubsystem draw_bridge_subsystem = new DrawBridgeSubsystem();
+  private final ClimberSubsystem climber_subsystem = new ClimberSubsystem();
 
   //Commands
   private final Drive drive_command = new Drive(drive_subsystem);
@@ -76,6 +79,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   private final LiftDrawBridge auto_lift = new LiftDrawBridge(draw_bridge_subsystem);
   private final LowerDrawBridge auto_lower = new LowerDrawBridge(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
+  // private final TerminateProcedures kill = new TerminateProcedures(picker_upper_subsystem, climber_subsystem, draw_bridge_subsystem, drive_subsystem, indexer_subsystem, launcher_subsystem);
 
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
@@ -94,6 +98,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Front_Climb = new JoystickButton(Xbox360, Constants.FRONT_CLIMB);
   public JoystickButton auto_Raise = new JoystickButton(DriveController, Constants.AUTO_RAISE);
   public JoystickButton auto_Lower = new JoystickButton(DriveController, Constants.AUTO_LOWER);
+  public JoystickButton stop_all = new JoystickButton(Xbox360, Constants.KILL_BUTTON);
 
 
   // public 
@@ -133,6 +138,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
     auto_Raise.whenPressed(auto_lift);
+    stop_all.whenPressed(new TerminateProcedures(picker_upper_subsystem, climber_subsystem, draw_bridge_subsystem, drive_subsystem, indexer_subsystem, launcher_subsystem));
 
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
     

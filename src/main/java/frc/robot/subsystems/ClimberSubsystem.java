@@ -5,9 +5,14 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import org.ejml.equation.Variable;
+
 import frc.robot.Constants;
+import frc.robot.Variables;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 // import edu.wpi.first.wpilibj.Encoder;
 // import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
@@ -15,67 +20,47 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
 
   WPI_TalonSRX back_climber = new WPI_TalonSRX(Constants.BACK_CLIMBER);
-  WPI_TalonSRX front_climber_1 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
-  WPI_TalonSRX front_climber_2 = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
+  WPI_TalonSRX front_climber_right = new WPI_TalonSRX(Constants.FRONT_CLIMBER_1);
+  WPI_TalonSRX front_climber_left = new WPI_TalonSRX(Constants.FRONT_CLIMBER_2);
   
-  DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
-  DigitalInput front_climb_1_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
-  DigitalInput front_climb_2_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+  DigitalInput front_climb_right_limit_Switch = Variables.front_climb_right_limit_switch; 
+  //DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH); 
 
-  public boolean backClimberStatus = false;
-  public boolean frontLeftClimberPosition = false;
-  public boolean frontRightClimberPosition = false;
+  public void front_climber_retract() 
+  {
+      front_climber_right.set(-.6);
+      front_climber_left.set(-.6);
+  }
+  
+  public void front_climber_extend()
+  {
+    while (front_climb_right_limit_Switch.get() == false)
+    {
+    front_climber_right.set(.4);
+    front_climber_left.set(.4);
+    }
 
-  public void front_climber_lift() {
-    front_climber_1.set(.2);
-    front_climber_2.set(.2);
-        /*if (front_climb_1_limit_Switch.get() ==false && frontLeftClimberPosition == false) {
-            // We are going up and top limit is tripped so stop
-           
-            front_climber_1.set(0.75);
-            return frontLeftClimberPosition = true; // this identifies the climber as lowered
-        } else {
-            // We are going up but top limit is not tripped so go at commanded speed
-            front_climber_1.set(-0.75);
-            return frontLeftClimberPosition = false; // this identifies the climber as raised
-        }*/
+    if(front_climb_right_limit_Switch.get() == true)
+    {
+      ClimberStageThree.hasClimbEnded = true;
     }
   }
 
-  /*public void frontClimberLower(){
-        if (front_climb_2_limit_Switch.get() == true && frontRightClimberPosition == true);
-        
-            // We are going down and bottom limit is tripped so stop
-            climber_2.set(-o.75);
-            // We are going down but bottom limit is not tripped so go at commanded speed
-            climber.set-0.75);
-        }*/
-    
-  
- /*public boolean front_extend() {
-      if (front_climb_top_limit_Switch.get() frontClimberPosition) {
-        // We are going up and top limit is tripped so stop
-        front_climber_1.set(0);
-        front_climber_2.set(0);
-        return frontClimberPosition = true;
-    //  } else {
-        // We are going up but top limit is not tripped so go at commanded speed
-        front_climber_1.set(0.75);
-        front_climber_2.set(0.75);
-         return frontClimberStatus = false;
-      }
+  public void front_climber_stop(){
+    front_climber_right.set(0);
+    front_climber_left.set(0);
+
   }
 
- // public void frontLower() {
+  public void back_climber_extend() {
+    back_climber.set(-0.75);
+  }
 
-    if (front_climb__limit_Switch.get()) {
-      // We are going down and bottom limit is tripped so stop
-      front_climber_1.set(0);
-      front_climber_2.set(0);
-  } else {
-      // We are going down but bottom limit is not tripped so go at commanded speed
-      front_climber_1.set(-0.75);
-      front_climber_2.set(-0.75);
-    }
-  }*/
+  public void back_climber_retract() {
+      back_climber.set(1);
+  }
 
+  public void back_climber_off() {
+    back_climber.set(0);
+  }
+}
