@@ -42,9 +42,10 @@ public final class Constants {
 
     // Limelight
     public static final double LIMELIGHT_X_PRECISION = 0.15; // Precision expected looking on the x-axis
-    public static final double LIMELIGHT_TARGET_X = 0; // Target value on the x-axis
+    public static final double LIMELIGHT_TARGET_X = -2; // Target value on the x-axis
     public static final double LIMELIGHT_Y_PRECISION = 0.2; // Precision expected looking on the y-axis
-    public static final double LIMELIGHT_TARGET_Y = -3.5; // Target value on the y-axis
+    // public static final double LIMELIGHT_TARGET_Y = 4.0; // (old) Target value on the y-axis
+    public static final double LIMELIGHT_TARGET_Y = 3.5;
 
     // Search
     public static final double SEARCH_ROTATION_SPEED = 0.6;
@@ -62,13 +63,20 @@ public final class Constants {
     public static final int RUN_INDEXER = XboxController.Button.kX.value;
     public static final int CHOKING = XboxController.Button.kRightBumper.value;
     public static final int AUTO_LAUNCH = XboxController.Button.kY.value;
+
     // Ball Picker Upper (BPU)
     public static final int RUN_BPU = XboxController.Button.kB.value;
     public static final int LIFT_BPU = XboxController.Button.kBack.value;
     public static final int LOWER_BPU = XboxController.Button.kStart.value;
-    public static final int BACK_CLIMB = XboxController.Button.kLeftBumper.value;
-    public static final int BALL_DETECTOR = 4;
-    public static final int BALL_ENTERED = 5;
+    public static final int BACK_CLIMBER_EXTEND = XboxController.Button.kA.value;
+    public static final int BACK_CLIMBER_RETRACT = XboxController.Button.kY.value;
+    public static final int FRONT_CLIMBER_EXTEND = XboxController.Button.kX.value;
+    public static final int FRONT_CLIMBER_RETRACT = XboxController.Button.kB.value;
+//     public static final int BALL_DETECTOR = 6;
+//     public static final int BALL_ENTERED = 7;
+
+    public static final int Lift_Auto_BPU = XboxController.Button.kBack.value;
+    public static final int Lower_Auto_BPU = XboxController.Button.kStart.value;
 
     // Logitech Joystick Buttons
     public static final int RUN_LIDAR = 10;
@@ -79,22 +87,19 @@ public final class Constants {
 	public static final int EXTENDED_POSITION = 0;
 
     // Launcher Run
-    public static final double LAUNCH_RUN_TIME = 3;
-    public static final double INDEX_TIME = 2;
+    public static final double LAUNCH_RUN_TIME = 3.5;
+    public static final double INDEX_TIME = 1;
 
     // limit switches
-    public static final int BACK_CLIMB_TOP_LIMIT = 0;
-    public static final int BACK_CLIMB_BOTTOM_LIMIT = 0;
-   
+    //public static final int BACK_CLIMB_TOP_LIMIT = 0;
+    public static final int BACK_CLIMB_LIMIT = 5;
     public static final int FRONT_CLIMB_2_LIMIT_SWITCH = 7;
-    public static final int FRONT_CLIMB_1_LIMIT_SWITCH = 8;
-
+    public static final int FRONT_CLIMB_1_LIMIT_SWITCH = 6;
+    
     // Speed Conversion
     public static final double SPEED_CONVERT = 6.23;
 
     //Encoder Math Counts to Feet
     public static final double kTICKS_FEET = (1/6900);
-    public static final int FRONT_CLIMB = 0;
-
-
+    
 }

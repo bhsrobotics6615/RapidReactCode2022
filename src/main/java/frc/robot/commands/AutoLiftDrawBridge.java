@@ -7,51 +7,46 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrawBridgeSubsystem;
 
-public class LowerDrawBridge extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final DrawBridgeSubsystem bpu;
-  boolean isDone;
-  public LowerDrawBridge(DrawBridgeSubsystem subsystem) {
-    bpu = subsystem;
-    isDone = false;
-    // Use addRequirements() here to declare subsystem dependencies.
+public class AutoLiftDrawBridge extends CommandBase {
+  /** Creates a new AutoLiftDrawBridge. */
+  private final DrawBridgeSubsystem draw_bridge;
+  boolean isLiftFinished = false;
+  
+  public AutoLiftDrawBridge(DrawBridgeSubsystem subsystem) {
+    draw_bridge = subsystem;
+
     addRequirements(subsystem);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() 
-  {
-    bpu.resetEncoder();
-    bpu.reverseEncoder(true);
-
+  public void initialize() {
+    draw_bridge.resets();
   }
-
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while(bpu.getRawEncoderValue() < 2310)// 2130 encoder raw value for when darwbridge goes up
-    {
-      bpu.lower();
-      
+   
+    while( draw_bridge.getRawEncoderValue() < 2000){
+       System.out.println(draw_bridge.getRawEncoderValue());
+      draw_bridge.lift();
     }
-
-    isDone = true;
-   }
-    
-    
+    isLiftFinished = true;
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-
-    bpu.stop();
-
+  public void end(boolean interrupted) 
+  {
+    draw_bridge.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isDone;
+
+    return isLiftFinished;
   }
 }

@@ -5,18 +5,15 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-// import com.ctre.phoenix.motorcontrol.ControlMode;
-// import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-// import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.math.filter.LinearFilter;
+import edu.wpi.first.util.net.PortForwarder;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.DigitalInput;
-// import frc.robot.subsystems.BallPickerUpperSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
 
 /**
@@ -31,8 +28,12 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer;
   public static Accelerometer accelerometer = new BuiltInAccelerometer();
   public static LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
-  public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
-  public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
+  //public static DigitalInput ballDetected = new DigitalInput(Constants.BALL_DETECTOR);
+  //public static DigitalInput ballEntered = new DigitalInput(Constants.BALL_ENTERED);
+  DigitalInput back_climb_limit_Switch = Variables.back_climb_limit_switch;
+  DigitalInput front_climb_right_limit_Switch = Variables.front_climb_right_limit_switch;  
+  DigitalInput front_climb_left_limit_Switch = Variables.front_climb_left_limit_switch;
+
   // private final BallPickerUpperSubsystem ballPickerUpper = new BallPickerUpperSubsystem();
   boolean latch = false;
   double prevXAccel = 0;
@@ -57,6 +58,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    PortForwarder.add(5800, "10.66.15.11", 5800);
+    PortForwarder.add(5801, "10.66.15.11", 5801);
+    PortForwarder.add(5805, "10.66.15.11", 5805);
     CameraServer.startAutomaticCapture(0);
     CameraServer.startAutomaticCapture(1);
     m_robotContainer = new RobotContainer();
@@ -81,16 +85,13 @@ public class Robot extends TimedRobot {
     // Gets the current accelerations in the X and Y directions
     double filteredXAccel = xAccelFilter.calculate(accelerometer.getX());
     double yAccel = accelerometer.getY();
-
-    // Calculates the jerk in the X and Y directions
-    // Divides by .02 because default loop timing is 20ms
-    
-    // double xJerk = (filteredXAccel - prevXAccel) / .02;
-    
-    // double yJerk = (yAccel - prevYAccel) / .02;
+    double xJerk = (filteredXAccel - prevXAccel)/.02;
+    double yJerk = (yAccel - prevYAccel)/.02;
 
     if (run_counter == 50) {
 
+      System.out.println("xJerk: "+ xJerk);
+      System.out.println("yJerk: "+ yJerk);
       run_counter = 1;
       run_clock ++;
 
@@ -100,36 +101,19 @@ public class Robot extends TimedRobot {
       run_clock ++;
 
     }
-/*
-    if (ballDetected.get() && !ballEntered.get()) {
 
-      latch = true;
-
-    }
-
-    if (!ballDetected.get() && ballEntered.get()) {
-
-      latch = false;
-
-    }
-
-    if (latch) {
-
-      ballPickerUpper.pickUpTheBall();
-
-    } else {
-
-      ballPickerUpper.stopBPU();
-
-    } */
 
     prevXAccel = filteredXAccel;
     prevYAccel = yAccel;
     //SmartDashboard.putNumber("Draw Bridge Encoder Raw Value", drawBridgeEncoder.getRaw());
     //SmartDashboard.putNumber("Draw Bridge Encoder Distance Value", drawBridgeEncoder.getDistance());
     //SmartDashboard.putNumber("Draw Bridge Encoder Rate Value", drawBridgeEncoder.getRate());
-    SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
-    SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
+    //SmartDashboard.putNumber("Front Left Encoder Value feet", (frontLeft.getSelectedSensorPosition()/69000) );
+    //SmartDashboard.putNumber("Front Right Encoder Value feet", (frontRight.getSelectedSensorPosition()/69000));
+   // SmartDashboard.putBoolean("Ball Detector", ballDetected.get());
+    SmartDashboard.putBoolean("Back Climb Limit", back_climb_limit_Switch.get());
+    SmartDashboard.putBoolean("Front Climb Limit Left", front_climb_left_limit_Switch.get());
+    SmartDashboard.putBoolean("Front Climb Limit Right", front_climb_right_limit_Switch.get());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

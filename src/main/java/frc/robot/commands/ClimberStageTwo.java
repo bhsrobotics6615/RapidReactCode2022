@@ -7,7 +7,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
-
 public class ClimberStageTwo extends CommandBase {
   private final ClimberSubsystem climbers;
 
@@ -21,17 +20,21 @@ public class ClimberStageTwo extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+      // climbers.front_climber_extend();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climbers.back_climber_lift();
+          climbers.back_climber_retract();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    climbers.back_climber_off();
+  }
 
   // Returns true when the command should end.
   @Override
