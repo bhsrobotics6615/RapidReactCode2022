@@ -72,11 +72,12 @@ public final class Constants {
     public static final int BACK_CLIMBER_RETRACT = XboxController.Button.kY.value;
     public static final int FRONT_CLIMBER_EXTEND = XboxController.Button.kX.value;
     public static final int FRONT_CLIMBER_RETRACT = XboxController.Button.kB.value;
-    public static final int BALL_DETECTOR = 6;
-    public static final int BALL_ENTERED = 7;
+//     public static final int BALL_DETECTOR = 6;
+//     public static final int BALL_ENTERED = 7;
 
     public static final int Lift_Auto_BPU = XboxController.Button.kBack.value;
     public static final int Lower_Auto_BPU = XboxController.Button.kStart.value;
+
     // Logitech Joystick Buttons
     public static final int RUN_LIDAR = 10;
 
@@ -101,6 +102,4 @@ public final class Constants {
     //Encoder Math Counts to Feet
     public static final double kTICKS_FEET = (1/6900);
     
-
-
 }

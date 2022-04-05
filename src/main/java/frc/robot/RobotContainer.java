@@ -20,6 +20,8 @@ import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
+import frc.robot.commands.ManualLower;
+import frc.robot.commands.ManualRaise;
 import frc.robot.commands.PickUpBalls;
 import frc.robot.subsystems.BallPickerUpperSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -103,6 +105,7 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Front_Climber_Retract = new JoystickButton(DriveController, Constants.FRONT_CLIMBER_RETRACT);
   public JoystickButton Lift_Auto_BPU = new JoystickButton(DriveController, Constants.Lift_Auto_BPU);
   public JoystickButton Lower_Auto_BPU = new JoystickButton(DriveController, Constants.Lower_Auto_BPU);
+
   // public 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -144,9 +147,11 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Front_Climber_Extend.whenPressed(front_climber_extend); 
     Front_Climber_Retract.whenPressed(front_climber_retract);
     Run_Launcher.whenPressed(run_launcher_auto);
-  
     Lift_Auto_BPU.whenPressed(lift_Auto_BPU);
     Lower_Auto_BPU.whenPressed(lower_Auto_BPU);
+
+    //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
+
   }
 
   /**

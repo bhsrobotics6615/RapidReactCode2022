@@ -6,21 +6,24 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrawBridgeSubsystem;
-
+import edu.wpi.first.wpilibj.Encoder;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /** An example command that uses an example subsystem. */
+
 public class LiftDrawBridge extends CommandBase {
+ 
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DrawBridgeSubsystem bpu;
-
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
+  boolean isDone;
   public LiftDrawBridge(DrawBridgeSubsystem subsystem) {
     bpu = subsystem;
-
+    isDone = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
     
@@ -28,19 +31,28 @@ public class LiftDrawBridge extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  
-  }
+  public void initialize() 
+  {
+    bpu.resetEncoder();
+    bpu.reverseEncoder(false);
 
+  }
+ 
+   
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+   
     
+    while(bpu.getRawEncoderValue() < 2310)// 2130 encoder raw value for when darwbridge goes up
+    {
       bpu.lift();
-    
+      System.out.println("THIS RAN!");
 
-  }
-
+    }
+    isDone = true;
+   }
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
@@ -52,6 +64,6 @@ public class LiftDrawBridge extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isDone;
   }
 }
