@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 import  frc.robot.subsystems.BallPickerUpperSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
@@ -11,15 +12,17 @@ public class PickUpBalls extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
   private final BallPickerUpperSubsystem ball_picker_upper_subsystem;
+  private final IndexerSubsystem i_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public PickUpBalls(BallPickerUpperSubsystem subsystem) {
+  public PickUpBalls(BallPickerUpperSubsystem subsystem, IndexerSubsystem index_subsystem) {
     // ball_picker_upper_subsystem.wait();
     ball_picker_upper_subsystem = subsystem;
+    i_subsystem = index_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -33,6 +36,7 @@ public class PickUpBalls extends CommandBase {
   public void execute() {
 
     ball_picker_upper_subsystem.pickUpTheBall();
+    i_subsystem.loadSetSpeed(0.40);
     // System.out.println("SUCKING!!!");
     
   }
@@ -42,6 +46,7 @@ public class PickUpBalls extends CommandBase {
   public void end(boolean interrupted) {
 
     ball_picker_upper_subsystem.stopBPU();
+    i_subsystem.stop();
     // System.out.println("Stopping...");
 
   }

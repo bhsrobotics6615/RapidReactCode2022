@@ -12,16 +12,20 @@ public class IndexerSubsystem extends SubsystemBase {
   /** Creates a new IteratorSubsystem. */
 
   WPI_TalonSRX indexer = new WPI_TalonSRX(Constants.INDEXER);
-    
+  
+  public void loadSetSpeed(double speed)
+  {
+    indexer.set(speed);
+  }
   public void load() {
 
-    indexer.set(0.5);
+    indexer.set(0.8);
 
   }
 
   public void unload() {
 
-    indexer.set(-0.5);
+    indexer.set(-0.8);
 
   }
 

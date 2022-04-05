@@ -30,39 +30,23 @@ public class Drive extends CommandBase {
         double rightX = Robot.m_robotContainer.DriveController.getRightX();
 
 
-        forwardSpeed = leftY;
-        horizontalSpeed = leftX;
-        rotationRate = rightX;
+        if (leftY > 0) {
+            forwardSpeed = Math.pow(leftY, 2);
+        } else if (leftY < 0) {
+            forwardSpeed = -Math.pow(leftY, 2);
+        }
 
-        // if (leftY > 0) {
+        if (leftX > 0) {
+            horizontalSpeed = Math.pow(leftX, 2);
+        } else if (leftX < 0) {
+            horizontalSpeed = -Math.pow(leftX, 2);
+        }
 
-        //     forwardSpeed = Math.pow(leftY, 2);
-
-        // } else if (leftY < 0) {
-
-        //     forwardSpeed = -Math.pow(leftY, 2);
-
-        // }
-
-        // if (leftX > 0) {
-
-        //     horizontalSpeed = Math.pow(leftX, 2);
-
-        // } else if (leftX < 0) {
-
-        //     horizontalSpeed = -Math.pow(leftX, 2);
-
-        // }
-
-        // if (rightX > 0) {
-
-        //     rotationRate = Math.pow(rightX, 2);
-
-        // } else if (rightX < 0) {
-
-        //     rotationRate = -Math.pow(rightX, 2);
-            
-        // }
+        if (rightX > 0) {
+            rotationRate = Math.pow(rightX, 2);
+        } else if (rightX < 0) {
+            rotationRate = -Math.pow(rightX, 2);
+        }
         
         drive_subsystem.move(
             forwardSpeed,
