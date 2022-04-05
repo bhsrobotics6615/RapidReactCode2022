@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AlignAndLaunch;
 import frc.robot.commands.Choking;
+import frc.robot.commands.ClimbSequence;
+import frc.robot.commands.ClimbToSecond;
+import frc.robot.commands.ClimbToThird;
 import frc.robot.commands.ClimberStageFour;
 import frc.robot.commands.ClimberStageOne;
 import frc.robot.commands.ClimberStageThree;
@@ -20,8 +23,8 @@ import frc.robot.commands.Drive;
 import frc.robot.commands.IndexBall;
 import frc.robot.commands.LiftDrawBridge;
 import frc.robot.commands.LowerDrawBridge;
-import frc.robot.commands.ManualLower;
-import frc.robot.commands.ManualRaise;
+// import frc.robot.commands.ManualLower;
+// import frc.robot.commands.ManualRaise;
 import frc.robot.commands.PickUpBalls;
 import frc.robot.commands.TerminateProcedures;
 //import frc.robot.commands.SearchAndAlign;
@@ -86,6 +89,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   private final AutoLiftDrawBridge lift_Auto_BPU = new AutoLiftDrawBridge(draw_bridge_subsystem);
   private final AutoLowerDrawBridge lower_Auto_BPU = new AutoLowerDrawBridge(draw_bridge_subsystem);
   private final AutoRunTheLauncher run_launcher_auto = new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem);
+  private final ClimbToSecond climb_to_2nd = new ClimbToSecond(climber_subsystem, drive_subsystem);
+  private final ClimbToThird climb_to_3rd = new ClimbToThird(climber_subsystem, drive_subsystem);
 
   //Controllers
   //public Joystick Logitech = new Joystick(Constants.JOYSTICK); // Port is 0 (OLD)
@@ -108,6 +113,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   public JoystickButton Lift_Auto_BPU = new JoystickButton(DriveController, Constants.Lift_Auto_BPU);
   public JoystickButton Lower_Auto_BPU = new JoystickButton(DriveController, Constants.Lower_Auto_BPU);
   public JoystickButton stop_all = new JoystickButton(Xbox360, Constants.KILL_BUTTON);
+  public JoystickButton climb = new JoystickButton(DriveController, Constants.CLAMBER_22); 
+  public JoystickButton climb_climb = new JoystickButton(DriveController, Constants.CLAMBER_23); 
 
   // public 
   /**
@@ -153,6 +160,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     Lift_Auto_BPU.whenPressed(lift_Auto_BPU);
     Lower_Auto_BPU.whenPressed(lower_Auto_BPU);
     stop_all.whenPressed(new TerminateProcedures(picker_upper_subsystem, climber_subsystem, draw_bridge_subsystem, drive_subsystem, indexer_subsystem, launcher_subsystem));
+    climb.whenPressed(climb_to_2nd);
+    climb_climb.whenPressed(climb_to_3rd);
 
     //Auto_Launch.whenPressed(new AutoRunTheLauncher(launcher_subsystem, indexer_subsystem));
 
@@ -167,5 +176,6 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     // An ExampleCommand will run in autonomous
     
     return run_auto;
+    
   }
 }

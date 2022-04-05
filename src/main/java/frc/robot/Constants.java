@@ -80,7 +80,9 @@ public final class Constants {
 
     // Logitech Joystick Buttons
     public static final int RUN_LIDAR = 10;
-    public static final int KILL_BUTTON = 12;
+    public static final int KILL_BUTTON = XboxController.Button.kRightStick.value;
+    public static final int CLAMBER_22 = XboxController.Button.kLeftBumper.value;
+    public static final int CLAMBER_23 = XboxController.Button.kRightBumper.value;
 
     // Other (other constants with no category)
     public static final double PICK_UP_SPEED = 0;

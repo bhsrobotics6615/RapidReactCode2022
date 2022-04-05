@@ -88,6 +88,9 @@ public class Robot extends TimedRobot {
     double xJerk = (filteredXAccel - prevXAccel)/.02;
     double yJerk = (yAccel - prevYAccel)/.02;
 
+    Variables.xJerk = xJerk;
+    Variables.yJerk = yJerk;
+
     if (run_counter == 50) {
 
       System.out.println("xJerk: "+ xJerk);
@@ -121,7 +124,11 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+
+    System.out.println("DISABLED...");
+
+  }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override

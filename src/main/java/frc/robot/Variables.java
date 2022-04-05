@@ -23,5 +23,8 @@ public class Variables {
     public static DigitalInput front_climb_right_limit_switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
     public static DigitalInput front_climb_left_limit_switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
     public static DigitalInput back_climb_limit_switch = new DigitalInput(Constants.BACK_CLIMB_LIMIT);
+
+    public static double xJerk = 0;
+    public static double yJerk = 0;
     // public static int loaderSpeed = 1;
 }

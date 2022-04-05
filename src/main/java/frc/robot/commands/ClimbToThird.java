@@ -10,7 +10,7 @@ import frc.robot.Variables;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class ClimbSequence extends CommandBase {
+public class ClimbToThird extends CommandBase {
   /** Creates a new ClimbSequence. */
 
   private ClimberSubsystem climber_subsystem;
@@ -20,7 +20,7 @@ public class ClimbSequence extends CommandBase {
   DigitalInput back_climb_limit_switch = Variables.back_climb_limit_switch;
   private boolean finished;
 
-  public ClimbSequence(ClimberSubsystem c_subsystem, DriveTrainSubsystem d_subsystem) {
+  public ClimbToThird(ClimberSubsystem c_subsystem, DriveTrainSubsystem d_subsystem) {
     
     climber_subsystem = c_subsystem;
     drive_subsystem = d_subsystem;

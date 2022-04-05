@@ -10,7 +10,7 @@ import frc.robot.Variables;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class ClimbSequence extends CommandBase {
+public class ClimbToSecond extends CommandBase {
   /** Creates a new ClimbSequence. */
 
   private ClimberSubsystem climber_subsystem;
@@ -20,7 +20,7 @@ public class ClimbSequence extends CommandBase {
   DigitalInput back_climb_limit_switch = Variables.back_climb_limit_switch;
   private boolean finished;
 
-  public ClimbSequence(ClimberSubsystem c_subsystem, DriveTrainSubsystem d_subsystem) {
+  public ClimbToSecond(ClimberSubsystem c_subsystem, DriveTrainSubsystem d_subsystem) {
     
     climber_subsystem = c_subsystem;
     drive_subsystem = d_subsystem;
@@ -59,23 +59,6 @@ public class ClimbSequence extends CommandBase {
       climber_subsystem.back_climber_retract();
 
     } while (!back_climb_limit_switch.get());
-
-    // Stage Two, Extend Front Climbers, Grab, Pull up
-    do {
-
-      climber_subsystem.front_climber_extend();
-
-    } while (!(front_climb_right_limit_Switch.get() && front_climb_left_limit_Switch.get()));
-
-    do {
-
-    } while (Variables.yJerk > 5 || Variables.yJerk < -5);
-
-    do {
-
-      climber_subsystem.front_climber_retract();
-
-    } while (!(front_climb_right_limit_Switch.get() && front_climb_left_limit_Switch.get()));
 
     finished = true;
 
