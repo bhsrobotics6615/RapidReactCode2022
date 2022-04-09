@@ -48,11 +48,11 @@ public final class Constants {
     public static final double LIMELIGHT_TARGET_Y = 3.5;
 
     // Search
-    public static final double SEARCH_ROTATION_SPEED = 0.3;
+    public static final double SEARCH_ROTATION_SPEED = 0.6;
 
     // Align
-    public static final double ALIGN_ROTATION_SPEED = 0.15;
-    public static final double ALIGN_MOVEMENT_SPEED = 0.2;
+    public static final double ALIGN_ROTATION_SPEED = 0.45;
+    public static final double ALIGN_MOVEMENT_SPEED = 0.6;
 
     // Angles
     public static final double LIMELIGHT_MOUNTING_ANGLE = 60;

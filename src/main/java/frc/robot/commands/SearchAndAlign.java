@@ -89,6 +89,7 @@ public class SearchAndAlign extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    drive_subsystem.stop();
 
   }
 
