@@ -74,8 +74,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
   // private final DriveAuto run_drive_auto = new DriveAuto(drive_subsystem, 10);
   private final IndexBall index_ball = new IndexBall(indexer_subsystem);
   private final PickUpBalls pick_up_ball = new PickUpBalls(picker_upper_subsystem, indexer_subsystem);
-  private final LowerDrawBridge lower_bpu = new LowerDrawBridge(draw_bridge_subsystem);
-  private final LiftDrawBridge lift_bpu = new LiftDrawBridge(draw_bridge_subsystem);
+  private final ManualLower manual_lower_bpu = new ManualLower(draw_bridge_subsystem);
+  private final ManualRaise manual_lift_bpu = new ManualRaise(draw_bridge_subsystem);
   private final Choking ball_choking = new Choking(launcher_subsystem, indexer_subsystem);
   private final ClimberStageOne back_climber_extend = new ClimberStageOne(climber_subsystem);
   private final ClimberStageTwo back_climber_retract = new ClimberStageTwo(climber_subsystem);
@@ -138,8 +138,8 @@ private final TheFirst15 run_auto = new TheFirst15(drive_subsystem, launcher_sub
     //Run_Search_And_Align.whenPressed(search_and_align);
     Run_BPU.whileHeld(pick_up_ball);
     Run_Indexer.whileHeld(index_ball);
-    Lift_BPU.whileHeld(lift_bpu);
-    Lower_BPU.whileHeld(lower_bpu);
+    Lift_BPU.whileHeld(manual_lift_bpu);
+    Lower_BPU.whileHeld(manual_lower_bpu);
     Un_choke.whileHeld(ball_choking);
     Auto_Launch.whenPressed(new AlignAndLaunch(drive_subsystem, launcher_subsystem, indexer_subsystem));
     Back_Climber_Extend.whileHeld(back_climber_extend);
