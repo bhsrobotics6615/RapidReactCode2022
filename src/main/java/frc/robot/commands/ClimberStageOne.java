@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 // import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Variables;
 //import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
 //import edu.wpi.first.wpilibj.DigitalInput;
@@ -37,6 +38,8 @@ public class ClimberStageOne extends CommandBase {
   @Override
   public void execute() {
       climbers.back_climber_extend();
+       
+    Variables.canIBackItUp = true;
   }
 
   // Called once the command ends or is interrupted.
