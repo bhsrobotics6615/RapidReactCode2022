@@ -4,30 +4,42 @@
 
 package frc.robot.commands;
 
+// import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Variables;
+//import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
+//import edu.wpi.first.wpilibj.DigitalInput;
 
-public class ClimberStageTwo extends CommandBase {
+public class ClimberStageOne extends CommandBase {
+ 
+  /*DigitalInput back_climb_limit_Switch = new DigitalInput(Constants.BACK_CLIMB_TOP_LIMIT);
+  DigitalInput front_climb_left_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_1_LIMIT_SWITCH);
+  DigitalInput front_climb_right_limit_Switch = new DigitalInput(Constants.FRONT_CLIMB_2_LIMIT_SWITCH);
+*/  
+
   private final ClimberSubsystem climbers;
+  // private double startTime;
+  private boolean hasClimbEnded = false;
 
-  /** Creates a new ClimberStageTwo. */
-  public ClimberStageTwo(ClimberSubsystem climber_Subsystem) {
-    climbers = climber_Subsystem;
-    addRequirements(climber_Subsystem);
-
+  /** Creates a new ClimberStageOne. */
+  public ClimberStageOne(ClimberSubsystem climber_subsystem) {
+    climbers = climber_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(climber_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      // climbers.front_climber_extend();
+    // startTime = Timer.getFPGATimestamp();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-          climbers.back_climber_retract();
+      climbers.back_climber_extend();
+       
+    Variables.canIBackItUp = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +51,6 @@ public class ClimberStageTwo extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return hasClimbEnded;
   }
 }
